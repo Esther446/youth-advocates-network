@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Advocates Network Rwanda | Empowering Young Leaders</title>
+    <meta name="description"
+        content="Youth Advocates Network (YAN) is Rwanda's leading youth-led umbrella organization connecting youth organizations for advocacy, capacity building, and innovation.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-circle"></div>
+                <span class="brand-text">YAN <span class="brand-accent">Rwanda</span></span>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#organizations" class="nav-link">Network</a>
+                <a href="#capacity" class="nav-link">Capacity Building</a>
+                <a href="#opportunities" class="nav-link" data-role="member,admin">Opportunities</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <span class="role-badge-nav" id="roleBadgeNav" style="display: none;"></span>
+
+                <button class="login-btn" id="loginBtn">
+                    <span class="login-text">Login</span>
+                    <span class="login-icon">→</span>
+                </button>
+
+                <div class="profile-dropdown" id="profileDropdown" style="display: none;">
+                    <button class="profile-btn" id="profileBtn">
+                        <div class="profile-avatar">YL</div>
+                        <span class="profile-name">Young Leader</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#dashboard" class="dropdown-item">Dashboard</a>
+                        <a href="#profile" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Empowering Rwanda's</span>
+                <span class="title-line title-highlight">Next Generation</span>
+            </h1>
+            <p class="hero-subtitle">
+                A youth-led umbrella network connecting organizations across Rwanda
+                for advocacy, capacity building, and transformative leadership development
+            </p>
+            <div class="hero-cta">
+                <button class="btn btn-primary" id="heroJoinBtn">
+                    <span>Join Our Network</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="btn btn-secondary"
+                    onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                    <span>Learn More</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="section-label">YAN Mandate</div>
+                    <h2 class="section-title">Vision, Mission & Network Story</h2>
+
+                    <div class="about-text">
+                        <h3>YAN Mandate</h3>
+                        <p>The Youth Advocate Network (YAN) stands as a testament to the power of unity, equipping and
+                            mobilizing young leaders to champion critical issues for a more inclusive and sustainable
+                            Rwanda.</p>
+                        <p>Established in 2024 under Rwandan law, the Youth Advocate Network (YAN) is more than just an
+                            organization; it's a vital umbrella for a diverse array of youth‑led initiatives, movements,
+                            NGOs, and associations.</p>
+                        <p>Headquartered in Kigali, YAN serves as a central hub, connecting passionate young advocates
+                            across Rwanda and extending its influence regionally and globally. It was born from the
+                            recognition that while individual youth efforts are impactful, a unified front can achieve
+                            far greater systemic change.</p>
+
+                        <h3>Vision &amp; Mission</h3>
+                        <div class="vision-mission">
+                            <div class="vm-item">
+                                <h4>Vision</h4>
+                                <p>Building a Rwanda where young people are empowered, actively engaged, and leading
+                                    transformative advocacy for inclusive and sustainable development.</p>
+                            </div>
+                            <div class="vm-item">
+                                <h4>Mission</h4>
+                                <p>To equip and mobilize young advocates with the knowledge, skills, and platforms to
+                                    champion child rights, social inclusion, and policy change, ensuring meaningful
+                                    youth participation in national and global development agendas.</p>
+                            </div>
+                        </div>
+
+                        <h3>About Youth Advocates Network</h3>
+                        <p>Youth Advocates Network (YAN) is a network established in 2020 by youth‑led and youth‑serving
+                            organizations. The network strives to empower and amplify youth voices and initiatives so
+                            they can meaningfully participate in decision‑making spaces.</p>
+                        <p>According to its founding narrative, YAN emerged after a training offered by UNICEF Rwanda,
+                            the “Youth Advocacy Guide (YAG)”, which brought together young leaders across Rwanda.
+                            Through that training, participants gained advocacy skills, communication and stakeholder
+                            engagement know‑how, and a broader network of peers and mentors.</p>
+                        <p>The Network is anchored on a philosophy that youth have gold in them and the power to decide
+                            their life locus and champion change for a better world free from any form of
+                            discrimination, harassment, and violence, and that embraces diversity.</p>
+
+                        <h3>Strategic Orientation</h3>
+                        <ul class="about-list">
+                            <li>Strengthening youth voice and agency in societal issues.</li>
+                            <li>Promoting solidarity and collaboration among youth‑led organizations.</li>
+                            <li>Facilitating capacity building, advocacy, and community‑level impact through collective
+                                action.</li>
+                            <li>Encouraging sustainable, youth‑driven development and social behavior change across
+                                sectors.</li>
+                        </ul>
+
+                        <h3>Context &amp; Rationale</h3>
+                        <p>Rwanda, like many African countries, has a vibrant but fragmented ecosystem of youth‑led
+                            organizations (covering health, education, social justice, climate, inclusion, etc.).
+                            However, these organizations often face structural limitations: lack of formal capacity in
+                            project design and management, inadequate financial and administrative skills, weak
+                            governance, and insufficient tools for sustainability.</p>
+                        <p>Nevertheless, given the complexity of issues (nutrition, health, mental health, social
+                            behavior, inclusion, rights) and the unpredictability of funding or external support, many
+                            youth‑led organizations remain vulnerable, especially in times of resource scarcity,
+                            political shifts, or increased demand.</p>
+                    </div>
+
+                    <div class="pillars-grid">
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>Advocacy</h3>
+                                <p>Amplifying youth voices in policy and decision-making</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor"
+                                        stroke-width="2" />
+                                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>Capacity Building</h3>
+                                <p>Professional training and skill development programs</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>Innovation</h3>
+                                <p>Fostering creative solutions to youth challenges</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+                                    <path
+                                        d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>Leadership</h3>
+                                <p>Developing the next generation of change-makers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stats-card">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Active Members</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="150">0</div>
+                            <div class="stat-label">Partner Organizations</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="50">0</div>
+                            <div class="stat-label">Impact Projects</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="impact-quote">
+                        <div class="quote-mark">"</div>
+                        <p>Together, we're building a Rwanda where every young person has the platform, skills, and
+                            network to create lasting change.</p>
+                        <div class="quote-author">— YAN Leadership Team</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spotlight Organizations -->
+    <section class="organizations-section" id="organizations">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">Our Network</div>
+                    <h2 class="section-title">Spotlight Organizations</h2>
+                    <p class="section-description">Featured members driving impact across Rwanda</p>
+                </div>
+                <button class="btn btn-outline" id="addOrgBtn" data-role="admin" style="display: none;">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>Add Organization</span>
+                </button>
+            </div>
+
+            <div class="organizations-grid" id="organizationsGrid">
+                <!-- Organizations will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Capacity Building Section -->
+    <section class="capacity-section" id="capacity">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">Learning & Development</div>
+                    <h2 class="section-title">Capacity Building Program</h2>
+                    <p class="section-description">Structured training modules for youth leaders</p>
+                </div>
+            </div>
+
+            <!-- Public View -->
+            <div class="capacity-public-view" id="capacityPublicView">
+                <div class="access-card">
+                    <div class="access-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Members-Only Access</h3>
+                    <p>Our comprehensive capacity building program includes structured training modules, assignments,
+                        and certifications. Login as a member to access the full learning management system.</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('loginBtn').click()">
+                        <span>Login to Access</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Member/Admin View - Module Dashboard -->
+            <div class="capacity-member-view" id="capacityMemberView" style="display: none;">
+                <div class="modules-grid" id="modulesGrid">
+                    <!-- Modules will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LMS Module Detail Page (Hidden by default) -->
+    <section class="lms-section" id="lmsSection" style="display: none;">
+        <div class="lms-container">
+            <button class="back-btn" id="backToModules">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Back to Modules</span>
+            </button>
+
+            <div class="lms-layout">
+                <aside class="lms-sidebar" id="lmsSidebar">
+                    <div class="module-header">
+                        <h3 id="moduleTitle">Module Title</h3>
+                        <span class="module-quarter" id="moduleQuarter">Q1</span>
+                    </div>
+
+                    <nav class="lms-nav">
+                        <button class="lms-nav-item active" data-section="overview">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M3 7L10 2L17 7V16C17 16.5304 16.7893 17.0391 16.4142 17.4142C16.0391 17.7893 15.5304 18 15 18H5C4.46957 18 3.96086 17.7893 3.58579 17.4142C3.21071 17.0391 3 16.5304 3 16V7Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Overview</span>
+                        </button>
+
+                        <button class="lms-nav-item" data-section="materials">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V16C4 16.5304 4.21071 17.0391 4.58579 17.4142C4.96086 17.7893 5.46957 18 6 18H14C14.5304 18 15.0391 17.7893 15.4142 17.4142C15.7893 17.0391 16 16.5304 16 16V7L13 2Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M13 2V7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Learning Materials</span>
+                        </button>
+
+                        <button class="lms-nav-item" data-section="assignment">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M14 2H6C4.89543 2 4 2.89543 4 4V16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V4C16 2.89543 15.1046 2 14 2Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M8 7H12M8 11H12M8 15H10" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Assignment</span>
+                        </button>
+
+                        <button class="lms-nav-item" data-section="feedback">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M7.5 10L9.5 12L12.5 8" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Feedback & Grades</span>
+                        </button>
+
+                        <button class="lms-nav-item" data-section="certificate">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M10 12C12.2091 12 14 10.2091 14 8C14 5.79086 12.2091 4 10 4C7.79086 4 6 5.79086 6 8C6 10.2091 7.79086 12 10 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M8.21 13.89L7 18L10 16L13 18L11.79 13.88" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Certificate</span>
+                        </button>
+                    </nav>
+
+                    <div class="module-progress">
+                        <div class="progress-label">
+                            <span>Progress</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="lms-content" id="lmsContent">
+                    <!-- Content sections will be dynamically loaded -->
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section class="opportunities-section" id="opportunities" data-role="member,admin" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">For Members</div>
+                    <h2 class="section-title">Opportunities</h2>
+                    <p class="section-description">Funding, training, and partnership opportunities</p>
+                </div>
+            </div>
+
+            <div class="filter-tabs" id="opportunityFilters">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="funding">Funding</button>
+                <button class="filter-tab" data-filter="training">Training</button>
+                <button class="filter-tab" data-filter="partnership">Partnership</button>
+            </div>
+
+            <div class="opportunities-grid" id="opportunitiesGrid">
+                <!-- Opportunities will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section" id="events">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">What's Happening</div>
+                    <h2 class="section-title">Upcoming Events</h2>
+                    <p class="section-description">Join us at our next gathering</p>
+                </div>
+            </div>
+
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">Moments</div>
+                    <h2 class="section-title">Our Gallery</h2>
+                    <p class="section-description">Capturing impact across Rwanda</p>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery images will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-label">Get In Touch</div>
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="contact-description">Whether you're a youth organization looking to join our network or a
+                        partner interested in collaboration, we'd love to hear from you.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Kigali, Rwanda</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@yanrwanda.org</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.5953 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+250 XXX XXX XXX</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.95718 14.8821 3.28445C14.0247 3.61173 13.2884 4.1944 12.773 4.95372C12.2575 5.71303 11.9877 6.61234 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3V3Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                                <circle cx="18.5" cy="5.5" r="0.5" fill="currentColor" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Full Name</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" rows="5" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="form-success" id="formSuccess" style="display: none;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <p>Thank you! Your message has been sent successfully.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Dashboard -->
+    <section class="dashboard-section" id="dashboard" style="display: none;">
+        <div class="dashboard-container">
+            <aside class="dashboard-sidebar">
+                <div class="dashboard-profile">
+                    <div class="dashboard-avatar">YL</div>
+                    <h3>Young Leader</h3>
+                    <span class="role-badge" id="dashboardRole">Member</span>
+                </div>
+
+                <nav class="dashboard-nav">
+                    <a href="#dashboard-overview" class="dashboard-nav-item active">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                            <rect x="3" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                            <rect x="13" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                            <rect x="13" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#dashboard-modules" class="dashboard-nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="#dashboard-events" class="dashboard-nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M16 2V6M8 2V6M3 10H21" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                        <span>My Events</span>
+                    </a>
+                    <a href="#" class="dashboard-nav-item" id="backToSite">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Back to Site</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <main class="dashboard-main">
+                <div class="dashboard-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back! Here's your progress summary</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="completedModules">0</div>
+                            <div class="metric-label">Completed Modules</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="pendingAssignments">0</div>
+                            <div class="metric-label">Pending Assignments</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="2" />
+                                <path d="M16 2V6M8 2V6M3 10H21" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="upcomingEvents">0</div>
+                            <div class="metric-label">Upcoming Events</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value" id="certificatesEarned">0</div>
+                            <div class="metric-label">Certificates Earned</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="activity-list" id="activityList">
+                            <div class="activity-item">
+                                <div class="activity-icon">📚</div>
+                                <div class="activity-content">
+                                    <p>Started module: Leadership Fundamentals</p>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Notifications</h3>
+                            <span class="notification-badge">3</span>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-dot"></div>
+                                <div class="notification-content">
+                                    <p>New feedback available on your assignment</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-dot"></div>
+                                <div class="notification-content">
+                                    <p>Upcoming event: Youth Summit 2026</p>
+                                    <span class="notification-time">3 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-dot"></div>
+                                <div class="notification-content">
+                                    <p>New opportunity posted: Grant Writing Workshop</p>
+                                    <span class="notification-time">5 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-circle"></div>
+                        <span class="brand-text">YAN Rwanda</span>
+                    </div>
+                    <p>Empowering Rwanda's next generation of leaders through advocacy, capacity building, and
+                        innovation.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#about">About Us</a>
+                    <a href="#organizations">Network</a>
+                    <a href="#events">Events</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Programs</h4>
+                    <a href="#capacity">Capacity Building</a>
+                    <a href="#opportunities" data-role="member,admin">Opportunities</a>
+                    <a href="#gallery">Gallery</a>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for the latest news and opportunities</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Youth Advocates Network Rwanda. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link">Facebook</a>
+                    <a href="#" class="footer-social-link">Twitter</a>
+                    <a href="#" class="footer-social-link">Instagram</a>
+                    <a href="#" class="footer-social-link">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 12.5L10 7.5L5 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
+
+    <!-- Modals -->
+    <div class="modal" id="addOrgModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Organization</h3>
+                <button class="modal-close" data-modal="addOrgModal">&times;</button>
+            </div>
+            <form class="modal-form" id="addOrgForm">
+                <div class="form-group">
+                    <input type="text" id="orgName" required>
+                    <label for="orgName">Organization Name</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="orgDescription" rows="3" required></textarea>
+                    <label for="orgDescription">Description</label>
+                </div>
+                <div class="form-group">
+                    <input type="url" id="orgImage" required>
+                    <label for="orgImage">Image URL</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Add Organization</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="orgDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="orgModalTitle">Organization</h3>
+                <button class="modal-close" data-modal="orgDetailsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" alt="" id="orgModalImage" class="org-modal-image">
+                <div id="orgModalBody" class="org-modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="galleryModal">
+        <button class="modal-close gallery-close">&times;</button>
+        <div class="gallery-modal-content">
+            <img src="" alt="" id="galleryModalImage">
+            <button class="gallery-nav gallery-prev" id="galleryPrev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button class="gallery-nav gallery-next" id="galleryNext">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to YAN Platform</h3>
+                <button class="modal-close" data-modal="loginModal">&times;</button>
+            </div>
+            <form class="modal-form" id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" required autocomplete="email">
+                    <label for="loginEmail">Email Address</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" required autocomplete="current-password">
+                    <label for="loginPassword">Password</label>
+                </div>
+                <div class="login-error" id="loginError" style="display: none;">
+                    <p id="loginErrorText"></p>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginSubmitBtn">
+                    <span class="login-btn-text">Sign In</span>
+                    <span class="login-btn-loading" style="display: none;">Signing in...</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="apiClient.js"></script>
+    <script src="apps.js"></script>
+</body>
+
+</html>

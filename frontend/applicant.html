@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAN - Applicant Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="adminDashboard.css">
+  <link rel="stylesheet" href="memberDashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="config.js?v=5" defer></script>
+  <script src="apiClient.js?v=5" defer></script>
+  <script src="applicantDashboard.js?v=5" defer></script>
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="admin-shell">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <div class="logo-circle"></div>
+        <div>
+          <div class="logo-text">APPLICANT</div>
+          <div class="logo-sub">Youth Network Portal</div>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="nav-label">Main Menu</div>
+        <button class="active" data-view="overview" data-title="Applicant Portal">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Overview</span>
+        </button>
+        <button data-view="status" data-title="Application Status">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">My Status</span>
+        </button>
+        <button data-view="submit" data-title="Submit Application">
+          <span class="nav-icon">📤</span>
+          <span class="nav-text">Submit Application</span>
+        </button>
+        <button data-view="profile" data-title="My Profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-text">Profile</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn-back" onclick="window.location.href='index.html'">Back to Site</button>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+        <div class="copy">&copy; 2026 YAN Rwanda</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+      <!-- TOPBAR -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="menu-btn" id="menuToggle" aria-label="Open menu">☰</button>
+          <h1 id="dashboardTitle">Applicant Portal</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="search-box">
+            <input type="text" placeholder="Search portal...">
+          </div>
+          <button class="btn btn-primary" onclick="window.location.href='application-form.html'">Submit Application</button>
+        </div>
+      </header>
+
+      <div class="admin-content" id="applicantContent">
+        <!-- OVERVIEW VIEW -->
+        <section id="overviewSection" class="dashboard-section">
+          <div class="mdStats" style="margin-bottom: 30px;">
+             <!-- Status Welcome Box -->
+             <div class="cta-banner" style="grid-column: 1 / -1; background: linear-gradient(135deg, #03045E 0%, #00B4D8 100%); color: white; padding: 2.5rem; border-radius: 20px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between;">
+                <div style="position: relative; z-index: 2; max-width: 60%;">
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem;">Join the YAN Network</h2>
+                    <p style="opacity: 0.9; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">Ready to take your organization to the next level? Apply for membership today to access exclusive opportunities, capacity building modules, and our regional network.</p>
+                    <button class="btn btn-primary" onclick="window.location.href='application-form.html'" style="background: white; color: #03045E; border: none; font-weight: 700;">Apply for Membership</button>
+                </div>
+                <div style="font-size: 8rem; opacity: 0.1; position: absolute; right: -20px; top: -10px; transform: rotate(-15deg);">🚀</div>
+             </div>
+          </div>
+
+          <div class="mdPanel">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">Upcoming Events</h3>
+            </div>
+            <div id="upcomingEventsList">Loading events...</div>
+          </div>
+        </section>
+
+        <!-- STATUS VIEW -->
+        <section id="statusSection" class="dashboard-section" style="display:none;">
+          <div class="mdPanel">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">My Application Status</h3>
+            </div>
+            <div id="applicationStatusContent">Loading application status...</div>
+          </div>
+          
+          <div class="mdPanel" style="margin-top:20px;">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">Next Steps</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+                <ul style="list-style: none; padding:0;">
+                    <li style="margin-bottom: 1rem; display: flex; gap: 1rem;">
+                        <span style="background: #e0f2fe; color: #0369a1; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</span>
+                        <div>
+                            <strong style="display: block;">Complete Application</strong>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Fill out all organization and representative details.</span>
+                        </div>
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; gap: 1rem;">
+                        <span style="background: #e0f2fe; color: #0369a1; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</span>
+                        <div>
+                            <strong style="display: block;">Review Process</strong>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Our team will review your submission within 5-7 business days.</span>
+                        </div>
+                    </li>
+                    <li style="display: flex; gap: 1rem;">
+                        <span style="background: #e0f2fe; color: #0369a1; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</span>
+                        <div>
+                            <strong style="display: block;">Onboarding</strong>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Once approved, you'll get full access to the member dashboard.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUBMIT VIEW (redirect) -->
+        <section id="submitSection" class="dashboard-section" style="display:none;">
+          <div class="mdPanel" style="text-align:center; padding:3rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">📤</div>
+            <h3 class="mdPanelTitle">Submit New Application</h3>
+            <p style="color:var(--text-secondary); margin:1rem 0 1.5rem;">You'll be taken to our application form.</p>
+            <a href="application-form.html" class="btn btn-primary">Go to Application Form</a>
+          </div>
+        </section>
+
+        <!-- PROFILE VIEW -->
+        <section id="profileSection" class="dashboard-section" style="display:none;">
+          <div class="mdPanel">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">Account Information</h3>
+            </div>
+            <div class="profile-info-grid" style="padding: 1.5rem;">
+              <div class="mdProfileRow" style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
+                <span style="font-weight: 600; color: var(--text-secondary);">Full Name</span>
+                <span id="dispName" style="font-weight: 500;">Loading...</span>
+              </div>
+              <div class="mdProfileRow" style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
+                <span style="font-weight: 600; color: var(--text-secondary);">Email</span>
+                <span id="dispEmail" style="font-weight: 500;">Loading...</span>
+              </div>
+              <div class="mdProfileRow" style="display: flex; justify-content: space-between; padding: 12px 0;">
+                <span style="font-weight: 600; color: var(--text-secondary);">Role</span>
+                <span id="dispRole" style="font-weight: 500;">Applicant</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "yan-root",
+  "version": "1.0.0",
+  "description": "Root management for Youth Action Network Platform",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "serve frontend -l 8001",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --kill-others --prefix-colors \"bgBlue.bold,bgGreen.bold\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "serve": "^14.2.5"
+  }
+}

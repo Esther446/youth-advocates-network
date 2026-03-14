@@ -882,14 +882,14 @@ async function initializeOrganizations() {
     featuredContainer.innerHTML = '';
 
     if (organizationsData && organizationsData.length > 0) {
-        organizationsData.forEach((org, index) => {
-            const card = createFeaturedOrganizationCard(org);
-            featuredContainer.appendChild(card);
-            
-            // Add reveal effect
-            globalRevealObserver.observe(card);
-            setTimeout(() => card.classList.add('visible'), 50 * index);
-        });
+        // Only show the first organization for the spotlight
+        const org = organizationsData[0];
+        const card = createFeaturedOrganizationCard(org);
+        featuredContainer.appendChild(card);
+        
+        // Add reveal effect
+        globalRevealObserver.observe(card);
+        card.classList.add('visible');
     } else {
         featuredContainer.innerHTML = `
             <div class="empty-state-card" style="text-align: center; padding: 3rem;">
@@ -911,23 +911,34 @@ function createFeaturedOrganizationCard(org) {
     card.innerHTML = `
         <div class="featured-org-image-wrapper">
             <img src="${org.image || 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800'}" alt="${org.name}" class="featured-org-image">
-            <div class="featured-org-badge">Spotlight</div>
+            <div class="featured-org-overlay"></div>
+            <div class="featured-org-badge">Spotlight Organization</div>
         </div>
         <div class="featured-org-content">
-            <div class="featured-org-header">
+            <div class="featured-org-meta">
                 <span class="featured-org-sector">${org.focusArea || 'COMMUNITY IMPACT'}</span>
-                <h3 class="featured-org-name">${org.name}</h3>
+                <span class="impact-indicator">
+                    <span class="indicator-dot pulse"></span>
+                    Verified Partner
+                </span>
             </div>
+            <h3 class="featured-org-name">${org.name}</h3>
             <p class="featured-org-description">${org.description}</p>
-            <div class="featured-org-impact">
-                <strong>2024 Impact:</strong> ${org.impactData || 'Empowering youth through collaborative action and local advocacy.'}
-            </div>
-            <div class="featured-org-footer">
-                <button class="btn btn-primary org-link" data-org-id="${orgId}">
-                    Explore Impact Story
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
+            <div class="featured-org-impact-glow">
+                <div class="impact-glow-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
+                </div>
+                <div class="impact-glow-text">
+                    <strong>The Impact:</strong> ${org.impactData || 'Driving systemic change through youth-led advocacy and professional capacity building.'}
+                </div>
+            </div>
+            <div class="featured-org-actions">
+                <button class="btn btn-premium-spotlight org-link" data-org-id="${orgId}">
+                    <span>Explore Impact Story</span>
+                    <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>

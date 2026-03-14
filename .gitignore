@@ -26,3 +26,15 @@ inspect_db.js
 run-yan.bat
 documents/
 package-lock.json
+
+# Test scripts and results
+backend/test_*.ps1
+backend/test_results*.txt
+backend/get_test_users.js
+backend/count_users.js
+backend/debug_env.js
+backend/inspect_db.js
+test_*.ps1
+test_results*.txt
+get_test_users.js
+inspect_db.js

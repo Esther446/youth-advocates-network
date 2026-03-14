@@ -100,6 +100,14 @@ exports.updateApplicationStatus = async (req, res) => {
             });
         }
 
+        // UPGRADE USER ROLE ON APPROVAL
+        if (status === 'approved') {
+            const User = require('../models/User');
+            await User.findByIdAndUpdate(application.applicant, {
+                role: 'member'
+            });
+        }
+
         res.status(200).json({
             success: true,
             data: application

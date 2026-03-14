@@ -6,431 +6,42 @@
 // DATA STORES
 // ================================
 
-const organizationsData = [
-    {
-        id: 1,
-        name: "Care and Help Child Organization",
-        description: "From a Single Act of Kindness, a Ripple of Hope.",
-        details: "Founded in 2018, Care and Help Child Organization stands as a beacon of hope for vulnerable children. It is dedicated to breaking barriers to education, ensuring safety, fostering mental well‑being, and empowering young minds to build brighter, more equitable futures.",
-        image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400"
-    },
-    {
-        id: 2,
-        name: "WHAT IF‑Rwanda",
-        description: "Be the Source of Their Smile.",
-        details: "WHAT IF‑Rwanda nurtures vulnerable children through mentorship at the Iramiro Center. Mentors serve as “aunties” and “uncles,” forming enduring bonds that bring stability and hope.<ul><li>Clean water access improved through water tanks and filtration systems.</li><li>Consistent provision of school fees and materials.</li><li>Ongoing emotional and material support from mentors and sponsors.</li></ul>",
-        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"
-    },
-    {
-        id: 3,
-        name: "Aspire Debate Rwanda",
-        description: "Advancing quality education through debate.",
-        details: "Aspire Debate Rwanda advances quality education through debate, cultivating critical thinking and articulate communication. Through youth workshops, participants build public speaking, research, teamwork, and collaborative problem‑solving skills that translate into leadership.",
-        image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400"
-    },
-    {
-        id: 4,
-        name: "Informed Future Generations (IFG)",
-        description: "Cultivating informed decision‑makers across Rwanda.",
-        details: "IFG cultivates informed decision‑makers by providing education on sexual reproductive health and rights, HIV/AIDS, substance abuse, and mental health. Operating across Rwamagana, Gatsibo, Kayonza, Ngoma, and Kirehe, IFG’s “Like Your Sister” program addresses gender‑based violence, teenage pregnancies, and gender inequality to promote a safer, more inclusive society.",
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400"
-    },
-    {
-        id: 5,
-        name: "OAZIS Health",
-        description: "Bridging Gaps for Marginalized Communities.",
-        details: "Founded 2020 • Located in Bugesera (Nyamata). OAZIS Health is a youth‑led organization addressing urgent health needs of marginalized and impoverished communities. Its vision is a world where everyone has an equal opportunity to live a healthy, dignified, and fulfilling life, and its mission is to save lives and improve health by promoting equity and access for all.",
-        image: "https://images.unsplash.com/photo-1504814532849-92719b106a4b?w=400"
-    }
-];
+let organizationsData = [];
 
-const modulesData = [
-    {
-        id: 1,
-        title: "Leadership Fundamentals",
-        quarter: "Q1",
-        description: "Build foundational leadership skills including communication, decision-making, and team management.",
-        objectives: [
-            "Understand core leadership principles and theories",
-            "Develop effective communication strategies",
-            "Build team management and delegation skills",
-            "Create a personal leadership development plan"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Leadership Handbook",
-                url: "https://drive.google.com/file/d/1IXJCsNsmhto7tlfB2eGga2cCgHhYnnQE/view",
-                size: "2.5 MB"
-            },
-            {
-                type: "slides",
-                name: "Leadership Youth NGO",
-                url: "https://docs.google.com/presentation/d/1DFuCiZCcJd4YRrWwa37Br449ZA_-3Snu/edit?usp=sharing&ouid=108406441382668787776&rtpof=true&sd=true"
-            },
-            {
-                type: "slides",
-                name: "Resilience Adaptive Mindset",
-                url: "https://docs.google.com/presentation/d/1kPQH7bWzo7o9hxaIe-2_Tm4A7vNbW7NR/edit?usp=drive_link&ouid=108406441382668787776&rtpof=true&sd=true"
-            },
-            {
-                type: "slides",
-                name: "Soft Skills Self Management",
-                url: "https://docs.google.com/presentation/d/1bDz2FJ2KJwUfQU31Gv88kNrTAArbIIzc/edit?usp=drive_link&ouid=108406441382668787776&rtpof=true&sd=true"
-            },
-            {
-                type: "video",
-                name: "Introduction to Leadership",
-                url: "#",
-                duration: "45 min"
-            },
-            {
-                type: "pdf",
-                name: "Case Studies Collection",
-                url: "#",
-                size: "1.8 MB"
-            }
-        ],
-        assignment: {
-            title: "Leadership Action Plan",
-            description: "Develop a comprehensive leadership action plan for your organization or community. Include specific goals, strategies, and timelines.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 2,
-        title: "Advocacy & Public Speaking",
-        quarter: "Q1",
-        description: "Master the art of advocacy and public speaking to amplify youth voices in policy and community discourse.",
-        objectives: [
-            "Design effective advocacy campaigns",
-            "Master public speaking techniques",
-            "Learn stakeholder engagement strategies",
-            "Understand policy analysis and influence"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Advocacy Strategy Guide",
-                url: "#",
-                size: "3.2 MB"
-            },
-            {
-                type: "video",
-                name: "Public Speaking Masterclass",
-                url: "#",
-                duration: "60 min"
-            }
-        ],
-        assignment: {
-            title: "Advocacy Campaign Proposal",
-            description: "Design a comprehensive advocacy campaign addressing a youth issue in your community. Include objectives, target audience, strategies, and expected outcomes.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 3,
-        title: "Project Management Essentials",
-        quarter: "Q2",
-        description: "Learn to plan, execute, and manage impactful youth projects from inception to completion.",
-        objectives: [
-            "Apply project management methodologies",
-            "Create detailed project plans and budgets",
-            "Master risk management and mitigation",
-            "Implement monitoring and evaluation frameworks"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Project Management Framework",
-                url: "#",
-                size: "4.1 MB"
-            },
-            {
-                type: "pdf",
-                name: "Budget Template & Guide",
-                url: "#",
-                size: "1.5 MB"
-            }
-        ],
-        assignment: {
-            title: "Complete Project Plan",
-            description: "Develop a full project plan for a youth initiative including objectives, activities, timeline, budget, and M&E framework.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 4,
-        title: "Digital Marketing & Communications",
-        quarter: "Q2",
-        description: "Harness digital tools and platforms to amplify your message and reach wider audiences.",
-        objectives: [
-            "Develop comprehensive digital marketing strategies",
-            "Master social media management and analytics",
-            "Create compelling visual and written content",
-            "Understand SEO and digital advertising"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Digital Marketing Playbook",
-                url: "#",
-                size: "2.9 MB"
-            },
-            {
-                type: "video",
-                name: "Content Creation Workshop",
-                url: "#",
-                duration: "50 min"
-            }
-        ],
-        assignment: {
-            title: "Digital Campaign Strategy",
-            description: "Create a 3-month digital marketing campaign for a youth organization including content calendar, platform strategy, and success metrics.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 5,
-        title: "Fundraising & Resource Mobilization",
-        quarter: "Q3",
-        description: "Master strategies for securing funding and resources to sustain youth initiatives.",
-        objectives: [
-            "Understand diverse fundraising approaches",
-            "Write compelling grant proposals",
-            "Build donor relationships and stewardship",
-            "Develop sustainable revenue models"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Fundraising Strategy Guide",
-                url: "#",
-                size: "3.5 MB"
-            },
-            {
-                type: "pdf",
-                name: "Grant Proposal Templates",
-                url: "#",
-                size: "2.1 MB"
-            }
-        ],
-        assignment: {
-            title: "Grant Proposal",
-            description: "Write a complete grant proposal for a youth project addressing a specific community need. Include all standard sections and a detailed budget.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 6,
-        title: "Strategic Planning & Organizational Development",
-        quarter: "Q3",
-        description: "Build sustainable youth organizations through strategic planning and effective governance.",
-        objectives: [
-            "Develop organizational strategic plans",
-            "Establish governance structures and policies",
-            "Implement performance management systems",
-            "Plan for organizational sustainability"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Strategic Planning Toolkit",
-                url: "#",
-                size: "4.3 MB"
-            },
-            {
-                type: "video",
-                name: "Organizational Development Seminar",
-                url: "#",
-                duration: "70 min"
-            }
-        ],
-        assignment: {
-            title: "Strategic Plan",
-            description: "Develop a 3-year strategic plan for a youth organization including vision, mission, goals, strategies, and implementation framework.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 7,
-        title: "Monitoring, Evaluation & Impact Measurement",
-        quarter: "Q4",
-        description: "Learn to measure and communicate the impact of youth initiatives through robust M&E systems.",
-        objectives: [
-            "Design effective M&E frameworks",
-            "Collect and analyze impact data",
-            "Create compelling impact reports",
-            "Use data for strategic decision-making"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "M&E Framework Guide",
-                url: "#",
-                size: "3.8 MB"
-            },
-            {
-                type: "pdf",
-                name: "Data Analysis Tools",
-                url: "#",
-                size: "2.4 MB"
-            }
-        ],
-        assignment: {
-            title: "M&E Framework",
-            description: "Design a complete M&E framework for a youth project including indicators, data collection methods, analysis plan, and reporting template.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    },
-    {
-        id: 8,
-        title: "Innovation & Social Entrepreneurship",
-        quarter: "Q4",
-        description: "Transform ideas into sustainable social enterprises that create lasting community impact.",
-        objectives: [
-            "Apply design thinking to social challenges",
-            "Develop viable business models",
-            "Create financial projections and sustainability plans",
-            "Understand scaling and growth strategies"
-        ],
-        materials: [
-            {
-                type: "pdf",
-                name: "Social Enterprise Guide",
-                url: "#",
-                size: "3.1 MB"
-            },
-            {
-                type: "video",
-                name: "Design Thinking Workshop",
-                url: "#",
-                duration: "55 min"
-            }
-        ],
-        assignment: {
-            title: "Social Enterprise Proposal",
-            description: "Develop a comprehensive social enterprise proposal including problem analysis, solution design, business model, and financial projections.",
-            deadline: "2 weeks from start",
-            passingGrade: 70
-        }
-    }
-];
+let modulesData = [];
+let enrollmentsData = [];
 
-const opportunitiesData = [
-    {
-        id: 1,
-        type: "funding",
-        title: "Youth Innovation Grant 2026",
-        description: "Funding available for innovative youth-led projects addressing community challenges. Grants range from $5,000 to $25,000.",
-        deadline: "March 31, 2026",
-        amount: "$5,000 - $25,000",
-        provider: "Rwanda Innovation Fund"
-    },
-    {
-        id: 2,
-        type: "training",
-        title: "Leadership Development Fellowship",
-        description: "Intensive 6-month fellowship program for emerging youth leaders. Includes training, mentorship, and networking opportunities.",
-        deadline: "April 15, 2026",
-        duration: "6 months",
-        provider: "African Leadership Academy"
-    },
-    {
-        id: 3,
-        type: "partnership",
-        title: "UNICEF Youth Partnership Program",
-        description: "Collaborate with UNICEF on youth advocacy and development initiatives across Rwanda.",
-        deadline: "Rolling basis",
-        type_detail: "Strategic Partnership",
-        provider: "UNICEF Rwanda"
-    },
-    {
-        id: 4,
-        type: "funding",
-        title: "Green Youth Initiative Fund",
-        description: "Support for environmental projects led by young people. Focus on climate action and sustainability.",
-        deadline: "May 1, 2026",
-        amount: "$3,000 - $15,000",
-        provider: "Environment Rwanda"
-    },
-    {
-        id: 5,
-        type: "training",
-        title: "Digital Skills Bootcamp",
-        description: "Free intensive training in web development, data science, and digital marketing for youth leaders.",
-        deadline: "March 20, 2026",
-        duration: "3 months",
-        provider: "kLab Rwanda"
-    },
-    {
-        id: 6,
-        type: "partnership",
-        title: "Education Ministry Youth Council",
-        description: "Join the national youth advisory council to influence education policy and youth development strategies.",
-        deadline: "April 30, 2026",
-        type_detail: "Advisory Role",
-        provider: "Ministry of Education"
-    }
-];
+let opportunitiesData = [];
+let eventsData = [];
 
-const eventsData = [
-    {
-        id: 1,
-        title: "Youth Summit 2026",
-        description: "Annual gathering of youth leaders from across Rwanda to share innovations, network, and shape the future.",
-        date: "2026-03-15",
-        time: "9:00 AM - 5:00 PM",
-        location: "Kigali Convention Centre",
-        type: "Summit"
-    },
-    {
-        id: 2,
-        title: "Advocacy Skills Workshop",
-        description: "Practical training on advocacy strategies, policy engagement, and stakeholder management.",
-        date: "2026-03-22",
-        time: "2:00 PM - 5:00 PM",
-        location: "YAN Training Center",
-        type: "Workshop"
-    },
-    {
-        id: 3,
-        title: "Networking Night",
-        description: "Casual networking event connecting youth leaders, entrepreneurs, and potential mentors.",
-        date: "2026-04-05",
-        time: "6:00 PM - 9:00 PM",
-        location: "Impact Hub Kigali",
-        type: "Networking"
-    },
-    {
-        id: 4,
-        title: "Digital Innovation Showcase",
-        description: "Showcase of youth-led digital solutions and innovations addressing community challenges.",
-        date: "2026-04-12",
-        time: "10:00 AM - 4:00 PM",
-        location: "kLab Rwanda",
-        type: "Showcase"
-    }
-];
+let galleryData = [];
 
-const galleryImages = [
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600",
-    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600",
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600",
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600",
-    "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600",
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600",
-    "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600",
-    "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600",
-    "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600"
-];
+// Removed LOCAL_ORGANIZATIONS and LOCAL_EVENTS — now fetching from API
+
+// Reusing existing Global IntersectionObserver for robust animations that works with dynamic elements
+const globalObserverOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const globalRevealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Optional: stop observing once visible
+        }
+    });
+}, globalObserverOptions);
+
+const globalStatObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+            entry.target.classList.add('counted');
+            if (entry.target.classList.contains('impact-number')) {
+                animateImpactCounter(entry.target);
+            } else {
+                animateCounter(entry.target);
+            }
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
 
 // ================================
 // STATE MANAGEMENT
@@ -441,24 +52,35 @@ let currentUser = null;
 let currentModule = null;
 let currentGalleryIndex = 0;
 
-// Initialize module progress from localStorage
-// NOTE: Module progress localStorage is intentionally KEPT.
-// It will be replaced with backend /resources/progress calls in the LMS wiring phase.
-function getModuleProgress(moduleId) {
+// Helper to get current quarter
+function getCurrentQuarter() {
+    const month = new Date().getMonth();
+    if (month < 3) return 'Q1';
+    if (month < 6) return 'Q2';
+    if (month < 9) return 'Q3';
+    return 'Q4';
+}
+
+let userProgressCache = {}; // Cache for backend progress data
+
+async function getModuleProgress(moduleId) {
+    if (userProgressCache[moduleId]) return userProgressCache[moduleId];
+
+    // Fallback to local if not logged in or fetch hasn't happened
     const progress = localStorage.getItem(`module_${moduleId}_progress`);
     return progress ? JSON.parse(progress) : {
         status: 'not-started',
         progress: 0,
-        assignmentSubmitted: false,
-        submittedFile: null,
-        submissionDate: null,
-        feedback: null,
-        grade: null
+        assignmentSubmitted: false
     };
 }
 
-function saveModuleProgress(moduleId, progress) {
+async function saveModuleProgress(moduleId, progress) {
+    // Save to local as backup
     localStorage.setItem(`module_${moduleId}_progress`, JSON.stringify(progress));
+
+    // Sync with backend if possible - this will be handled by LMS specific calls 
+    // like markLessonComplete which already use api.updateLessonProgress
     updateDashboardMetrics();
 }
 
@@ -493,6 +115,24 @@ async function initializeApp() {
     // Initialize role display (public by default)
     updateRoleDisplay(currentRole);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('verified') === 'true') {
+        setTimeout(() => showNotification('Email verified successfully! You can now log in.', 'success'), 500);
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Fetch dynamic content
+    try {
+        const [gallery, impact] = await Promise.all([
+            api.getGallery(),
+            api.getImpactRatings()
+        ]);
+        galleryData = gallery || [];
+        impactRatingsData = impact || [];
+    } catch (e) {
+        // failed to load content
+    }
+
     // Initialize navigation
     initializeNavigation();
 
@@ -510,6 +150,22 @@ async function initializeApp() {
     // Initialize animations
     initializeAnimations();
 
+    // Initialize new sections
+    initializeTestimonialsCarousel();
+    initializeHeroStats();
+
+    // Phase 6.1: Stability & UX
+    initializeOfflineDetection();
+    initializeScrollProgress();
+    initializeRippleEffect();
+
+    // UI HINT: If we were previously logged in, show the profile dropdown shell immediately
+    if (localStorage.getItem('yan_auth_hint') === 'true') {
+        document.getElementById('loginBtn').style.display = 'none';
+        document.getElementById('profileDropdown').style.display = 'flex';
+        // Profile name/avatar will be "YL" (placeholder) until api.getMe() returns
+    }
+
     // SESSION RESTORE: Try to restore session from refresh token cookie
     try {
         const user = await api.getMe();
@@ -521,8 +177,7 @@ async function initializeApp() {
             initializeDashboard();
         }
     } catch (e) {
-        // No valid session — remain as public. This is expected on first visit.
-        console.log('No active session, continuing as public.');
+        // No valid session
     }
 }
 
@@ -593,6 +248,118 @@ function initializeNavigation() {
         });
     }
 
+    // Signup modal close button
+    const signupModalClose = document.querySelector('#signupModal .modal-close');
+    if (signupModalClose) {
+        signupModalClose.addEventListener('click', () => {
+            hideSignupModal();
+        });
+    }
+
+    // Switch from Login to Signup
+    const openSignupLink = document.getElementById('openSignupLink');
+    if (openSignupLink) {
+        openSignupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideLoginModal();
+            showSignupModal();
+        });
+    }
+
+    // Switch from Signup to Login
+    const openLoginLink = document.getElementById('openLoginLink');
+    if (openLoginLink) {
+        openLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideSignupModal();
+            showLoginModal();
+        });
+    }
+
+    // Switch from Login to Forgot Password
+    const openForgotLink = document.getElementById('openForgotLink');
+    if (openForgotLink) {
+        openForgotLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideLoginModal();
+            const forgotModal = document.getElementById('forgotPasswordModal');
+            if (forgotModal) forgotModal.classList.add('active');
+        });
+    }
+
+    // Switch from Forgot Password to Login
+    const backToLoginLink = document.getElementById('backToLoginLink');
+    if (backToLoginLink) {
+        backToLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const forgotModal = document.getElementById('forgotPasswordModal');
+            if (forgotModal) forgotModal.classList.remove('active');
+            showLoginModal();
+        });
+    }
+
+    // Close Forgot Password Modal
+    const forgotModalClose = document.getElementById('forgotModalClose');
+    if (forgotModalClose) {
+        forgotModalClose.addEventListener('click', () => {
+            const forgotModal = document.getElementById('forgotPasswordModal');
+            if (forgotModal) forgotModal.classList.remove('active');
+        });
+    }
+
+    // Forgot Password Submit
+    const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    if (forgotPasswordForm) {
+        forgotPasswordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('forgotEmail').value.trim();
+            const submitBtn = document.getElementById('forgotSubmitBtn');
+            const errorDiv = document.getElementById('forgotError');
+            const errorText = document.getElementById('forgotErrorText');
+            const successDiv = document.getElementById('forgotSuccess');
+
+            submitBtn.disabled = true;
+            submitBtn.querySelector('.forgot-btn-text').textContent = 'Sending...';
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            try {
+                const response = await fetch(`${YAN_CONFIG.API_BASE_URL}/auth/forgotpassword`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+
+                if (response.ok) {
+                    successDiv.style.display = 'block';
+                    forgotPasswordForm.reset();
+                } else {
+                    throw new Error(data.message || 'Failed to send reset link');
+                }
+            } catch (error) {
+                errorText.textContent = error.message;
+                errorDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.querySelector('.forgot-btn-text').textContent = 'Send Reset Link';
+            }
+        });
+    }
+
+    // Signup form submission
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const organization = document.getElementById('signupOrganization').value.trim();
+            await handleSignup(name, email, password, organization);
+        });
+    }
+
     // Profile dropdown
     const profileBtn = document.getElementById('profileBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
@@ -625,7 +392,11 @@ function initializeNavigation() {
     if (dashboardLink) {
         dashboardLink.addEventListener('click', (e) => {
             e.preventDefault();
-            showDashboard();
+            if (currentRole === 'admin') {
+                showAdminDashboard();
+            } else {
+                showDashboard();
+            }
         });
     }
 
@@ -650,24 +421,67 @@ function initializeNavigation() {
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Join Network button
+    const heroJoinBtn = document.getElementById('heroJoinBtn');
+    if (heroJoinBtn) {
+        heroJoinBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                showNotification('Please login or signup first to apply.');
+                showLoginModal();
+            } else if (currentRole === 'member' || currentRole === 'admin') {
+                showNotification('You are already a member of the network!');
+            } else {
+                window.location.href = 'application-form.html';
+            }
+        });
+    }
+
+    // Course Search & Filter
+    const courseSearch = document.getElementById('courseSearch');
+    if (courseSearch) {
+        courseSearch.addEventListener('input', () => {
+            applyModuleFilters();
+        });
+    }
+
+    const courseCategoryFilter = document.getElementById('courseCategoryFilter');
+    if (courseCategoryFilter) {
+        courseCategoryFilter.addEventListener('change', () => {
+            applyModuleFilters();
+        });
+    }
 }
 
 function updateRoleDisplay(role) {
     currentRole = role;
-    // NO localStorage — role comes from backend
+    // Show/hide dashboard elements based on role
+    const dashboardLink = document.querySelector('a[href="#dashboard"]');
+    const roleBadgeNav = document.getElementById('roleBadgeNav');
+    const adminRoleBadge = document.getElementById('adminRoleBadge');
 
-    // Update nav role badge
-    const roleBadge = document.getElementById('roleBadgeNav');
-    if (roleBadge) {
-        if (role !== 'public' && currentUser) {
-            roleBadge.textContent = role.charAt(0).toUpperCase() + role.slice(1);
-            roleBadge.style.display = '';
-        } else {
-            roleBadge.style.display = 'none';
+    if (dashboardLink) dashboardLink.style.display = 'block';
+
+    if (roleBadgeNav) {
+        roleBadgeNav.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+        roleBadgeNav.className = `role-badge-nav role-${currentRole}`;
+        roleBadgeNav.style.display = 'inline-block';
+    }
+
+    if (adminRoleBadge) {
+        adminRoleBadge.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+        adminRoleBadge.className = `role-badge role-${currentRole}`;
+    }
+
+    // Initialize appropriate dashboard view
+    if (currentRole === 'admin') {
+        const adminSection = document.getElementById('admin');
+        if (adminSection) {
+            setupAdminDashboardLinks();
         }
     }
 
-    // Show/hide role-specific elements (existing data-role attribute system)
+    // Role specific UI adjustments (existing data-role attribute system)
     const roleElements = document.querySelectorAll('[data-role]');
     roleElements.forEach(el => {
         const allowedRoles = el.dataset.role.split(',');
@@ -703,6 +517,61 @@ function hideLoginModal() {
     const modal = document.getElementById('loginModal');
     if (modal) {
         modal.classList.remove('active');
+    }
+}
+
+function showSignupModal() {
+    const modal = document.getElementById('signupModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.getElementById('signupForm').reset();
+        document.getElementById('signupError').style.display = 'none';
+        document.getElementById('signupSubmitBtn').disabled = false;
+        document.querySelector('.signup-btn-text').style.display = '';
+        document.querySelector('.signup-btn-loading').style.display = 'none';
+    }
+}
+
+function hideSignupModal() {
+    const modal = document.getElementById('signupModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+async function handleSignup(name, email, password, organization) {
+    const submitBtn = document.getElementById('signupSubmitBtn');
+    const btnText = document.querySelector('.signup-btn-text');
+    const btnLoading = document.querySelector('.signup-btn-loading');
+    const errorDiv = document.getElementById('signupError');
+    const errorText = document.getElementById('signupErrorText');
+
+    if (submitBtn.disabled) return;
+
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = '';
+    errorDiv.style.display = 'none';
+
+    try {
+        const user = await api.register(name, email, password, 'applicant', organization);
+
+        currentUser = user;
+        currentUser.initials = getInitials(user.name);
+        currentRole = user.role || 'applicant';
+
+        showLoggedInState();
+        hideSignupModal();
+        initializeDashboard();
+
+        showNotification('Account created! Welcome, ' + user.name + '!');
+    } catch (error) {
+        errorText.textContent = error.message || 'Registration failed. Please try again.';
+        errorDiv.style.display = 'block';
+    } finally {
+        submitBtn.disabled = false;
+        btnText.style.display = '';
+        btnLoading.style.display = 'none';
     }
 }
 
@@ -821,54 +690,21 @@ function showNotification(message) {
 // ================================
 
 function initializeScrollEffects() {
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    // Observe reveal elements
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Observe stat counters
-    document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
+    // Moved to global observer definitions
+    document.querySelectorAll('.reveal').forEach(el => globalRevealObserver.observe(el));
+    document.querySelectorAll('.stat-item').forEach(el => globalRevealObserver.observe(el));
 }
 
 function initializeAnimations() {
-    // Add reveal class to animated elements
-    const animatedElements = document.querySelectorAll('.org-card, .module-card, .opportunity-card, .event-card');
-    animatedElements.forEach(el => el.classList.add('reveal'));
+    // Use the robust global observer
+    const animatedElements = document.querySelectorAll('.org-card, .module-card, .opportunity-card, .event-card, .reveal');
+    animatedElements.forEach(el => {
+        el.classList.add('reveal');
+        globalRevealObserver.observe(el);
+    });
 
-    // Re-observe with intersection observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    animatedElements.forEach(el => observer.observe(el));
-
-    // Counter animation for stats
-    const statObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                entry.target.classList.add('counted');
-                animateCounter(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+    document.querySelectorAll('.stat-number').forEach(el => globalStatObserver.observe(el));
+    document.querySelectorAll('.impact-number').forEach(el => globalStatObserver.observe(el));
 }
 
 function animateCounter(element) {
@@ -887,57 +723,280 @@ function animateCounter(element) {
     }, 16);
 }
 
+function animateImpactCounter(element) {
+    const target = parseInt(element.dataset.target);
+    const suffix = element.dataset.suffix || '';
+    const duration = 2000;
+    const startTime = performance.now();
+
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutCubic(progress);
+        const current = Math.floor(easedProgress * target);
+
+        element.textContent = current.toLocaleString() + suffix;
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+// ================================
+// TESTIMONIALS CAROUSEL
+// ================================
+
+function initializeTestimonialsCarousel() {
+    const track = document.getElementById('testimonialsTrack');
+    const dotsContainer = document.getElementById('testimonialDots');
+    const prevBtn = document.getElementById('testimonialPrev');
+    const nextBtn = document.getElementById('testimonialNext');
+
+    if (!track || !dotsContainer) return;
+
+    const cards = track.querySelectorAll('.testimonial-card');
+    const totalSlides = cards.length;
+    let currentSlide = 0;
+    let autoplayTimer;
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+        resetAutoplay();
+    }
+
+    function nextSlide() {
+        goToSlide((currentSlide + 1) % totalSlides);
+    }
+
+    function prevSlide() {
+        goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    }
+
+    function resetAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(nextSlide, 6000);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+    // Start autoplay
+    autoplayTimer = setInterval(nextSlide, 6000);
+
+    // Pause on hover
+    const carousel = document.getElementById('testimonialsCarousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+        carousel.addEventListener('mouseleave', () => {
+            autoplayTimer = setInterval(nextSlide, 6000);
+        });
+    }
+}
+
+// ================================
+// HERO STATS ANIMATION
+// ================================
+
+function initializeHeroStats() {
+    const heroStatNums = document.querySelectorAll('.hero-stat-num');
+    heroStatNums.forEach(el => {
+        const target = parseInt(el.dataset.target);
+        if (isNaN(target)) return;
+
+        const duration = 1500;
+        const startTime = performance.now();
+
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(easeOut(progress) * target);
+            el.textContent = current;
+            if (progress < 1) requestAnimationFrame(update);
+        }
+
+        // Delay slightly to let stagger animation start first
+        setTimeout(() => requestAnimationFrame(update), 800);
+    });
+}
+
 // ================================
 // ORGANIZATIONS SECTION
 // ================================
 
-function initializeOrganizations() {
-    const grid = document.getElementById('organizationsGrid');
+const organizationSectorOrder = ["HEALTH", "EDUCATION", "CHILD PROTECTION", "YOUTH EMPOWERMENT", "AGRICULTURE", "ARTS & MEDIA"];
 
-    organizationsData.forEach(org => {
-        const card = createOrganizationCard(org);
-        grid.appendChild(card);
-    });
+let impactRatingsData = [];
 
-    if (grid) {
-        grid.addEventListener('click', (event) => {
-            const link = event.target.closest('.org-link');
-            if (!link) {
-                return;
-            }
-            event.preventDefault();
-            const orgId = parseInt(link.dataset.orgId, 10);
+async function initializeOrganizations() {
+    const featuredContainer = document.getElementById('featuredOrgContainer');
+    if (!featuredContainer) return;
+
+    try {
+        organizationsData = await api.getOrganizations();
+    } catch (error) {
+        console.error('API fetch failed:', error);
+        organizationsData = [];
+    }
+
+    featuredContainer.innerHTML = '';
+
+    if (organizationsData && organizationsData.length > 0) {
+        // Feature the first organization (or we could select based on a 'featured' flag if it existed)
+        const featuredOrg = organizationsData[0];
+        const card = createFeaturedOrganizationCard(featuredOrg);
+        featuredContainer.appendChild(card);
+        
+        // Add reveal effect
+        globalRevealObserver.observe(card);
+        setTimeout(() => card.classList.add('visible'), 50);
+
+    } else {
+        featuredContainer.innerHTML = `
+            <div class="empty-state-card" style="text-align: center; padding: 3rem;">
+                <div class="empty-icon" style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
+                <h4>Community Spotlight</h4>
+                <p>Organizations will be featured here as they join our growing network.</p>
+            </div>`;
+    }
+
+    // Impact ratings block
+    renderImpactRatings();
+}
+
+function createFeaturedOrganizationCard(org) {
+    const card = document.createElement('article');
+    card.className = 'featured-org-card reveal';
+    const orgId = org._id || org.id;
+    
+    card.innerHTML = `
+        <div class="featured-org-image-wrapper">
+            <img src="${org.image || 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800'}" alt="${org.name}" class="featured-org-image">
+            <div class="featured-org-badge">Spotlight</div>
+        </div>
+        <div class="featured-org-content">
+            <div class="featured-org-header">
+                <span class="featured-org-sector">${org.focusArea || 'COMMUNITY IMPACT'}</span>
+                <h3 class="featured-org-name">${org.name}</h3>
+            </div>
+            <p class="featured-org-description">${org.description}</p>
+            <div class="featured-org-impact">
+                <strong>2024 Impact:</strong> ${org.impactData || 'Empowering youth through collaborative action and local advocacy.'}
+            </div>
+            <div class="featured-org-footer">
+                <button class="btn btn-primary org-link" data-org-id="${orgId}">
+                    Explore Impact Story
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Attach click listener for the specific Learn More button
+    const link = card.querySelector('.org-link');
+    if (link) {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
             openOrganizationModal(orgId);
         });
     }
 
-    // Add organization button (admin only)
-    const addOrgBtn = document.getElementById('addOrgBtn');
-    if (addOrgBtn) {
-        addOrgBtn.addEventListener('click', () => {
-            openModal('addOrgModal');
-        });
-    }
+    return card;
+}
 
-    // Add organization form
-    const addOrgForm = document.getElementById('addOrgForm');
-    if (addOrgForm) {
-        addOrgForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            addOrganization();
-        });
+function renderImpactRatings() {
+    const grid = document.getElementById('impactRatingGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    const fragment = document.createDocumentFragment();
+    impactRatingsData.forEach(item => {
+        const card = document.createElement('article');
+        const ratingClass = getRatingClass(item.rating);
+        card.className = `impact-card ${ratingClass} reveal`;
+        card.innerHTML = `
+            <div class="impact-card-header">
+                <h3 class="impact-org-name">${item.organization}</h3>
+                <span class="rating-badge ${ratingClass}">${item.rating}</span>
+            </div>
+            <p class="impact-evidence">${item.evidence}</p>
+        `;
+        fragment.appendChild(card);
+        globalRevealObserver.observe(card);
+    });
+    grid.appendChild(fragment);
+}
+
+function getRatingClass(rating) {
+    if (rating === 'PLATINUM') return 'rating-platinum';
+    if (rating === 'GOLD') return 'rating-gold';
+    return 'rating-bronze';
+}
+
+function renderSkeletonCards(container, count) {
+    container.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'skeleton-card';
+        skeleton.innerHTML = `
+            <div class="skeleton-image"></div>
+            <div class="skeleton-content">
+                <div class="skeleton-line medium"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+            </div>
+        `;
+        container.appendChild(skeleton);
     }
+}
+
+function renderOrganizationError(container, message) {
+    container.innerHTML = `
+        <div class="error-state-card" style="grid-column: 1/-1; text-align: center; padding: 3rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
+            <div class="error-icon" style="font-size: 3rem; margin-bottom: 1rem;">📡</div>
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Connection Issue</h4>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 300px; margin-left: auto; margin-right: auto;">${message}</p>
+            <button class="btn btn-outline retry-btn" onclick="initializeOrganizations()" style="margin: 0 auto;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right: 8px;">
+                    <path d="M23 4V10H17M1 20V14H7M3.51 9C4.51703 7.1554 6.07548 5.65997 7.97034 4.71761C9.86521 3.77524 11.9961 3.43734 14.07 3.74955C16.1438 4.06175 18.0494 5.00693 19.5312 6.45785C21.013 7.90876 21.9881 9.78918 22.32 11.84M20.49 15C19.483 16.8446 17.9245 18.34 16.0297 19.2824C14.1348 20.2248 12.0039 20.5627 9.93001 20.2504C7.85618 19.9382 5.95062 18.9931 4.46879 17.5422C2.98695 16.0912 2.01186 14.2108 1.68 12.16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Retry Connection</span>
+            </button>
+        </div>
+    `;
 }
 
 function createOrganizationCard(org) {
     const card = document.createElement('div');
     card.className = 'org-card reveal';
+    const orgId = org._id || org.id;
     card.innerHTML = `
-        <img src="${org.image}" alt="${org.name}" class="org-image">
+        <img src="${org.image || 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400'}" alt="${org.name}" class="org-image">
         <div class="org-content">
             <h3 class="org-name">${org.name}</h3>
             <p class="org-description">${org.description}</p>
-            <a href="#" class="org-link" data-org-id="${org.id}">
+            <a href="#" class="org-link" data-org-id="${orgId}">
                 Learn More
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -949,7 +1008,7 @@ function createOrganizationCard(org) {
 }
 
 function openOrganizationModal(orgId) {
-    const org = organizationsData.find(item => item.id === orgId);
+    const org = organizationsData.find(item => (item._id || item.id).toString() === orgId.toString());
     if (!org) {
         return;
     }
@@ -962,37 +1021,71 @@ function openOrganizationModal(orgId) {
         title.textContent = org.name;
     }
     if (body) {
-        body.innerHTML = org.details || org.description;
+        let html = `<p>${org.description}</p>`;
+
+        if (org.focusArea) {
+            html += `<div style="margin-top: 1rem;"><strong>Focus Area:</strong> ${org.focusArea}</div>`;
+        }
+
+        if (org.impactData) {
+            html += `<div style="margin-top: 1rem; padding: 1rem; background: var(--bg-primary); border-radius: 8px;">
+                <strong>2024 Impact:</strong> ${org.impactData}
+            </div>`;
+        }
+
+        if (org.details) {
+            html += `<div style="margin-top: 1.5rem; line-height: 1.8;">${org.details}</div>`;
+        }
+
+        body.innerHTML = html;
     }
     if (image) {
-        image.src = org.image;
+        image.src = org.image || 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400';
         image.alt = org.name;
     }
 
     openModal('orgDetailsModal');
 }
 
-function addOrganization() {
+async function addOrganization() {
     const name = document.getElementById('orgName').value;
     const description = document.getElementById('orgDescription').value;
     const image = document.getElementById('orgImage').value;
 
     const newOrg = {
-        id: organizationsData.length + 1,
         name,
         description,
-        image
+        image: image || undefined,
+        type: 'ngo',
+        status: 'active' // For demo purposes, we automatically set it to active
     };
 
-    organizationsData.push(newOrg);
+    try {
+        const response = await api.request('/organizations', {
+            method: 'POST',
+            body: newOrg
+        });
 
-    const grid = document.getElementById('organizationsGrid');
-    const card = createOrganizationCard(newOrg);
-    grid.appendChild(card);
+        // The endpoint returns { success: true, data: {...} }
+        const createdOrg = response.data;
+        organizationsData.push(createdOrg);
 
-    closeModal('addOrgModal');
-    document.getElementById('addOrgForm').reset();
-    showNotification('Organization added successfully!');
+        const grid = document.getElementById('organizationsGrid');
+        if (grid) {
+            // Remove empty state if it's the only child
+            if (grid.querySelector('.empty-state')) {
+                grid.innerHTML = '';
+            }
+            const card = createOrganizationCard(createdOrg);
+            grid.appendChild(card);
+        }
+
+        closeModal('addOrgModal');
+        document.getElementById('addOrgForm').reset();
+        showNotification('Organization added successfully!');
+    } catch (error) {
+        showNotification('Authorization failed: ' + error.message);
+    }
 }
 
 // ================================
@@ -1000,6 +1093,16 @@ function addOrganization() {
 // ================================
 
 function initializeCapacityBuilding() {
+    // Role-based visibility for search and filters
+    const filterContainer = document.querySelector('.capacity-controls');
+    if (filterContainer) {
+        if (currentRole === 'member' || currentRole === 'admin') {
+            filterContainer.style.display = 'flex';
+        } else {
+            filterContainer.style.display = 'none';
+        }
+    }
+
     updateCapacityBuildingView();
 
     // Back to modules button
@@ -1012,42 +1115,174 @@ function initializeCapacityBuilding() {
     }
 }
 
-function updateCapacityBuildingView() {
+async function updateCapacityBuildingView() {
     const publicView = document.getElementById('capacityPublicView');
     const memberView = document.getElementById('capacityMemberView');
+    const isAuthorized = currentRole === 'member' || currentRole === 'admin';
 
-    if (currentRole === 'public') {
-        publicView.style.display = 'block';
-        memberView.style.display = 'none';
+    if (isAuthorized) {
+        if (publicView) publicView.style.display = 'none';
+        if (memberView) memberView.style.display = 'block';
     } else {
-        publicView.style.display = 'none';
-        memberView.style.display = 'block';
-        renderModules();
+        if (publicView) publicView.style.display = 'block';
+        if (memberView) memberView.style.display = 'none';
+    }
+
+    // Show search/filter controls only for members and admins
+    const filterContainer = document.querySelector('.capacity-controls');
+    if (filterContainer) {
+        filterContainer.style.display = isAuthorized ? 'flex' : 'none';
+    }
+
+    if (isAuthorized) {
+        await renderModules();
     }
 }
 
-function renderModules() {
+async function renderModules() {
     const grid = document.getElementById('modulesGrid');
-    grid.innerHTML = '';
+    if (!grid) return;
 
-    modulesData.forEach(module => {
-        const progress = getModuleProgress(module.id);
-        const card = createModuleCard(module, progress);
-        grid.appendChild(card);
-    });
+    grid.innerHTML = '';
+    renderSkeletonCards(grid, 6);
+
+    try {
+        let courses = [];
+        let enrollments = [];
+
+        // Courses are public, enrollments require auth
+        courses = await api.getCourses();
+
+        if (currentRole !== 'public' && api.isAuthenticated()) {
+            try {
+                enrollments = await api.getMyEnrollments();
+            } catch (e) {
+                console.log('Could not fetch enrollments:', e.message);
+                enrollments = [];
+            }
+        }
+
+        modulesData = courses || [];
+        enrollmentsData = enrollments || [];
+
+        if (modulesData.length === 0) {
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 3rem;">No courses available yet. Check back soon!</div>';
+            return;
+        }
+
+        applyModuleFilters();
+    } catch (error) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: red; padding: 2rem;">Failed to load modules. Please check your connection.</div>';
+        console.error('renderModules error:', error);
+    }
 }
 
-function createModuleCard(module, progress) {
+function applyModuleFilters() {
+    const grid = document.getElementById('modulesGrid');
+    const searchTerm = document.getElementById('courseSearch')?.value.toLowerCase() || '';
+    const categoryFilter = document.getElementById('courseCategoryFilter')?.value || 'all';
+
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    console.log('[LMS] Total modules:', modulesData.length, 'Filter:', categoryFilter);
+
+    const filtered = modulesData.filter(module => {
+        const matchesSearch = (module.title || '').toLowerCase().includes(searchTerm) ||
+            (module.description || '').toLowerCase().includes(searchTerm);
+        const matchesCategory = categoryFilter === 'all' ||
+            (module.category && module.category.toLowerCase() === categoryFilter.toLowerCase());
+        return matchesSearch && matchesCategory;
+    });
+
+    console.log('[LMS] Filtered modules:', filtered.length);
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 3rem;">No modules match your search.</div>';
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    filtered.forEach((module, i) => {
+        const enrollment = enrollmentsData.find(e =>
+            (e.course && (e.course._id === module._id || e.course === module._id))
+        );
+
+        const progress = {
+            status: enrollment ? enrollment.status : 'not-started',
+            progress: enrollment ? enrollment.progress : 0
+        };
+
+        const card = createModuleCard(module, progress, !!enrollment);
+        fragment.appendChild(card);
+    });
+    
+    grid.appendChild(fragment);
+}
+
+async function handleEnroll(courseId) {
+    try {
+        await api.enrollInCourse(courseId);
+        showNotification('Successfully enrolled in the module!');
+        await renderModules();
+    } catch (error) {
+        showNotification('Enrollment failed: ' + error.message);
+    }
+}
+
+function createModuleCard(module, progress, isEnrolled) {
     const card = document.createElement('div');
-    card.className = 'module-card reveal';
+    card.className = 'module-card';
 
     const statusClass = progress.status;
     const statusText = progress.status === 'not-started' ? 'Not Started' :
         progress.status === 'in-progress' ? 'In Progress' : 'Completed';
 
+    const currentQuarter = getCurrentQuarter();
+    const isLocked = module.quarter && module.quarter !== currentQuarter;
+
+    if (isLocked) {
+        card.classList.add('locked');
+    }
+
+    let actionButton = '';
+    if (isEnrolled) {
+        if (isLocked) {
+            actionButton = `
+                <button class="enter-module-btn" disabled title="This course is locked for ${module.quarter} (Current: ${currentQuarter})">
+                    Assignments Locked
+                </button>
+            `;
+        } else {
+            actionButton = `
+                <button class="enter-module-btn" onclick="openModule('${module._id}')">
+                    Enter Module
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            `;
+        }
+    } else {
+        if (isLocked) {
+            actionButton = `
+                <button class="enter-module-btn" disabled title="Enrollment opens in ${module.quarter} (Current: ${currentQuarter})">
+                    Entry Locked
+                </button>
+            `;
+        } else {
+            actionButton = `
+                <button class="enter-module-btn" onclick="handleEnroll('${module._id}')" style="background: var(--primary-color); color: white;">
+                    Enroll Now
+                </button>
+            `;
+        }
+    }
+
     card.innerHTML = `
         <div class="module-header">
-            <span class="module-quarter-badge">${module.quarter}</span>
+            <span class="module-quarter-badge">${module.quarter || 'Q1'}</span>
             <span class="module-status ${statusClass}">${statusText}</span>
         </div>
         <h3 class="module-title">${module.title}</h3>
@@ -1062,14 +1297,14 @@ function createModuleCard(module, progress) {
             </div>
         </div>
         <div class="module-footer">
-            <button class="enter-module-btn" onclick="openModule(${module.id})">
-                Enter Module
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
+            ${actionButton}
+            ${currentRole === 'admin' || currentRole === 'partner' ? `
+                <button class="btn btn-outline" style="margin-top: 0.5rem; width: 100%; border-color: var(--border-color);" onclick="editCourse('${module._id}')">
+                    Edit Configuration
+                </button>
+            ` : ''}
         </div>
-    `;
+        `;
 
     return card;
 }
@@ -1078,48 +1313,99 @@ function createModuleCard(module, progress) {
 // LMS SYSTEM
 // ================================
 
-function openModule(moduleId) {
-    currentModule = modulesData.find(m => m.id === moduleId);
-    if (!currentModule) return;
+let currentProgress = null;
 
-    const progress = getModuleProgress(moduleId);
+async function openModule(moduleId) {
+    try {
+        currentModule = await api.getCourse(moduleId);
+        if (!currentModule) return;
 
-    // Mark as in-progress if not started
-    if (progress.status === 'not-started') {
-        progress.status = 'in-progress';
-        progress.progress = 10;
-        saveModuleProgress(moduleId, progress);
+        // Fetch user progress
+        currentProgress = await api.getCourseProgress(moduleId);
+        if (!currentProgress) {
+            currentProgress = { progress: 0, completedLessons: [] };
+        }
+
+        // Hide capacity section, show LMS
+        document.getElementById('capacity').style.display = 'none';
+        const lmsSection = document.getElementById('lmsSection');
+        lmsSection.style.display = 'block';
+
+        // Update module info
+        document.getElementById('moduleTitle').textContent = currentModule.title;
+        document.getElementById('moduleQuarter').textContent = currentModule.quarter || 'Q1';
+
+        // Render Nav
+        renderLMSNav();
+
+        // Update progress
+        document.getElementById('progressPercent').textContent = (currentProgress.progress || 0) + '%';
+        document.getElementById('progressFill').style.width = (currentProgress.progress || 0) + '%';
+
+        // Load overview section by default
+        switchLMSSection('overview');
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (error) {
+        showNotification('Failed to load course details.');
+        console.error(error);
     }
-
-    // Hide capacity section, show LMS
-    document.getElementById('capacity').style.display = 'none';
-    const lmsSection = document.getElementById('lmsSection');
-    lmsSection.style.display = 'block';
-
-    // Update module info
-    document.getElementById('moduleTitle').textContent = currentModule.title;
-    document.getElementById('moduleQuarter').textContent = currentModule.quarter;
-
-    // Update progress
-    updateModuleProgress();
-
-    // Load overview section by default
-    switchLMSSection('overview');
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Setup LMS navigation
-    setupLMSNavigation();
 }
 
-function setupLMSNavigation() {
-    const navItems = document.querySelectorAll('.lms-nav-item');
+function renderLMSNav() {
+    const nav = document.getElementById('lmsNav');
 
+    let html = `
+        <button class="lms-nav-item" data-section="overview">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 7L10 2L17 7V16C17 16.5304 16.7893 17.0391 16.4142 17.4142C16.0391 17.7893 15.5304 18 15 18H5C4.46957 18 3.96086 17.7893 3.58579 17.4142C3.21071 17.0391 3 16.5304 3 16V7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>Overview</span>
+        </button>
+    `;
+
+    if (currentModule && currentModule.lessons) {
+        currentModule.lessons.forEach((lesson, index) => {
+            const isCompleted = currentProgress.completedLessons.includes(lesson._id);
+            const checkIcon = isCompleted ? `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-left: auto; color: #10B981;">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            ` : '';
+
+            html += `
+                <button class="lms-nav-item" data-section="lesson_${lesson._id}">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V16C4 16.5304 4.21071 17.0391 4.58579 17.4142C4.96086 17.7893 5.46957 18 6 18H14C14.5304 18 15.0391 17.7893 15.4142 17.4142C15.7893 17.0391 16 16.5304 16 16V7L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Lesson ${index + 1}: ${lesson.title}</span>
+                    ${checkIcon}
+                </button>
+            `;
+        });
+    }
+
+    if (currentProgress.progress === 100) {
+        html += `
+            <button class="lms-nav-item" data-section="certificate">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 12C12.2091 12 14 10.2091 14 8C14 5.79086 12.2091 4 10 4C7.79086 4 6 5.79086 6 8C6 10.2091 7.79086 12 10 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.21 13.89L7 18L10 16L13 18L11.79 13.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Certificate</span>
+            </button>
+        `;
+    }
+
+    nav.innerHTML = html;
+
+    // Attach events
+    const navItems = nav.querySelectorAll('.lms-nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', () => {
-            const section = item.dataset.section;
-            switchLMSSection(section);
+            switchLMSSection(item.dataset.section);
         });
     });
 }
@@ -1137,352 +1423,122 @@ function switchLMSSection(sectionName) {
     // Render content
     const content = document.getElementById('lmsContent');
 
-    switch (sectionName) {
-        case 'overview':
-            renderOverview(content);
-            break;
-        case 'materials':
-            renderMaterials(content);
-            break;
-        case 'assignment':
-            renderAssignment(content);
-            break;
-        case 'feedback':
-            renderFeedback(content);
-            break;
-        case 'certificate':
-            renderCertificate(content);
-            break;
+    if (sectionName === 'overview') {
+        renderOverview(content);
+    } else if (sectionName.startsWith('lesson_')) {
+        const lessonId = sectionName.replace('lesson_', '');
+        renderLesson(content, lessonId);
+    } else if (sectionName === 'certificate') {
+        renderCertificate(content);
     }
 }
 
 function renderOverview(container) {
-    const objectives = currentModule.objectives.map(obj =>
-        `<li>${obj}</li>`
-    ).join('');
-
     container.innerHTML = `
         <div class="content-section active">
             <h2>${currentModule.title}</h2>
             <p>${currentModule.description}</p>
             
-            <h3>Learning Objectives</h3>
-            <ul class="learning-objectives">
-                ${objectives}
-            </ul>
-            
-            <h3>Module Structure</h3>
-            <p>This module includes:</p>
-            <ul class="learning-objectives">
-                <li>Comprehensive learning materials and resources</li>
-                <li>Practical assignment to apply your knowledge</li>
-                <li>Personalized feedback from instructors</li>
-                <li>Certificate of completion upon successful submission</li>
-            </ul>
+            <div style="margin-top: 2rem;">
+                <h3>Lessons (${currentModule.lessons ? currentModule.lessons.length : 0})</h3>
+                <ul class="learning-objectives" style="margin-top: 1rem;">
+                    ${currentModule.lessons && currentModule.lessons.length > 0 ?
+            currentModule.lessons.map(l => `<li>${l.title}</li>`).join('')
+            : '<li>No lessons available yet.</li>'}
+                </ul>
+            </div>
             
             <p style="margin-top: 2rem; color: var(--text-secondary);">
-                <strong>Duration:</strong> Approximately 2-3 weeks<br>
-                <strong>Commitment:</strong> 5-7 hours per week<br>
-                <strong>Passing Grade:</strong> ${currentModule.assignment.passingGrade}%
+                <strong>Duration:</strong> ${currentModule.duration || 'Estimated 2-3 weeks'}<br>
+                <strong>Difficulty:</strong> ${currentModule.difficulty || 'All levels'}
             </p>
         </div>
     `;
 }
 
-function renderMaterials(container) {
-    const materialsHTML = currentModule.materials.map(material => {
-        const icon = material.type === 'pdf' ? '📄' :
-            material.type === 'video' ? '🎥' : '📁';
-        const meta = material.size ? material.size : material.duration;
+async function markLessonComplete(lessonId) {
+    try {
+        await api.updateLessonProgress(currentModule._id, lessonId);
+        showNotification('Lesson marked as complete!');
 
-        return `
-            <div class="material-item">
-                <div class="material-icon">${icon}</div>
-                <div class="material-info">
-                    <h4>${material.name}</h4>
-                    <div class="material-meta">
-                        <span>${material.type.toUpperCase()}</span>
-                        <span>${meta}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
+        // Refresh progress
+        currentProgress = await api.getCourseProgress(currentModule._id);
 
-    container.innerHTML = `
-        <div class="content-section active">
-            <h2>Learning Materials</h2>
-            <p>Access all course materials, readings, and resources below. Click on any item to view or download.</p>
-            
-            <div class="materials-grid">
-                ${materialsHTML}
-            </div>
-            
-            ${currentRole === 'admin' ? `
-                <div style="margin-top: 2rem;">
-                    <button class="btn btn-outline" onclick="uploadMaterial()">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <span>Add Material</span>
-                    </button>
-                </div>
-            ` : ''}
-        </div>
-    `;
-}
+        // Rerender progress bar
+        document.getElementById('progressPercent').textContent = (currentProgress.progress || 0) + '%';
+        document.getElementById('progressFill').style.width = (currentProgress.progress || 0) + '%';
 
-function renderAssignment(container) {
-    const progress = getModuleProgress(currentModule.id);
+        // Rerender Nav to show checkmarks
+        renderLMSNav();
 
-    container.innerHTML = `
-        <div class="content-section active">
-            <h2>Assignment</h2>
-            
-            <div class="assignment-box">
-                <h3>${currentModule.assignment.title}</h3>
-                <p>${currentModule.assignment.description}</p>
-                <p style="margin-top: 1rem;">
-                    <strong>Deadline:</strong> ${currentModule.assignment.deadline}<br>
-                    <strong>Passing Grade:</strong> ${currentModule.assignment.passingGrade}%
-                </p>
-            </div>
-            
-            ${progress.assignmentSubmitted ? `
-                <div class="submission-status">
-                    <h4>✓ Assignment Submitted</h4>
-                    <p><strong>File:</strong> ${progress.submittedFile}</p>
-                    <p><strong>Submitted on:</strong> ${new Date(progress.submissionDate).toLocaleDateString()}</p>
-                    <p style="margin-top: 1rem; color: var(--text-secondary);">
-                        Your assignment has been submitted successfully. Check the Feedback & Grades section for instructor feedback.
-                    </p>
-                </div>
-            ` : `
-                <div class="file-upload-area" id="uploadArea">
-                    <div class="upload-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                            <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M17 8L12 3L7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h4>Upload Your Assignment</h4>
-                    <p>Click to browse or drag and drop your file here</p>
-                    <p style="font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem;">
-                        Accepted formats: PDF, DOCX, PPTX (Max 10MB)
-                    </p>
-                    <input type="file" id="fileInput" style="display: none;" accept=".pdf,.docx,.pptx">
-                </div>
-                
-                <div id="uploadedFileDisplay" style="display: none;"></div>
-                
-                <button class="submit-btn" id="submitAssignment" disabled>
-                    Submit Assignment
-                </button>
-            `}
-        </div>
-    `;
+        // Stay on current section
+        switchLMSSection('lesson_' + lessonId);
 
-    if (!progress.assignmentSubmitted) {
-        setupFileUpload();
+    } catch (error) {
+        showNotification('Failed to update progress: ' + error.message);
     }
 }
 
-function setupFileUpload() {
-    const uploadArea = document.getElementById('uploadArea');
-    const fileInput = document.getElementById('fileInput');
-    const submitBtn = document.getElementById('submitAssignment');
-    const fileDisplay = document.getElementById('uploadedFileDisplay');
-    let selectedFile = null;
-
-    uploadArea.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('drag-over');
-    });
-
-    uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('drag-over');
-    });
-
-    uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('drag-over');
-        const file = e.dataTransfer.files[0];
-        handleFileSelect(file);
-    });
-
-    fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        handleFileSelect(file);
-    });
-
-    function handleFileSelect(file) {
-        if (!file) return;
-
-        selectedFile = file;
-
-        fileDisplay.innerHTML = `
-            <div class="uploaded-file">
-                <div class="file-icon">📄</div>
-                <div class="file-info">
-                    <div class="file-name">${file.name}</div>
-                    <div class="file-size">${(file.size / 1024 / 1024).toFixed(2)} MB</div>
-                </div>
-                <button class="remove-file" onclick="removeFile()">×</button>
-            </div>
-        `;
-
-        fileDisplay.style.display = 'block';
-        submitBtn.disabled = false;
-    }
-
-    window.removeFile = function () {
-        selectedFile = null;
-        fileInput.value = '';
-        fileDisplay.style.display = 'none';
-        submitBtn.disabled = true;
-    };
-
-    submitBtn.addEventListener('click', () => {
-        if (selectedFile) {
-            submitAssignment(selectedFile);
-        }
-    });
-}
-
-function submitAssignment(file) {
-    const progress = getModuleProgress(currentModule.id);
-
-    progress.assignmentSubmitted = true;
-    progress.submittedFile = file.name;
-    progress.submissionDate = new Date().toISOString();
-    progress.progress = 75;
-
-    saveModuleProgress(currentModule.id, progress);
-
-    showNotification('Assignment submitted successfully!');
-
-    // Reload assignment section
-    switchLMSSection('assignment');
-
-    // Update progress display
-    updateModuleProgress();
-}
-
-function renderFeedback(container) {
-    const progress = getModuleProgress(currentModule.id);
-
-    if (currentRole === 'admin') {
-        // Admin view - can enter feedback
-        container.innerHTML = `
-            <div class="content-section active">
-                <h2>Feedback & Grades</h2>
-                
-                ${progress.assignmentSubmitted ? `
-                    <div class="feedback-box">
-                        <h4>Student Submission</h4>
-                        <p><strong>File:</strong> ${progress.submittedFile}</p>
-                        <p><strong>Submitted:</strong> ${new Date(progress.submissionDate).toLocaleDateString()}</p>
-                    </div>
-                    
-                    <div class="feedback-box" style="margin-top: 1.5rem;">
-                        <h4>Enter Feedback & Grade</h4>
-                        <form class="admin-feedback-form" id="feedbackForm">
-                            <textarea placeholder="Provide detailed feedback..." id="feedbackText">${progress.feedback || ''}</textarea>
-                            <input type="number" placeholder="Grade (0-100)" id="gradeInput" min="0" max="100" value="${progress.grade || ''}">
-                            <button type="submit" class="btn btn-primary">Save Feedback</button>
-                        </form>
-                    </div>
-                ` : `
-                    <p style="color: var(--text-secondary);">No assignment submitted yet.</p>
-                `}
-            </div>
-        `;
-
-        const feedbackForm = document.getElementById('feedbackForm');
-        if (feedbackForm) {
-            feedbackForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                saveFeedback();
-            });
-        }
-    } else {
-        // Member view - can view feedback
-        container.innerHTML = `
-            <div class="content-section active">
-                <h2>Feedback & Grades</h2>
-                
-                ${progress.feedback ? `
-                    <div class="grade-display">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        Grade: ${progress.grade}%
-                    </div>
-                    
-                    <div class="feedback-box">
-                        <h4>Instructor Feedback</h4>
-                        <p>${progress.feedback}</p>
-                    </div>
-                    
-                    ${progress.grade >= currentModule.assignment.passingGrade ? `
-                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.75rem; border-left: 4px solid #22c55e;">
-                            <p style="color: #22c55e; font-weight: 600;">
-                                🎉 Congratulations! You've passed this module. Your certificate is now available.
-                            </p>
-                        </div>
-                    ` : `
-                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 0.75rem; border-left: 4px solid #f59e0b;">
-                            <p style="color: #f59e0b; font-weight: 600;">
-                                Please review the feedback and consider resubmitting your assignment to achieve the passing grade.
-                            </p>
-                        </div>
-                    `}
-                ` : `
-                    <p style="color: var(--text-secondary);">
-                        ${progress.assignmentSubmitted ?
-                'Your assignment is under review. Feedback will be available soon.' :
-                'Submit your assignment to receive feedback and grades.'}
-                    </p>
-                `}
-            </div>
-        `;
-    }
-}
-
-function saveFeedback() {
-    const feedback = document.getElementById('feedbackText').value;
-    const grade = parseInt(document.getElementById('gradeInput').value);
-
-    if (!feedback || isNaN(grade)) {
-        showNotification('Please provide both feedback and grade.');
+function renderLesson(container, lessonId) {
+    const lesson = currentModule.lessons.find(l => l._id === lessonId);
+    if (!lesson) {
+        container.innerHTML = '<p>Lesson not found.</p>';
         return;
     }
 
-    const progress = getModuleProgress(currentModule.id);
-    progress.feedback = feedback;
-    progress.grade = grade;
+    const isCompleted = currentProgress.completedLessons.includes(lesson._id);
 
-    if (grade >= currentModule.assignment.passingGrade) {
-        progress.status = 'completed';
-        progress.progress = 100;
+    if (lesson.resourceLinks && lesson.resourceLinks.length > 0) {
+        resourcesHtml = `
+            <h3 style="margin-top: 2rem;">Resources</h3>
+            <ul style="margin-top: 1rem; list-style: none; padding-left: 0;">
+                ${lesson.resourceLinks.map(link => `
+                    <li style="margin-bottom: 0.5rem;">
+                        <a href="${link}" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                            📎 ${link}
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+        `;
     }
 
-    saveModuleProgress(currentModule.id, progress);
+    container.innerHTML = `
+        <div class="content-section active">
+            <h2>${lesson.title}</h2>
+            
+            ${lesson.videoUrl ? `
+                <div style="margin: 2rem 0; width: 100%; aspect-ratio: 16/9; background: #f1f5f9; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <iframe width="100%" height="100%" src="${lesson.videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            ` : ''}
 
-    showNotification('Feedback saved successfully!');
-    switchLMSSection('feedback');
-    updateModuleProgress();
+            <div style="margin-top: 2rem; line-height: 1.8;">
+                ${lesson.content || 'Content coming soon.'}
+            </div>
+            
+            ${resourcesHtml}
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                ${isCompleted ? `
+                    <div style="color: #10B981; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Completed
+                    </div>
+                ` : `
+                    <button class="btn btn-primary" onclick="markLessonComplete('${lesson._id}')">
+                        Mark as Complete
+                    </button>
+                `}
+            </div>
+        </div>
+    `;
 }
 
 function renderCertificate(container) {
-    const progress = getModuleProgress(currentModule.id);
-    const canDownload = progress.grade >= currentModule.assignment.passingGrade;
+    const canDownload = currentProgress && currentProgress.progress === 100;
 
     container.innerHTML = `
         <div class="content-section active">
@@ -1511,7 +1567,7 @@ function renderCertificate(container) {
                     </button>
                 ` : `
                     <p style="color: var(--text-secondary); margin: 1rem 0;">
-                        Complete the assignment with a passing grade (${currentModule.assignment.passingGrade}%+) to unlock your certificate.
+                        Complete all lessons in this course to unlock your certificate.
                     </p>
                     <button class="download-certificate-btn" disabled>
                         Certificate Locked
@@ -1520,11 +1576,8 @@ function renderCertificate(container) {
                     <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-primary); border-radius: 0.75rem;">
                         <h4 style="margin-bottom: 0.5rem;">Requirements:</h4>
                         <ul style="list-style: none; padding: 0;">
-                            <li style="padding: 0.5rem 0; color: ${progress.assignmentSubmitted ? '#22c55e' : 'var(--text-secondary)'};">
-                                ${progress.assignmentSubmitted ? '✓' : '○'} Submit assignment
-                            </li>
-                            <li style="padding: 0.5rem 0; color: ${progress.grade >= currentModule.assignment.passingGrade ? '#22c55e' : 'var(--text-secondary)'};">
-                                ${progress.grade >= currentModule.assignment.passingGrade ? '✓' : '○'} Achieve ${currentModule.assignment.passingGrade}%+ grade
+                            <li style="padding: 0.5rem 0; color: ${currentProgress && currentProgress.progress === 100 ? '#22c55e' : 'var(--text-secondary)'};">
+                                ${currentProgress && currentProgress.progress === 100 ? '✓' : '○'} Complete 100% of lessons
                             </li>
                         </ul>
                     </div>
@@ -1534,115 +1587,7 @@ function renderCertificate(container) {
     `;
 }
 
-function downloadCertificate() {
-    // Create certificate HTML
-    const certificateHTML = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Certificate - ${currentModule.title}</title>
-            <style>
-                body {
-                    font-family: 'Georgia', serif;
-                    padding: 60px;
-                    text-align: center;
-                    background: white;
-                }
-                .certificate {
-                    border: 20px solid #06b6d4;
-                    padding: 60px;
-                    max-width: 800px;
-                    margin: 0 auto;
-                    position: relative;
-                }
-                .certificate::before {
-                    content: '';
-                    position: absolute;
-                    inset: 15px;
-                    border: 3px solid #0891b2;
-                }
-                h1 {
-                    font-size: 48px;
-                    color: #06b6d4;
-                    margin-bottom: 30px;
-                }
-                .recipient {
-                    font-size: 36px;
-                    color: #1e293b;
-                    margin: 30px 0;
-                    font-style: italic;
-                }
-                .details {
-                    font-size: 20px;
-                    color: #64748b;
-                    margin: 20px 0;
-                    line-height: 1.8;
-                }
-                .module-title {
-                    font-size: 28px;
-                    color: #1e293b;
-                    font-weight: bold;
-                    margin: 30px 0;
-                }
-                .date {
-                    margin-top: 50px;
-                    font-size: 18px;
-                    color: #64748b;
-                }
-                .signature {
-                    margin-top: 60px;
-                    padding-top: 20px;
-                    border-top: 2px solid #1e293b;
-                    display: inline-block;
-                    min-width: 300px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="certificate">
-                <h1>Certificate of Completion</h1>
-                <p class="details">This is to certify that</p>
-                <div class="recipient">${currentUser.name}</div>
-                <p class="details">has successfully completed the module</p>
-                <div class="module-title">${currentModule.title}</div>
-                <p class="details">
-                    as part of the Youth Advocates Network Rwanda<br>
-                    Capacity Building Program
-                </p>
-                <div class="date">
-                    Issued on ${new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    })}
-                </div>
-                <div class="signature">
-                    <strong>YAN Leadership Team</strong>
-                </div>
-            </div>
-        </body>
-        </html>
-    `;
-
-    // Create a new window for printing
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(certificateHTML);
-    printWindow.document.close();
-
-    // Wait for content to load, then print
-    setTimeout(() => {
-        printWindow.print();
-    }, 250);
-
-    showNotification('Certificate ready! Use Print to PDF to save.');
-}
-
-function updateModuleProgress() {
-    const progress = getModuleProgress(currentModule.id);
-
-    document.getElementById('progressPercent').textContent = `${progress.progress}%`;
-    document.getElementById('progressFill').style.width = `${progress.progress}%`;
-}
+// Removed redundant HTML-print downloadCertificate in favor of the production-grade PDF version below
 
 function uploadMaterial() {
     showNotification('Material upload functionality - would integrate with file storage in production.');
@@ -1652,7 +1597,22 @@ function uploadMaterial() {
 // OPPORTUNITIES SECTION
 // ================================
 
-function initializeOpportunities() {
+async function initializeOpportunities() {
+    const grid = document.getElementById('opportunitiesGrid');
+    if (grid) {
+        grid.innerHTML = '';
+        renderSkeletonCards(grid, 3);
+    }
+
+    try {
+        opportunitiesData = await api.getOpportunities();
+    } catch (error) {
+        if (grid) {
+            grid.innerHTML = `<div class="error-banner" style = "color:red; text-align:center; padding: 2rem; width: 100%;" > Failed to load opportunities: ${error.message}</div> `;
+        }
+        return;
+    }
+
     renderOpportunities('all');
 
     // Filter tabs
@@ -1670,28 +1630,46 @@ function initializeOpportunities() {
 
 function renderOpportunities(filter) {
     const grid = document.getElementById('opportunitiesGrid');
+    if (!grid) return;
     grid.innerHTML = '';
 
     const filtered = filter === 'all' ?
         opportunitiesData :
         opportunitiesData.filter(opp => opp.type === filter);
 
+    if (!filtered || filtered.length === 0) {
+        grid.innerHTML = '<div class="empty-state" style="text-align:center; padding: 2rem; width: 100%;">No active opportunities found for this category.</div>';
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
     filtered.forEach(opp => {
         const card = createOpportunityCard(opp);
-        grid.appendChild(card);
+        fragment.appendChild(card);
+        // Apply Reveal Animation
+        globalRevealObserver.observe(card);
+        setTimeout(() => card.classList.add('visible'), 50);
     });
+    
+    grid.appendChild(fragment);
 }
 
 function createOpportunityCard(opp) {
     const card = document.createElement('div');
     card.className = 'opportunity-card reveal';
 
-    const badgeClass = `badge-${opp.type}`;
-    const typeName = opp.type.charAt(0).toUpperCase() + opp.type.slice(1);
+    const oppType = opp.type || 'general';
+    const badgeClass = `badge-${oppType}`;
+    const typeName = oppType.charAt(0).toUpperCase() + oppType.slice(1);
+
+    // Safety for missing fields in new endpoints
+    const deadlineStr = opp.deadline ? new Date(opp.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'TBD';
 
     card.innerHTML = `
         <span class="opportunity-badge ${badgeClass}">${typeName}</span>
-        <h3 class="opportunity-title">${opp.title}</h3>
+        <h3 class="opportunity-title">${opp.title || opp.name || 'Opportunity'}</h3>
+        ${opp.provider ? `<div class="opportunity-provider">by ${opp.provider}</div>` : ''}
         <p class="opportunity-description">${opp.description}</p>
         <div class="opportunity-meta">
             <div class="meta-item">
@@ -1699,7 +1677,7 @@ function createOpportunityCard(opp) {
                     <path d="M13 2H3C2.44772 2 2 2.44772 2 3V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V3C14 2.44772 13.5523 2 13 2Z" stroke="currentColor" stroke-width="1.5"/>
                     <path d="M11 1V3M5 1V3M2 5H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
-                ${opp.deadline}
+                ${deadlineStr}
             </div>
             ${opp.amount ? `
                 <div class="meta-item">
@@ -1720,11 +1698,11 @@ function createOpportunityCard(opp) {
             ` : ''}
         </div>
         <div class="opportunity-actions">
-            <button class="register-btn" onclick="registerOpportunity(${opp.id})">
+            <button class="register-btn" onclick="registerOpportunity('${opp._id || opp.id}')">
                 Register Interest
             </button>
         </div>
-    `;
+`;
 
     return card;
 }
@@ -1737,58 +1715,87 @@ function registerOpportunity(id) {
 // EVENTS SECTION
 // ================================
 
-function initializeEvents() {
+async function initializeEvents() {
     const grid = document.getElementById('eventsGrid');
+    if (!grid) return;
 
-    eventsData.forEach(event => {
-        const card = createEventCard(event);
-        grid.appendChild(card);
-    });
+    grid.innerHTML = '';
+    renderSkeletonCards(grid, 3);
+
+    // Restore API dependency to fetch from MongoDB
+    try {
+        eventsData = await api.getEvents();
+    } catch (error) {
+        console.error('Events API fetch failed:', error);
+        eventsData = [];
+    }
+
+    grid.innerHTML = '';
+
+    if (eventsData && eventsData.length > 0) {
+        const fragment = document.createDocumentFragment();
+        eventsData.forEach(event => {
+            const card = createEventCard(event);
+            fragment.appendChild(card);
+            // Re-apply array IntersectionObserver so they animate properly
+            globalRevealObserver.observe(card);
+            setTimeout(() => card.classList.add('visible'), 50);
+        });
+        grid.appendChild(fragment);
+    } else {
+        grid.innerHTML = '<div class="empty-state" style="text-align:center; padding: 2rem; width: 100%;">No upcoming events found.</div>';
+    }
 }
 
 function createEventCard(event) {
     const card = document.createElement('div');
     card.className = 'event-card reveal';
 
-    const date = new Date(event.date);
-    const day = date.getDate();
-    const month = date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+    let day = '--';
+    let month = '---';
+    if (event.date) {
+        const dateObj = new Date(event.date);
+        if (!isNaN(dateObj)) {
+            day = dateObj.getDate();
+            month = dateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+        }
+    }
 
     card.innerHTML = `
-        <div class="event-date">
+    <div class="event-date" >
             <div class="event-day">${day}</div>
             <div class="event-month">${month}</div>
         </div>
-        <div class="event-content">
-            <h3 class="event-title">${event.title}</h3>
-            <div class="event-details">
-                <div class="event-detail">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M8 4V8L11 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                    ${event.time}
-                </div>
-                <div class="event-detail">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M14 6.5C14 11 8 15 8 15C8 15 2 11 2 6.5C2 5 2.63 3.58 3.75 2.54C4.87 1.5 6.39 1 8 1C9.61 1 11.13 1.5 12.25 2.54C13.37 3.58 14 5 14 6.5Z" stroke="currentColor" stroke-width="1.5"/>
-                        <circle cx="8" cy="6.5" r="2" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                    ${event.location}
-                </div>
+    <div class="event-content">
+        <h3 class="event-title">${event.title || event.name || 'Event'}</h3>
+        <div class="event-details">
+            <div class="event-detail">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M8 4V8L11 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                ${event.time || 'TBD'}
             </div>
-            <p class="event-description">${event.description}</p>
-            <div class="event-actions">
-                <button class="add-calendar-btn" onclick="addToCalendar(${event.id})">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <rect x="2" y="3" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M11 1V3M5 1V3M2 6H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                    Add to Calendar
-                </button>
+            <div class="event-detail">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M14 6.5C14 11 8 15 8 15C8 15 2 11 2 6.5C2 5 2.63 3.58 3.75 2.54C4.87 1.5 6.39 1 8 1C9.61 1 11.13 1.5 12.25 2.54C13.37 3.58 14 5 14 6.5Z" stroke="currentColor" stroke-width="1.5" />
+                    <circle cx="8" cy="6.5" r="2" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+                ${event.location || 'TBA'}
             </div>
         </div>
-    `;
+        <p class="event-description">${event.description || ''}</p>
+        <div class="event-actions">
+            <button class="add-calendar-btn" onclick="addToCalendar('${event._id || event.id}')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="2" y="3" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M11 1V3M5 1V3M2 6H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                Add to Calendar
+            </button>
+        </div>
+    </div>
+`;
 
     return card;
 }
@@ -1803,43 +1810,91 @@ function addToCalendar(id) {
 
 function initializeGallery() {
     const grid = document.getElementById('galleryGrid');
+    if (!grid) return;
 
-    galleryImages.forEach((img, index) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item reveal';
-        item.innerHTML = `
-            <img src="${img}" alt="YAN Gallery Image ${index + 1}" class="gallery-image">
+    // Render gallery items with structured data
+    galleryData.forEach((item, index) => {
+        const el = document.createElement('div');
+        el.className = 'gallery-item reveal';
+        el.dataset.category = item.category;
+        el.innerHTML = `
+            <img src="${item.src}" alt="${item.title}" class="gallery-image" loading="lazy">
             <div class="gallery-overlay">
-                <span class="gallery-caption">YAN Event ${index + 1}</span>
+                <span class="gallery-caption">${item.title}</span>
+                <span class="gallery-caption-location">📍 ${item.location}</span>
             </div>
         `;
-
-        item.addEventListener('click', () => {
-            openGalleryModal(index);
-        });
-
-        grid.appendChild(item);
+        el.addEventListener('click', () => openGalleryModal(index));
+        grid.appendChild(el);
     });
+
+    // Category filter tabs
+    const tabsContainer = document.getElementById('galleryFilterTabs');
+    if (tabsContainer) {
+        tabsContainer.addEventListener('click', (e) => {
+            const tab = e.target.closest('.gallery-tab');
+            if (!tab) return;
+
+            // Update active tab
+            tabsContainer.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const filter = tab.dataset.filter;
+            const items = grid.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        });
+    }
 }
 
 function openGalleryModal(index) {
     currentGalleryIndex = index;
     const modal = document.getElementById('galleryModal');
     const img = document.getElementById('galleryModalImage');
+    const captionTitle = document.getElementById('galleryCaptionTitle');
+    const captionDesc = document.getElementById('galleryCaptionDesc');
 
-    img.src = galleryImages[index];
+    function updateSlide(idx) {
+        const item = galleryData[idx];
+        img.src = item.src;
+        if (captionTitle) captionTitle.textContent = item.title;
+        if (captionDesc) captionDesc.textContent = `${item.location} — ${item.description} `;
+    }
+
+    updateSlide(index);
     modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Scroll lock
 
-    // Setup navigation
+    // Navigation
     document.getElementById('galleryPrev').onclick = () => {
-        currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
-        img.src = galleryImages[currentGalleryIndex];
+        currentGalleryIndex = (currentGalleryIndex - 1 + galleryData.length) % galleryData.length;
+        updateSlide(currentGalleryIndex);
     };
 
     document.getElementById('galleryNext').onclick = () => {
-        currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
-        img.src = galleryImages[currentGalleryIndex];
+        currentGalleryIndex = (currentGalleryIndex + 1) % galleryData.length;
+        updateSlide(currentGalleryIndex);
     };
+
+    // ESC to close
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeGalleryModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+}
+
+function closeGalleryModal() {
+    const modal = document.getElementById('galleryModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Unlock scroll
 }
 
 // ================================
@@ -1876,73 +1931,506 @@ function handleContactSubmit() {
 
 function initializeDashboard() {
     updateDashboardMetrics();
+    renderDashboardCourses();
 }
 
-function updateDashboardMetrics() {
-    // Calculate metrics from module progress
-    let completedModules = 0;
-    let pendingAssignments = 0;
-    let certificatesEarned = 0;
+async function updateDashboardMetrics() {
+    try {
+        const enrollments = await api.getMyEnrollments();
+        const events = await api.getEvents();
 
-    modulesData.forEach(module => {
-        const progress = getModuleProgress(module.id);
-        if (progress.status === 'completed') {
-            completedModules++;
-            certificatesEarned++;
+        let completedModules = 0;
+        let certificatesEarned = 0;
+
+        for (const enrollment of enrollments) {
+            if (enrollment.status === 'completed') {
+                completedModules++;
+                certificatesEarned++;
+            }
         }
-        if (progress.status === 'in-progress' && !progress.assignmentSubmitted) {
-            pendingAssignments++;
+
+        document.getElementById('completedModules').textContent = completedModules;
+        document.getElementById('pendingAssignments').textContent = enrollments.length - completedModules;
+        document.getElementById('upcomingEvents').textContent = events.length;
+        document.getElementById('certificatesEarned').textContent = certificatesEarned;
+
+        // Update dashboard role badge
+        const dashboardRole = document.getElementById('dashboardRole');
+        if (dashboardRole) {
+            dashboardRole.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
         }
-    });
+    } catch (error) {
+        console.error('Error updating metrics:', error);
+    }
+}
 
-    document.getElementById('completedModules').textContent = completedModules;
-    document.getElementById('pendingAssignments').textContent = pendingAssignments;
-    document.getElementById('upcomingEvents').textContent = eventsData.length;
-    document.getElementById('certificatesEarned').textContent = certificatesEarned;
+async function renderDashboardCourses() {
+    const container = document.getElementById('dashboardCourseList');
+    if (!container) return;
 
-    // Update dashboard role badge
-    const dashboardRole = document.getElementById('dashboardRole');
-    if (dashboardRole) {
-        dashboardRole.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+    try {
+        const enrollments = await api.getMyEnrollments();
+
+        if (enrollments.length === 0) {
+            container.innerHTML = `
+    <div class="empty-state" style = "text-align: center; padding: 2rem;" >
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">You haven't enrolled in any courses yet.</p>
+                    <a href="#capacity" class="btn btn-primary btn-sm">Start Learning</a>
+                </div>
+    `;
+            return;
+        }
+
+        container.innerHTML = enrollments.slice(0, 3).map(enrollment => {
+            const progress = enrollment.progress || 0;
+            return `
+    <div class="course-progress-item" style = "margin-bottom: 1.5rem;" >
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 600; font-size: 0.9rem;">${enrollment.course.title}</span>
+                        <span style="color: var(--primary); font-weight: 700; font-size: 0.875rem;">${progress}%</span>
+                    </div>
+                    <div class="progress-bar-bg" style="height: 8px; background: #f0f4f8; border-radius: 4px; overflow: hidden;">
+                        <div class="progress-bar-fill" style="width: ${progress}%; height: 100%; background: var(--gradient-primary); transition: width 1s ease-out;"></div>
+                    </div>
+                </div>
+    `;
+        }).join('');
+
+    } catch (error) {
+        container.innerHTML = '<p style="color: #ef4444;">Failed to load courses.</p>';
     }
 }
 
 function showDashboard() {
-    // Hide main sections
-    document.querySelectorAll('section:not(#dashboard)').forEach(section => {
-        section.style.display = 'none';
+    if (currentRole === 'admin') {
+        showAdminDashboard();
+        return;
+    }
+
+    if (currentRole === 'applicant') {
+        window.location.href = 'applicant.html';
+        return;
+    }
+
+    // Redirect members to the standalone member dashboard
+    window.location.href = 'profile.html';
+}
+
+function setupMemberDashboardLinks() {
+    const memberNavItems = document.querySelectorAll('#dashboard .dashboard-nav-item');
+
+    memberNavItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const href = item.getAttribute('href');
+            if (href === '#') return; // Back to site handled separately
+
+            // Overview just stays here
+            if (href === '#dashboard-overview') {
+                e.preventDefault();
+                memberNavItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                return;
+            }
+
+            // Other links navigate out of dashboard
+            if (href === '#dashboard-modules') {
+                e.preventDefault();
+                hideDashboard();
+                setTimeout(() => {
+                    document.getElementById('capacity').scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else if (href === '#dashboard-events') {
+                e.preventDefault();
+                hideDashboard();
+                setTimeout(() => {
+                    document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        });
     });
+}
 
-    // Hide navigation and footer
-    document.getElementById('navbar').style.display = 'none';
-    document.querySelector('.footer').style.display = 'none';
+function hideDashboard() {
+    document.getElementById('dashboard').style.display = 'none';
+    // applicant-dashboard doesn't have a separate ID in the HTML usually, it might use the same #dashboard container
+    const applicantDash = document.getElementById('applicant-dashboard');
+    if (applicantDash) applicantDash.style.display = 'none';
 
-    // Show dashboard
-    document.getElementById('dashboard').style.display = 'block';
+    document.querySelectorAll('section:not(#dashboard):not(.admin-view):not(#applicant-dashboard)').forEach(section => {
+        section.style.display = '';
+    });
+    document.getElementById('navbar').style.display = 'flex';
+    document.querySelector('.footer').style.display = 'block';
 
-    // Update metrics
-    updateDashboardMetrics();
+    // Hide LMS and Admin
+    const adminPanel = document.getElementById('admin');
+    if (adminPanel) adminPanel.style.display = 'none';
+    document.getElementById('lmsSection').style.display = 'none';
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function hideDashboard() {
-    // Show main sections
-    document.querySelectorAll('section:not(#dashboard)').forEach(section => {
-        section.style.display = '';
+// ================================
+// ADMIN DASHBOARD
+// ================================
+
+function showAdminDashboard() {
+    // Redirect to the standalone admin dashboard page
+    window.location.href = 'admin.html';
+}
+
+function setupAdminDashboardLinks() {
+    const adminNavItems = document.querySelectorAll('.admin-section .dashboard-nav-item');
+
+    adminNavItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const href = item.getAttribute('href');
+            if (href === '#') {
+                e.preventDefault();
+                hideDashboard(); // Go back to original site
+                return;
+            }
+
+            e.preventDefault();
+
+            // Remove active class from all
+            adminNavItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+
+            // Switch panels
+            const panels = document.querySelectorAll('.admin-panel');
+            panels.forEach(p => p.style.display = 'none');
+
+            if (href === '#admin-overview') {
+                document.getElementById('admin-users-panel').style.display = 'block';
+                document.getElementById('admin-orgs-panel').style.display = 'block';
+            } else if (href === '#admin-users') {
+                document.getElementById('admin-users-panel').style.display = 'block';
+            } else if (href === '#admin-organizations') {
+                document.getElementById('admin-orgs-panel').style.display = 'block';
+            } else if (href === '#admin-lms') {
+                document.getElementById('admin-lms-panel').style.display = 'block';
+                loadAdminLmsAnalytics();
+            } else if (href === '#admin-applications') {
+                document.getElementById('admin-applications-panel').style.display = 'block';
+                loadAdminApplications();
+            }
+        });
     });
+}
 
-    // Show navigation and footer
-    document.getElementById('navbar').style.display = '';
-    document.querySelector('.footer').style.display = '';
+async function loadAdminSystemStats() {
+    const grid = document.getElementById('adminStatsGrid');
+    if (!grid) return;
 
-    // Hide dashboard and LMS
-    document.getElementById('dashboard').style.display = 'none';
-    document.getElementById('lmsSection').style.display = 'none';
+    try {
+        const stats = await api.getAdminSystemStats();
 
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+        grid.innerHTML = `
+            <div class="metric-card">
+                <div class="metric-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <img src="assets/icons/users.png" alt="Users" style="width: 32px; height: 32px; object-fit: contain;">
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">${stats.users.total}</div>
+                    <div class="metric-label">Total Users</div>
+                    <div style="font-size: 0.75rem; color: #10b981; font-weight: 600;">+${stats.users.newLast30Days} this month</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <img src="assets/icons/organizations.png" alt="Organizations" style="width: 32px; height: 32px; object-fit: contain;">
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">${stats.organizations.total}</div>
+                    <div class="metric-label">Organizations</div>
+                    <div style="font-size: 0.75rem; color: var(--text-light);">${stats.organizations.active} Active</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <img src="assets/icons/applications.png" alt="Applications" style="width: 32px; height: 32px; object-fit: contain;">
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">${stats.pendingApplications || 0}</div>
+                    <div class="metric-label">Pending Applications</div>
+                    <div style="font-size:0.75rem; color:#f59e0b; font-weight:600;">Action Required</div>
+                </div>
+            </div>
+        `;
+    } catch (err) {
+        grid.innerHTML = `<div class="error-banner" style="color:red;">Failed to load stats: ${err.message}</div>`;
+    }
+}
+
+async function loadAdminApplications() {
+    const tbody = document.getElementById('adminApplicationsTableBody');
+    if (!tbody) return;
+
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">Loading applications...</td></tr>';
+
+    try {
+        const applications = await api.getAdminRecentApplications();
+
+        if (applications.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">No pending applications found.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = applications.map(app => {
+            const orgName = app.submissionData?.organization?.name || 'N/A';
+            const date = new Date(app.createdAt).toLocaleDateString();
+
+            return `
+                <tr>
+                    <td style="padding: 1rem;">
+                        <div style="font-weight: 600;">${app.applicant.name}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light);">${app.applicant.email}</div>
+                    </td>
+                    <td style="padding: 1rem;">${orgName}</td>
+                    <td style="padding: 1rem;">${date}</td>
+                    <td style="padding: 1rem;">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-text btn-sm" onclick="openApplicationModal('${app._id}')">View</button>
+                            <button class="btn btn-primary btn-sm" onclick="handleApplicationAction('${app._id}', 'approved')" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Approve</button>
+                            <button class="btn btn-secondary btn-sm" onclick="handleApplicationAction('${app._id}', 'rejected')" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; color: #ef4444; border-color: #ef4444;">Reject</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    } catch (error) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: #ef4444; padding: 2rem;">Failed to load applications.</td></tr>`;
+    }
+}
+
+async function openApplicationModal(appId) {
+    const modal = document.getElementById('applicationDetailsModal');
+    const body = document.getElementById('applicationModalBody');
+    const actions = document.getElementById('applicationModalActions');
+    if (!modal || !body) return;
+
+    body.innerHTML = '<div style="text-align:center; padding: 2rem;">Loading details...</div>';
+    openModal('applicationDetailsModal');
+
+    try {
+        const applications = await api.getAdminRecentApplications();
+        const app = applications.find(a => a._id === appId);
+
+        if (!app) throw new Error('Application not found');
+
+        const data = app.submissionData || {};
+        const org = data.organization || {};
+        const rep = data.representative || {};
+
+        body.innerHTML = `
+            <div class="application-view">
+                <section style="margin-bottom: 2rem;">
+                    <h4 style="color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Organization Details</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div><strong>Name:</strong> ${org.name || 'N/A'}</div>
+                        <div><strong>Type:</strong> ${org.type || 'N/A'}</div>
+                        <div><strong>Category:</strong> ${org.category || 'N/A'}</div>
+                        <div><strong>Website:</strong> ${org.website || 'N/A'}</div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <strong>Vision:</strong>
+                        <p style="margin-top: 0.5rem; background: var(--bg-primary); padding: 1rem; border-radius: 0.5rem;">${org.vision || 'N/A'}</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 style="color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Representative Information</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div><strong>Name:</strong> ${rep.name || 'N/A'}</div>
+                        <div><strong>Position:</strong> ${rep.position || 'N/A'}</div>
+                        <div><strong>Email:</strong> ${rep.email || 'N/A'}</div>
+                        <div><strong>Phone:</strong> ${rep.phone || 'N/A'}</div>
+                    </div>
+                </section>
+            </div>
+        `;
+
+        actions.innerHTML = `
+            <button class="btn btn-primary" onclick="handleApplicationAction('${app._id}', 'approved')">Approve Member</button>
+            <button class="btn btn-secondary" onclick="handleApplicationAction('${app._id}', 'rejected')" style="color: #ef4444; border-color: #ef4444;">Reject</button>
+        `;
+    } catch (error) {
+        body.innerHTML = `<div style="color: #ef4444; padding: 2rem;">Error: ${error.message}</div>`;
+    }
+}
+
+async function handleApplicationAction(appId, status) {
+    if (!confirm(`Are you sure you want to ${status} this application?`)) return;
+
+    try {
+        await api.request(`/applications/${appId}/status`, {
+            method: 'PATCH',
+            body: { status }
+        });
+        showNotification(`Application ${status} successfully.`);
+        closeModal('applicationDetailsModal');
+        loadAdminApplications();
+        loadAdminSystemStats();
+    } catch (error) {
+        showNotification('Action failed: ' + error.message, 'error');
+    }
+}
+
+async function loadAdminUsers() {
+    const tbody = document.getElementById('adminUsersTableBody');
+    if (!tbody) return;
+
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">Loading users...</td></tr>';
+
+    try {
+        const users = await api.getAdminUsers();
+
+        if (!users || users.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">No users found.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = users.map(user => `
+    <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem; color: var(--text-color);">${user.name}</td>
+                <td style="padding: 1rem; color: var(--text-color);">${user.email}</td>
+                <td style="padding: 1rem;">
+                    <select class="role-select" data-user-id="${user._id}" onchange="handleRoleChange(this)" style="padding: 0.25rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-color);">
+                        <option value="public" ${user.role === 'public' ? 'selected' : ''}>Public</option>
+                        <option value="applicant" ${user.role === 'applicant' ? 'selected' : ''}>Applicant</option>
+                        <option value="member" ${user.role === 'member' ? 'selected' : ''}>Member</option>
+                        <option value="partner" ${user.role === 'partner' ? 'selected' : ''}>Partner</option>
+                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                    </select>
+                </td>
+                <td style="padding: 1rem; color: var(--text-secondary);">${new Date(user.createdAt).toLocaleDateString()}</td>
+            </tr>
+    `).join('');
+
+    } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="4" style="color:red; text-align:center; padding: 2rem;">Error: ${err.message}</td></tr>`;
+    }
+}
+
+async function handleRoleChange(selectElement) {
+    const userId = selectElement.getAttribute('data-user-id');
+    const newRole = selectElement.value;
+
+    try {
+        selectElement.disabled = true;
+        await api.updateAdminUserRole(userId, newRole);
+        showNotification('User role updated successfully');
+    } catch (err) {
+        showNotification('Failed to update role: ' + err.message);
+        // Reset selection on failure - requires a reload to safely restore the old state, or tracking it
+        loadAdminUsers();
+    } finally {
+        selectElement.disabled = false;
+    }
+}
+
+async function loadAdminOrganizations() {
+    const tbody = document.getElementById('adminOrgsTableBody');
+    if (!tbody) return;
+
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">Loading organizations...</td></tr>';
+
+    try {
+        const orgs = await api.getOrganizations(); // Use existing fetching
+
+        if (!orgs || orgs.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">No organizations found.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = orgs.map(org => `
+    <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem; color: var(--text-color);">${org.name}</td>
+                <td style="padding: 1rem;">
+                    <select class="status-select" data-org-id="${org._id}" onchange="handleOrgStatusChange(this)" style="padding: 0.25rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-color);">
+                        <option value="active" ${org.status === 'active' ? 'selected' : ''}>Active</option>
+                        <option value="inactive" ${org.status === 'inactive' ? 'selected' : ''}>Inactive</option>
+                        <option value="draft" ${org.status === 'draft' ? 'selected' : ''}>Draft</option>
+                    </select>
+                </td>
+                <td style="padding: 1rem; color: var(--text-secondary);">${new Date(org.createdAt).toLocaleDateString()}</td>
+                <td style="padding: 1rem;">
+                    <a href="#" onclick="openOrganizationModal('${org._id}'); return false;" style="color: var(--primary-color);">View</a>
+                </td>
+            </tr>
+    `).join('');
+
+    } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="4" style="color:red; text-align:center; padding: 2rem;">Error: ${err.message}</td></tr>`;
+    }
+}
+
+async function handleOrgStatusChange(selectElement) {
+    const orgId = selectElement.getAttribute('data-org-id');
+    const newStatus = selectElement.value;
+
+    try {
+        selectElement.disabled = true;
+        await api.updateAdminOrganizationStatus(orgId, newStatus);
+        showNotification('Organization status updated');
+        // Refresh public organizations grid in background
+        initializeOrganizations();
+    } catch (err) {
+        showNotification('Failed to update status: ' + err.message);
+        loadAdminOrganizations();
+    } finally {
+        selectElement.disabled = false;
+    }
+}
+
+async function loadAdminLmsAnalytics() {
+    const grid = document.getElementById('lmsStatsGrid');
+    const tbody = document.getElementById('adminLmsTableBody');
+    if (!grid || !tbody) return;
+
+    grid.innerHTML = '<div class="loading">Loading stats...</div>';
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">Loading completions...</td></tr>';
+
+    try {
+        const analytics = await api.getAdminLmsAnalytics();
+        const summary = analytics.summary || {};
+
+        grid.innerHTML = `
+    <div class="metric-card" >
+                <span class="metric-label">Avg. Progress</span>
+                <div class="metric-value">${summary.avgProgress || 0}%</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Total Enrollments</span>
+                <div class="metric-value">${summary.totalEnrollments || 0}</div>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Certificates Issued</span>
+                <div class="metric-value">${summary.totalCertificates || 0}</div>
+            </div>
+`;
+
+        if (!analytics.recentCompletions || analytics.recentCompletions.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem;">No recent completions found.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = analytics.recentCompletions.map(enroll => `
+    <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem; color: var(--text-color);">${enroll.user ? enroll.user.name : 'Unknown User'}</td>
+                <td style="padding: 1rem; color: var(--text-color);">${enroll.course ? enroll.course.title : 'Unknown Course'}</td>
+                <td style="padding: 1rem;"><span class="badge badge-success">Completed</span></td>
+                <td style="padding: 1rem; color: var(--text-secondary);">${new Date(enroll.updatedAt).toLocaleDateString()}</td>
+            </tr>
+    `).join('');
+
+    } catch (err) {
+        console.error('LMS Analytics error:', err);
+        grid.innerHTML = `<div class="error-banner" > Error loading stats</div> `;
+        tbody.innerHTML = `<tr><td colspan="4" style="color:red; text-align:center;">Error: ${err.message}</td></tr> `;
+    }
 }
 
 // ================================
@@ -1987,13 +2475,105 @@ document.querySelectorAll('.modal').forEach(modal => {
 
 document.getElementById('heroJoinBtn').addEventListener('click', () => {
     if (currentUser) {
-        showNotification('You\'re already a member! Check out our opportunities.');
-        document.getElementById('opportunities').scrollIntoView({ behavior: 'smooth' });
+        if (currentRole === 'member' || currentRole === 'admin') {
+            showNotification('You\'re already a member! Check out our opportunities.');
+            document.getElementById('opportunities').scrollIntoView({ behavior: 'smooth' });
+        } else if (currentRole === 'applicant') {
+            window.location.href = 'application-form.html';
+        } else {
+            showNotification('Access your dashboard to apply for membership.');
+            showDashboard();
+        }
     } else {
         showNotification('Please login to join our network.');
         document.getElementById('loginBtn').click();
     }
 });
+
+function renderApplicantDashboard() {
+    // Hide main sections
+    document.querySelectorAll('section:not(#dashboard)').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Hide navigation and footer
+    document.getElementById('navbar').style.display = 'none';
+    document.querySelector('.footer').style.display = 'none';
+
+    // Show dashboard container
+    document.getElementById('dashboard').style.display = 'block';
+
+    // Toggle applicant vs member views
+    document.getElementById('applicant-dashboard').style.display = 'block';
+    document.getElementById('member-metrics').style.display = 'none';
+    document.getElementById('member-content').style.display = 'none';
+
+    // Update title
+    const dashTitle = document.querySelector('.dashboard-header h1');
+    if (dashTitle) dashTitle.textContent = 'Applicant Portal';
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ================================
+// PHASE 6.1 UTILITIES
+// ================================
+
+function initializeOfflineDetection() {
+    const banner = document.getElementById('offlineBanner');
+    if (!banner) return;
+
+    function updateStatus() {
+        if (navigator.onLine) {
+            banner.classList.remove('visible');
+        } else {
+            banner.classList.add('visible');
+        }
+    }
+
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+
+    // Initial check
+    updateStatus();
+}
+
+function initializeScrollProgress() {
+    const bar = document.getElementById('scrollProgressBar');
+    if (!bar) return;
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        bar.style.width = scrolled + "%";
+    });
+}
+
+function initializeRippleEffect() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn');
+        if (!btn) return;
+
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        btn.appendChild(ripple);
+
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = `${size} px`;
+        ripple.style.left = `${x} px`;
+        ripple.style.top = `${y} px`;
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+}
 
 // ================================
 // KEYBOARD SHORTCUTS
@@ -2086,6 +2666,49 @@ window.addEventListener('error', (e) => {
 window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
 });
+
+// ================================
+// CERTIFICATE GENERATION
+// ================================
+
+window.downloadCertificate = async function () {
+    if (!currentModule || !currentModule._id) return;
+
+    try {
+        const btn = document.querySelector('.download-certificate-btn');
+        if (btn) {
+            btn.innerHTML = 'Generating PDF...';
+            btn.disabled = true;
+        }
+
+        const blob = await api.downloadCertificate(currentModule._id);
+
+        // Create an object URL for the blob
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Certificate_${currentModule.title ? currentModule.title.replace(/\s+/g, '_') : 'Course'}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+
+        // Cleanup
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+        if (btn) {
+            btn.innerHTML = 'Download Certificate <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 13L3 14C3 15.1046 3.89543 16 5 16L15 16C16.1046 16 17 15.1046 17 14L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 3L10 12M10 12L7 9M10 12L13 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            btn.disabled = false;
+        }
+    } catch (err) {
+        console.error('Error downloading certificate:', err);
+        showNotification('Failed to download certificate. Please try again.', 'error');
+        const btn = document.querySelector('.download-certificate-btn');
+        if (btn) {
+            btn.innerHTML = 'Download Certificate <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 13L3 14C3 15.1046 3.89543 16 5 16L15 16C16.1046 16 17 15.1046 17 14L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 3L10 12M10 12L7 9M10 12L13 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            btn.disabled = false;
+        }
+    }
+}
 
 // ================================
 // INITIALIZATION COMPLETE

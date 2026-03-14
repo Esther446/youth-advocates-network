@@ -2,7 +2,7 @@
  * YAN Platform — Production-Grade API Client
  * 
  * Security Architecture:
- * - Access token stored ONLY in closure-scoped variable (never localStorage/sessionStorage)
+ * - Access token persisted in sessionStorage (survives same-tab navigations)
  * - Refresh token lives in httpOnly cookie (never accessible to JS)
  * - All requests use credentials: 'include' for cookie transport
  * - 401 interceptor with request queuing and retry-once logic
@@ -10,11 +10,20 @@
  */
 const api = (() => {
     // ================================================================
-    // PRIVATE STATE — closure-scoped, inaccessible from outside
+    // PRIVATE STATE
     // ================================================================
-    let _accessToken = null;
+    let _accessToken = sessionStorage.getItem('yan_access_token') || null;
     let _isRefreshing = false;
     let _failedQueue = [];
+
+    function _setAccessToken(token) {
+        _accessToken = token;
+        if (token) {
+            sessionStorage.setItem('yan_access_token', token);
+        } else {
+            sessionStorage.removeItem('yan_access_token');
+        }
+    }
 
     // Auth endpoints that should NOT trigger refresh on 401
     const AUTH_BYPASS_ENDPOINTS = ['/auth/login', '/auth/register', '/auth/refresh'];
@@ -78,8 +87,7 @@ const api = (() => {
         // 401 INTERCEPTOR
         // ============================================================
         if (response.status === 401 && !isRetry) {
-            // Do NOT intercept 401 from auth endpoints themselves
-            const shouldBypass = AUTH_BYPASS_ENDPOINTS.some(ep => endpoint.startsWith(ep));
+            const shouldBypass = AUTH_BYPASS_ENDPOINTS.includes(endpoint);
 
             if (!shouldBypass) {
                 if (!_isRefreshing) {
@@ -100,7 +108,12 @@ const api = (() => {
                         }
 
                         const refreshData = await refreshResponse.json();
-                        _accessToken = refreshData.token;
+                        if (!refreshData.success || !refreshData.token) {
+                            throw new Error('Refresh failed');
+                        }
+
+                        _setAccessToken(refreshData.token);
+                        localStorage.setItem('yan_auth_hint', 'true');
 
                         // Resolve all queued requests with new token
                         _processQueue(null, _accessToken);
@@ -109,7 +122,7 @@ const api = (() => {
                         return request(endpoint, { ...options, _isRetry: true });
 
                     } catch (refreshError) {
-                        _accessToken = null;
+                        _setAccessToken(null);
                         _processQueue(refreshError, null);
 
                         // Notify app of session expiry
@@ -143,7 +156,11 @@ const api = (() => {
         // ============================================================
         let data;
         try {
-            data = await response.json();
+            if (options.responseType === 'blob') {
+                data = await response.blob();
+            } else {
+                data = await response.json();
+            }
         } catch (parseError) {
             if (!response.ok) {
                 throw new Error('Request failed');
@@ -172,8 +189,9 @@ const api = (() => {
             body: { email, password }
         });
 
-        // Store access token in memory ONLY
-        _accessToken = data.token;
+        // Persist access token in sessionStorage for cross-page navigation
+        _setAccessToken(data.token);
+        localStorage.setItem('yan_auth_hint', 'true');
 
         return data.data; // { id, name, email, role }
     }
@@ -188,8 +206,9 @@ const api = (() => {
             body
         });
 
-        // Store access token in memory ONLY
-        _accessToken = data.token;
+        // Persist access token in sessionStorage for cross-page navigation
+        _setAccessToken(data.token);
+        localStorage.setItem('yan_auth_hint', 'true');
 
         return data.data; // { id, name, email, role }
     }
@@ -202,6 +221,20 @@ const api = (() => {
         return data.data; // User object
     }
 
+    async function updateDetails(name, organization, profileImage, bio) {
+        const body = { name };
+        if (organization !== undefined) body.organization = organization;
+        if (profileImage !== undefined) body.profileImage = profileImage;
+        if (bio !== undefined) body.bio = bio;
+
+        const data = await request('/auth/updatedetails', {
+            method: 'PUT',
+            body
+        });
+
+        return data.data;
+    }
+
     async function logout() {
         try {
             await request('/auth/logout', {
@@ -209,15 +242,143 @@ const api = (() => {
             });
         } catch (e) {
             // Logout must clear local state even if server call fails
-            console.warn('Logout server call failed:', e.message);
         }
 
         // ALWAYS clear local state regardless of server response
-        _accessToken = null;
+        _setAccessToken(null);
+        localStorage.removeItem('yan_auth_hint');
     }
 
     function isAuthenticated() {
         return _accessToken !== null;
+    }
+
+    // ================================================================
+    // DATA FETCHING METHODS
+    // ================================================================
+
+    async function getOrganizations() {
+        const response = await request('/organizations', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function getOpportunities() {
+        const response = await request('/opportunities', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function getEvents() {
+        const response = await request('/events', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function getGallery() {
+        const response = await request('/gallery', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function getImpactRatings() {
+        const response = await request('/impact', { method: 'GET' });
+        return response.data || [];
+    }
+
+    // ================================================================
+    // LMS ENDPOINTS
+    // ================================================================
+
+    async function getCourses() {
+        const response = await request('/courses', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function getCourse(id) {
+        const response = await request(`/courses/${id}`, { method: 'GET' });
+        return response.data || null;
+    }
+
+    async function enrollInCourse(courseId) {
+        const response = await request(`/courses/${courseId}/enroll`, { method: 'POST' });
+        return response.data || null;
+    }
+
+    async function getMyEnrollments() {
+        const response = await request('/enrollments', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function getCourseProgress(courseId) {
+        const response = await request(`/progress/${courseId}/progress`, { method: 'GET' });
+        return response.data || null;
+    }
+
+    async function updateLessonProgress(courseId, lessonId) {
+        const response = await request(`/progress/${courseId}/lesson/${lessonId}`, { method: 'PATCH' });
+        return response;
+    }
+
+    // ================================================================
+    // CERTIFICATE ENDPOINTS
+    // ================================================================
+
+    async function downloadCertificate(courseId) {
+        const blob = await request(`/certificates/${courseId}`, {
+            method: 'GET',
+            responseType: 'blob'
+        });
+        return blob;
+    }
+
+    async function verifyCertificate(certificateId) {
+        const response = await request(`/certificates/verify/${certificateId}`, { method: 'GET' });
+        return response;
+    }
+
+    // ================================================================
+    // ADMIN ENDPOINTS
+    // ================================================================
+
+    async function getAdminUsers() {
+        const response = await request('/admin/users', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function updateAdminUserRole(userId, role) {
+        const response = await request(`/admin/users/${userId}/role`, {
+            method: 'PATCH',
+            body: { role }
+        });
+        return response;
+    }
+
+    async function updateAdminOrganizationStatus(orgId, status) {
+        const response = await request(`/admin/organizations/${orgId}/status`, {
+            method: 'PATCH',
+            body: { status }
+        });
+        return response;
+    }
+
+    async function getAdminSystemStats() {
+        const response = await request('/admin/system-stats', { method: 'GET' });
+        return response.data || {};
+    }
+
+    async function getAdminLmsAnalytics() {
+        const response = await request('/admin/lms-analytics', { method: 'GET' });
+        return response.data || {};
+    }
+
+    async function getAdminRecentApplications() {
+        const response = await request('/admin/recent-applications', { method: 'GET' });
+        return response.data || [];
+    }
+
+    async function submitApplication(data) {
+        const response = await request('/applications', {
+            method: 'POST',
+            body: data
+        });
+        return response.data || null;
     }
 
     // ================================================================
@@ -228,7 +389,28 @@ const api = (() => {
         login,
         register,
         getMe,
+        updateDetails,
         logout,
-        isAuthenticated
+        isAuthenticated,
+        getOrganizations,
+        getOpportunities,
+        getEvents,
+        getGallery,
+        getImpactRatings,
+        getCourses,
+        getCourse,
+        enrollInCourse,
+        getMyEnrollments,
+        getCourseProgress,
+        updateLessonProgress,
+        downloadCertificate,
+        verifyCertificate,
+        getAdminUsers,
+        updateAdminUserRole,
+        updateAdminOrganizationStatus,
+        getAdminSystemStats,
+        getAdminLmsAnalytics,
+        getAdminRecentApplications,
+        submitApplication
     });
 })();

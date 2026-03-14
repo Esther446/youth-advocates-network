@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const sendEmail = require('../utils/sendEmail');
 
 // ================================
 // TOKEN HELPERS
@@ -31,7 +32,7 @@ const getRefreshCookieOptions = () => {
         secure: isProduction,                    // HTTPS only in production
         sameSite: isProduction ? 'strict' : 'lax', // Strict in prod, Lax for local dev
         maxAge: 30 * 24 * 60 * 60 * 1000,       // 30 days in milliseconds
-        path: '/api/v1/auth'                     // Only sent to auth routes
+        path: '/'                                // Available globally
     };
 };
 
@@ -54,7 +55,7 @@ const attachRefreshToken = async (res, user) => {
 // @desc    Register new user
 // @route   POST /api/v1/auth/register
 // @access  Public
-exports.register = async (req, res) => {
+exports.register = async (req, res, next) => {
     try {
         const { name, email, password, role, organization } = req.body;
 
@@ -77,6 +78,23 @@ exports.register = async (req, res) => {
         });
 
         // Generate access token
+        const verificationToken = user.createEmailVerificationToken();
+        await user.save({ validateBeforeSave: false });
+
+        const clientUrl = process.env.FRONTEND_URL || `${req.protocol}://${req.get('host')}`;
+        const verifyUrl = `${clientUrl}/api/v1/auth/verifyemail/${verificationToken}`;
+        const message = `Welcome to YAN Rwanda!\n\nPlease verify your email by clicking the link below:\n${verifyUrl}\n\nIf you did not request this, please ignore this email.`;
+
+        try {
+            await sendEmail({
+                email: user.email,
+                subject: 'Verify your YAN Rwanda Account',
+                message
+            });
+        } catch (err) {
+            console.error('Email verification sending failed:', err);
+        }
+
         const accessToken = signAccessToken(user._id);
 
         // Attach refresh token (cookie + DB)
@@ -93,17 +111,14 @@ exports.register = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+        next(error);
     }
 };
 
 // @desc    Login user
 // @route   POST /api/v1/auth/login
 // @access  Public
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
@@ -150,17 +165,14 @@ exports.login = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+        next(error);
     }
 };
 
 // @desc    Get current user
 // @route   GET /api/v1/auth/me
 // @access  Private
-exports.getMe = async (req, res) => {
+exports.getMe = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id);
 
@@ -169,17 +181,14 @@ exports.getMe = async (req, res) => {
             data: user
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+        next(error);
     }
 };
 
 // @desc    Refresh access token using httpOnly cookie
 // @route   POST /api/v1/auth/refresh
 // @access  Public (cookie-authenticated)
-exports.refreshToken = async (req, res) => {
+exports.refreshToken = async (req, res, next) => {
     try {
         // 1. Read refresh token from httpOnly cookie
         const rawToken = req.cookies?.refreshToken;
@@ -193,6 +202,7 @@ exports.refreshToken = async (req, res) => {
 
         // 2. Hash the incoming token and look up user
         const incomingHash = hashToken(rawToken);
+
         const user = await User.findOne({ refreshTokenHash: incomingHash }).select('+refreshTokenHash');
 
         if (!user) {
@@ -217,17 +227,14 @@ exports.refreshToken = async (req, res) => {
             token: accessToken
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+        next(error);
     }
 };
 
 // @desc    Logout user — clear refresh token
 // @route   POST /api/v1/auth/logout
 // @access  Public (best-effort)
-exports.logout = async (req, res) => {
+exports.logout = async (req, res, next) => {
     try {
         const rawToken = req.cookies?.refreshToken;
 
@@ -248,9 +255,134 @@ exports.logout = async (req, res) => {
             message: 'Logged out successfully'
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
+        next(error);
+    }
+};
+
+// @desc    Update user details
+// @route   PUT /api/v1/auth/updatedetails
+// @access  Private
+exports.updateDetails = async (req, res, next) => {
+    try {
+        const fieldsToUpdate = {
+            name: req.body.name
+        };
+
+        if (req.body.organization !== undefined) {
+            fieldsToUpdate.organization = req.body.organization;
+        }
+
+        if (req.body.profileImage !== undefined) {
+            fieldsToUpdate.profileImage = req.body.profileImage;
+        }
+
+        if (req.body.bio !== undefined) {
+            fieldsToUpdate.bio = req.body.bio;
+        }
+
+        const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+            new: true,
+            runValidators: true
         });
+
+        res.status(200).json({
+            success: true,
+            data: user
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+// @desc    Forgot password
+// @route   POST /api/v1/auth/forgotpassword
+// @access  Public
+exports.forgotPassword = async (req, res, next) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'There is no user with that email address.' });
+        }
+
+        const resetToken = user.createPasswordResetToken();
+        await user.save({ validateBeforeSave: false });
+
+        const clientUrl = process.env.FRONTEND_URL || `${req.protocol}://${req.get('host')}`;
+        const actualResetUrl = `${clientUrl}/reset-password.html?token=${resetToken}`;
+
+        const message = `Forgot your password? Submit a PUT request with your new password to: \n${actualResetUrl}.\nIf you didn't forget your password, please ignore this email!`;
+        try {
+            await sendEmail({
+                email: user.email,
+                subject: 'Your password reset token (valid for 10 min)',
+                message
+            });
+            res.status(200).json({ success: true, message: 'Token sent to email!' });
+        } catch (err) {
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpire = undefined;
+            await user.save({ validateBeforeSave: false });
+            return res.status(500).json({ success: false, message: 'There was an error sending the email. Try again later!' });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+// @desc    Reset password
+// @route   PUT /api/v1/auth/resetpassword/:token
+// @access  Public
+exports.resetPassword = async (req, res, next) => {
+    try {
+        const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+
+        const user = await User.findOne({
+            resetPasswordToken: hashedToken,
+            resetPasswordExpire: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Token is invalid or has expired' });
+        }
+
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save();
+
+        const accessToken = signAccessToken(user._id);
+        await attachRefreshToken(res, user);
+
+        res.status(200).json({ success: true, token: accessToken });
+    } catch (error) {
+        next(error);
+    }
+};
+
+// @desc    Verify email address
+// @route   GET /api/v1/auth/verifyemail/:token
+// @access  Public
+exports.verifyEmail = async (req, res, next) => {
+    try {
+        const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+
+        const user = await User.findOne({
+            emailVerificationToken: hashedToken,
+            emailVerificationExpire: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid or expired verification token' });
+        }
+
+        user.isEmailVerified = true;
+        user.emailVerificationToken = undefined;
+        user.emailVerificationExpire = undefined;
+        await user.save({ validateBeforeSave: false });
+
+        const clientUrl = process.env.FRONTEND_URL || 'http://localhost:5500';
+        res.redirect(`${clientUrl}/index.html?verified=true`);
+    } catch (error) {
+        next(error);
     }
 };

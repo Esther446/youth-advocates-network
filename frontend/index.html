@@ -7,11 +7,11 @@
     <title>Youth Advocates Network Rwanda | Empowering Young Leaders</title>
     <meta name="description"
         content="Youth Advocates Network (YAN) is Rwanda's leading youth-led umbrella organization connecting youth organizations for advocacy, capacity building, and innovation.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -23,8 +23,8 @@
             <div class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#organizations" class="nav-link">Network</a>
-                <a href="#capacity" class="nav-link">Capacity Building</a>
+                <a href="members.html" class="nav-link">Network</a>
+                <a href="#capacity" class="nav-link" data-role="member,admin">Capacity Building</a>
                 <a href="#opportunities" class="nav-link" data-role="member,admin">Opportunities</a>
                 <a href="#events" class="nav-link">Events</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
@@ -45,8 +45,8 @@
                         <span class="profile-name">Young Leader</span>
                     </button>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="#dashboard" class="dropdown-item">Dashboard</a>
-                        <a href="#profile" class="dropdown-item">Profile</a>
+                        <a href="profile.html" class="dropdown-item">Dashboard</a>
+                        <a href="profile.html?view=profile" class="dropdown-item">Profile</a>
                         <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
                     </div>
                 </div>
@@ -60,27 +60,47 @@
         </div>
     </nav>
 
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Offline Banner -->
+    <div class="offline-banner" id="offlineBanner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M1 1L23 23" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path d="M16.72 11.06C17.95 12.04 18.87 13.36 19.31 14.86" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            <path d="M5 12.55C5.97 11.36 7.24 10.43 8.68 9.84" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            <path d="M10.71 5.05C14.32 4.37 18.14 5.28 21 7.78" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            <path d="M3 7.78C3.95 6.93 5.04 6.24 6.22 5.73" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            <circle cx="12" cy="20" r="1" fill="currentColor" />
+        </svg>
+        <span>You are offline. Some content may not load.</span>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-background">
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="assets/video_yan.mp4" type="video/mp4">
+            </video>
             <div class="hero-gradient"></div>
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="title-line">Empowering Rwanda's</span>
-                <span class="title-line title-highlight">Next Generation</span>
+            <div class="hero-badge hero-animate">
+                <span class="pulse-dot"></span>
+                <span>Youth Advocates Network</span>
+            </div>
+            <h1 class="hero-title-sleek hero-animate">
+                Connecting organizations.<br><strong>Transforming leadership.</strong>
             </h1>
-            <p class="hero-subtitle">
-                A youth-led umbrella network connecting organizations across Rwanda
-                for advocacy, capacity building, and transformative leadership development
+            <p class="hero-subtitle-sleek hero-animate">
+                A youth-led umbrella network driving advocacy and capacity building across Rwanda.
             </p>
-            <div class="hero-cta">
+            <div class="hero-cta hero-animate">
                 <button class="btn btn-primary" id="heroJoinBtn">
                     <span>Join Our Network</span>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -90,13 +110,46 @@
                 </button>
                 <button class="btn btn-secondary"
                     onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
-                    <span>Learn More</span>
+                    <span>Explore Platform</span>
                 </button>
             </div>
         </div>
 
         <div class="scroll-indicator">
             <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Partners Marquee -->
+    <section class="partners-marquee" id="partners">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span class="partner-chip">UNICEF Rwanda</span>
+                <span class="partner-chip">Rwanda Biomedical Centre</span>
+                <span class="partner-chip">NCDA</span>
+                <span class="partner-chip">Ministry of Education</span>
+                <span class="partner-chip">REMA</span>
+                <span class="partner-chip">Ministry of Health</span>
+                <span class="partner-chip">REB</span>
+                <span class="partner-chip">MIGEPROF</span>
+                <span class="partner-chip">SIC Group</span>
+                <span class="partner-chip">GMO</span>
+                <span class="partner-chip">NCC</span>
+                <span class="partner-chip">RRP+</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="partner-chip">UNICEF Rwanda</span>
+                <span class="partner-chip">Rwanda Biomedical Centre</span>
+                <span class="partner-chip">NCDA</span>
+                <span class="partner-chip">Ministry of Education</span>
+                <span class="partner-chip">REMA</span>
+                <span class="partner-chip">Ministry of Health</span>
+                <span class="partner-chip">REB</span>
+                <span class="partner-chip">MIGEPROF</span>
+                <span class="partner-chip">SIC Group</span>
+                <span class="partner-chip">GMO</span>
+                <span class="partner-chip">NCC</span>
+                <span class="partner-chip">RRP+</span>
+            </div>
         </div>
     </section>
 
@@ -107,69 +160,77 @@
                 <div class="about-content">
                     <div class="section-label">YAN Mandate</div>
                     <h2 class="section-title">Vision, Mission & Network Story</h2>
+                    <div class="established-badge">🏛️ Established 2024 · Kigali, Rwanda · UNICEF-Backed</div>
 
-                    <div class="about-text">
-                        <h3>YAN Mandate</h3>
-                        <p>The Youth Advocate Network (YAN) stands as a testament to the power of unity, equipping and
-                            mobilizing young leaders to champion critical issues for a more inclusive and sustainable
-                            Rwanda.</p>
-                        <p>Established in 2024 under Rwandan law, the Youth Advocate Network (YAN) is more than just an
-                            organization; it's a vital umbrella for a diverse array of youth‑led initiatives, movements,
-                            NGOs, and associations.</p>
-                        <p>Headquartered in Kigali, YAN serves as a central hub, connecting passionate young advocates
-                            across Rwanda and extending its influence regionally and globally. It was born from the
-                            recognition that while individual youth efforts are impactful, a unified front can achieve
-                            far greater systemic change.</p>
-
-                        <h3>Vision &amp; Mission</h3>
-                        <div class="vision-mission">
-                            <div class="vm-item">
-                                <h4>Vision</h4>
-                                <p>Building a Rwanda where young people are empowered, actively engaged, and leading
-                                    transformative advocacy for inclusive and sustainable development.</p>
-                            </div>
-                            <div class="vm-item">
-                                <h4>Mission</h4>
-                                <p>To equip and mobilize young advocates with the knowledge, skills, and platforms to
-                                    champion child rights, social inclusion, and policy change, ensuring meaningful
-                                    youth participation in national and global development agendas.</p>
-                            </div>
+                    <!-- Origin Story -->
+                    <div class="origin-story-card reveal">
+                        <div class="origin-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="color: var(--primary-color);">
+                                <path d="M7 20h10" />
+                                <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+                                <path
+                                    d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
+                                <path
+                                    d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
+                            </svg>
                         </div>
-
-                        <h3>About Youth Advocates Network</h3>
-                        <p>Youth Advocates Network (YAN) is a network established in 2020 by youth‑led and youth‑serving
-                            organizations. The network strives to empower and amplify youth voices and initiatives so
-                            they can meaningfully participate in decision‑making spaces.</p>
-                        <p>According to its founding narrative, YAN emerged after a training offered by UNICEF Rwanda,
-                            the “Youth Advocacy Guide (YAG)”, which brought together young leaders across Rwanda.
+                        <h3>Our Origin</h3>
+                        <p>YAN emerged after a transformative training offered by <strong>UNICEF Rwanda</strong> — the
+                            <em>Youth Advocacy Guide (YAG)</em> — which brought together young leaders across Rwanda.
                             Through that training, participants gained advocacy skills, communication and stakeholder
-                            engagement know‑how, and a broader network of peers and mentors.</p>
-                        <p>The Network is anchored on a philosophy that youth have gold in them and the power to decide
-                            their life locus and champion change for a better world free from any form of
-                            discrimination, harassment, and violence, and that embraces diversity.</p>
-
-                        <h3>Strategic Orientation</h3>
-                        <ul class="about-list">
-                            <li>Strengthening youth voice and agency in societal issues.</li>
-                            <li>Promoting solidarity and collaboration among youth‑led organizations.</li>
-                            <li>Facilitating capacity building, advocacy, and community‑level impact through collective
-                                action.</li>
-                            <li>Encouraging sustainable, youth‑driven development and social behavior change across
-                                sectors.</li>
-                        </ul>
-
-                        <h3>Context &amp; Rationale</h3>
-                        <p>Rwanda, like many African countries, has a vibrant but fragmented ecosystem of youth‑led
-                            organizations (covering health, education, social justice, climate, inclusion, etc.).
-                            However, these organizations often face structural limitations: lack of formal capacity in
-                            project design and management, inadequate financial and administrative skills, weak
-                            governance, and insufficient tools for sustainability.</p>
-                        <p>Nevertheless, given the complexity of issues (nutrition, health, mental health, social
-                            behavior, inclusion, rights) and the unpredictability of funding or external support, many
-                            youth‑led organizations remain vulnerable, especially in times of resource scarcity,
-                            political shifts, or increased demand.</p>
+                            engagement know-how, and a broader network of peers and mentors. Born from the recognition
+                            that <strong>while individual youth efforts are impactful, a unified front can achieve far
+                                greater systemic change</strong>.
+                        </p>
                     </div>
 
+                    <h3>Vision & Mission</h3>
+                    <div class="vision-mission">
+                        <div class="vm-item">
+                            <h4>Vision</h4>
+                            <p>Building a Rwanda where young people are empowered, actively engaged, and leading
+                                transformative advocacy for inclusive and sustainable development.</p>
+                        </div>
+                        <div class="vm-item">
+                            <h4>Mission</h4>
+                            <p>To equip and mobilize young advocates with the knowledge, skills, and platforms to
+                                champion child rights, social inclusion, and policy change, ensuring meaningful
+                                youth participation in national and global development agendas.</p>
+                        </div>
+                    </div>
+
+                    <h3>Our Philosophy</h3>
+                    <p>The Network is anchored on a philosophy that youth have gold in them and the power to decide
+                        their life locus and champion change for a better world free from any form of
+                        discrimination, harassment, and violence, and that embraces diversity.</p>
+
+                    <h3>Strategic Orientation</h3>
+                    <ul class="about-list">
+                        <li>Strengthening youth voice and agency in societal issues.</li>
+                        <li>Promoting solidarity and collaboration among youth‑led organizations.</li>
+                        <li>Facilitating capacity building, advocacy, and community‑level impact through collective
+                            action.</li>
+                        <li>Encouraging sustainable, youth‑driven development and social behavior change across
+                            sectors.</li>
+                    </ul>
+
+                    <h3>Context &amp; Rationale</h3>
+                    <p>Rwanda, like many African countries, has a vibrant but fragmented ecosystem of youth‑led
+                        organizations (covering health, education, social justice, climate, inclusion, etc.).
+                        However, these organizations often face structural limitations: lack of formal capacity in
+                        project design and management, inadequate financial and administrative skills, weak
+                        governance, and insufficient tools for sustainability.</p>
+                    <p>Nevertheless, given the complexity of issues (nutrition, health, mental health, social
+                        behavior, inclusion, rights) and the unpredictability of funding or external support, many
+                        youth‑led organizations remain vulnerable, especially in times of resource scarcity,
+                        political shifts, or increased demand.</p>
+
+
+                </div>
+
+                <div class="about-right-column" style="display: flex; flex-direction: column; gap: 2rem;">
                     <div class="pillars-grid">
                         <div class="pillar-item">
                             <div class="pillar-icon">
@@ -241,40 +302,51 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="about-stats">
-                    <div class="stats-card">
-                        <div class="stat-item">
-                            <div class="stat-number" data-target="500">0</div>
-                            <div class="stat-label">Active Members</div>
-                            <div class="stat-bar">
-                                <div class="stat-fill"></div>
+                    <div class="about-stats" style="margin-top: 2rem;">
+                        <div class="stats-card">
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="500">0</div>
+                                <div class="stat-label">Active Members</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill"></div>
+                                </div>
+                            </div>
+
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="150">0</div>
+                                <div class="stat-label">Partner Organizations</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill"></div>
+                                </div>
+                            </div>
+
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="50">0</div>
+                                <div class="stat-label">Impact Projects</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill"></div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="stat-item">
-                            <div class="stat-number" data-target="150">0</div>
-                            <div class="stat-label">Partner Organizations</div>
-                            <div class="stat-bar">
-                                <div class="stat-fill"></div>
-                            </div>
+                        <div class="impact-quote">
+                            <div class="quote-mark">"</div>
+                            <p>Youth have gold in them and the power to decide their life locus and champion change for
+                                a
+                                better world free from any form of discrimination, harassment, and violence.</p>
+                            <div class="quote-author">— YAN Philosophy</div>
                         </div>
 
-                        <div class="stat-item">
-                            <div class="stat-number" data-target="50">0</div>
-                            <div class="stat-label">Impact Projects</div>
-                            <div class="stat-bar">
-                                <div class="stat-fill"></div>
-                            </div>
+                        <!-- YAN Philosophy Video -->
+                        <div class="about-video reveal visible"
+                            style="margin-top: 2rem; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; padding-bottom: 56.25%; height: 0; background: #000;">
+                            <iframe src="https://www.youtube.com/embed/cz1fMra9g_0?si=NbP2ANlTWziVG1pt"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                title="YAN Philosophy Video"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
                         </div>
-                    </div>
-
-                    <div class="impact-quote">
-                        <div class="quote-mark">"</div>
-                        <p>Together, we're building a Rwanda where every young person has the platform, skills, and
-                            network to create lasting change.</p>
-                        <div class="quote-author">— YAN Leadership Team</div>
                     </div>
                 </div>
             </div>
@@ -286,33 +358,201 @@
         <div class="container">
             <div class="section-header">
                 <div>
-                    <div class="section-label">Our Network</div>
-                    <h2 class="section-title">Spotlight Organizations</h2>
-                    <p class="section-description">Featured members driving impact across Rwanda</p>
+                    <div class="section-label">Featured Member</div>
+                    <h2 class="section-title">Network Spotlight</h2>
+                    <p class="section-description">A closer look at the organizations driving impact across Rwanda</p>
                 </div>
-                <button class="btn btn-outline" id="addOrgBtn" data-role="admin" style="display: none;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    </svg>
-                    <span>Add Organization</span>
-                </button>
             </div>
 
-            <div class="organizations-grid" id="organizationsGrid">
-                <!-- Organizations will be populated by JavaScript -->
+            <div class="featured-org-container" id="featuredOrgContainer">
+                <!-- Featured organization card will be populated by JavaScript -->
+                <div class="skeleton-featured-card"></div>
+            </div>
+
+            <div class="section-footer-cta">
+                <a href="members.html" class="btn btn-primary">
+                    <span>View All Network Organizations</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Rating Classification -->
+    <section class="impact-rating-section" id="impactRating">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">Impact Evidence</div>
+                    <h2 class="section-title">Impact Rating Classification</h2>
+                    <p class="section-description">Classification of spotlight organizations based on documented scale,
+                        sustainability, and measurable outcomes.</p>
+                </div>
+            </div>
+
+            <div class="impact-rating-grid" id="impactRatingGrid">
+                <!-- Impact rating cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">Voices of Change</div>
+                    <h2 class="section-title">Stories From Our Network</h2>
+                    <p class="section-description">Hear from the founders and leaders shaping Rwanda's future</p>
+                </div>
+            </div>
+
+            <div class="testimonials-carousel" id="testimonialsCarousel">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"There is so much you can do with the very little you have. Start
+                            where you are, with what you have, and let your passion lead the way. Our communities need
+                            us, and even small acts of kindness can create ripples of change."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #667eea, #764ba2);">GG</div>
+                            <div>
+                                <strong>Gloria Gatsinzi</strong>
+                                <span class="testimonial-role">Founder & Executive Director</span>
+                                <span class="testimonial-org">Care & Help Child Organization</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"Our community, our concern, our solution. That's the
+                            responsibility of young leaders: home-grown answers for Rwanda."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #f093fb, #f5576c);">CR</div>
+                            <div>
+                                <strong>Colbert Rulinda</strong>
+                                <span class="testimonial-role">Co-Founder</span>
+                                <span class="testimonial-org">Rwanda We Want Organization</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"Meaningful change begins with small, consistent steps, and
+                            together, we create lasting impact."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #43e97b, #38f9d7);">NS</div>
+                            <div>
+                                <strong>Nduwayezu Samuel</strong>
+                                <span class="testimonial-role">Founder</span>
+                                <span class="testimonial-org">Heza Initiative</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"Mental health is a fundamental right, not a privilege. Every
+                            young person deserves the tools and support to navigate their journey with dignity."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #4facfe, #00f2fe);">KR</div>
+                            <div>
+                                <strong>Kwizera Rulinda</strong>
+                                <span class="testimonial-role">Founder & Clinical Psychologist</span>
+                                <span class="testimonial-org">MINDORA Health</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"Being someone's 'safe space' doesn't need a building. It just
+                            takes presence and empathy."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #fa709a, #fee140);">VK</div>
+                            <div>
+                                <strong>Vidha Kabera</strong>
+                                <span class="testimonial-role">Independent Youth Advocate</span>
+                                <span class="testimonial-org">Mental Health Awareness</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"Advocating gave me strength. I used to cry listening to others'
+                            stories, now I listen with purpose."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">CU</div>
+                            <div>
+                                <strong>Cynthia Umutoni</strong>
+                                <span class="testimonial-role">Youth Advocate</span>
+                                <span class="testimonial-org">Human Rights & Mental Health</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"We believe that no action is too small to create change. As
+                            youth advocates, our voices are powerful. Together, we can build a healthier, more equitable
+                            world for all."</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar"
+                                style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">OH</div>
+                            <div>
+                                <strong>OAZIS Health</strong>
+                                <span class="testimonial-role">Youth-Led Health Organization</span>
+                                <span class="testimonial-org">Digital Health & Antimicrobial Stewardship</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="testimonialPrev">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="carousel-dots" id="testimonialDots"></div>
+                    <button class="carousel-btn" id="testimonialNext">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Capacity Building Section -->
-    <section class="capacity-section" id="capacity">
+    <section class="capacity-section" id="capacity" data-role="member,admin" style="display: none;">
         <div class="container">
-            <div class="section-header">
-                <div>
-                    <div class="section-label">Learning & Development</div>
-                    <h2 class="section-title">Capacity Building Program</h2>
-                    <p class="section-description">Structured training modules for youth leaders</p>
+            <div class="section-header" style="display: block; text-align: center; margin-bottom: 2rem;">
+                <span class="section-label">LEARNING & DEVELOPMENT</span>
+                <h2 class="section-title">Capacity Building</h2>
+                <p class="section-description">Structured training modules, assignments, and certifications to empower
+                    youth leaders.</p>
+            </div>
+
+            <div class="capacity-controls" style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div class="search-box" style="flex: 1; min-width: 250px; position: relative;">
+                    <input type="text" id="courseSearch" placeholder="Search courses..."
+                        style="width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-color);">
+                    <svg style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-light);"
+                        width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                 </div>
+                <select id="courseCategoryFilter"
+                    style="padding: 0.75rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-color); min-width: 150px;">
+                    <option value="all">All Categories</option>
+                    <option value="leadership">Leadership</option>
+                    <option value="advocacy">Advocacy</option>
+                    <option value="health">Health</option>
+                    <option value="digital skills">Digital Skills</option>
+                </select>
             </div>
 
             <!-- Public View -->
@@ -327,7 +567,8 @@
                         </svg>
                     </div>
                     <h3>Members-Only Access</h3>
-                    <p>Our comprehensive capacity building program includes structured training modules, assignments,
+                    <p>Our comprehensive capacity building program includes structured training modules,
+                        assignments,
                         and certifications. Login as a member to access the full learning management system.</p>
                     <button class="btn btn-primary" onclick="document.getElementById('loginBtn').click()">
                         <span>Login to Access</span>
@@ -362,64 +603,8 @@
                         <span class="module-quarter" id="moduleQuarter">Q1</span>
                     </div>
 
-                    <nav class="lms-nav">
-                        <button class="lms-nav-item active" data-section="overview">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path
-                                    d="M3 7L10 2L17 7V16C17 16.5304 16.7893 17.0391 16.4142 17.4142C16.0391 17.7893 15.5304 18 15 18H5C4.46957 18 3.96086 17.7893 3.58579 17.4142C3.21071 17.0391 3 16.5304 3 16V7Z"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>Overview</span>
-                        </button>
-
-                        <button class="lms-nav-item" data-section="materials">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path
-                                    d="M13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V16C4 16.5304 4.21071 17.0391 4.58579 17.4142C4.96086 17.7893 5.46957 18 6 18H14C14.5304 18 15.0391 17.7893 15.4142 17.4142C15.7893 17.0391 16 16.5304 16 16V7L13 2Z"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M13 2V7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>Learning Materials</span>
-                        </button>
-
-                        <button class="lms-nav-item" data-section="assignment">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path
-                                    d="M14 2H6C4.89543 2 4 2.89543 4 4V16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V4C16 2.89543 15.1046 2 14 2Z"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M8 7H12M8 11H12M8 15H10" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <span>Assignment</span>
-                        </button>
-
-                        <button class="lms-nav-item" data-section="feedback">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path
-                                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M7.5 10L9.5 12L12.5 8" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <span>Feedback & Grades</span>
-                        </button>
-
-                        <button class="lms-nav-item" data-section="certificate">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path
-                                    d="M10 12C12.2091 12 14 10.2091 14 8C14 5.79086 12.2091 4 10 4C7.79086 4 6 5.79086 6 8C6 10.2091 7.79086 12 10 12Z"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M8.21 13.89L7 18L10 16L13 18L11.79 13.88" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <span>Certificate</span>
-                        </button>
+                    <nav class="lms-nav" id="lmsNav">
+                        <!-- Navigation items will be dynamically loaded -->
                     </nav>
 
                     <div class="module-progress">
@@ -436,6 +621,32 @@
                 <main class="lms-content" id="lmsContent">
                     <!-- Content sections will be dynamically loaded -->
                 </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <div class="section-label">Media & Impact</div>
+                    <h2 class="section-title">The YAN Gallery</h2>
+                    <p class="section-description">Capturing moments of advocacy, training, and community engagement
+                        across Rwanda</p>
+                </div>
+            </div>
+
+            <div class="gallery-filter-tabs" id="galleryFilterTabs">
+                <button class="gallery-tab active" data-filter="all">All</button>
+                <button class="gallery-tab" data-filter="events">Events</button>
+                <button class="gallery-tab" data-filter="training">Training</button>
+                <button class="gallery-tab" data-filter="community">Community</button>
+                <button class="gallery-tab" data-filter="leadership">Leadership</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery images will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -481,19 +692,57 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
+    <!-- Media & Press Section -->
+    <section class="media-section" id="media">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <div class="section-label">Moments</div>
-                    <h2 class="section-title">Our Gallery</h2>
-                    <p class="section-description">Capturing impact across Rwanda</p>
+                    <div class="section-label">Media & Press</div>
+                    <h2 class="section-title">YAN Magazine</h2>
+                    <p class="section-description">Spotlighting stories of youth advocacy and impact across Rwanda</p>
                 </div>
             </div>
 
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery images will be populated by JavaScript -->
+            <div class="magazine-showcase">
+                <div class="magazine-hero-card reveal">
+                    <div class="magazine-badge">ISSUE 1 — March 2026</div>
+                    <h3>Empowering Change: Stories of the Youth Advocate Network</h3>
+                    <p>Our inaugural magazine spotlights 14 grassroots organizations and independent youth advocates who
+                        are reshaping communities across Rwanda — from combating malnutrition and child labor to
+                        pioneering AI-driven mental health solutions.</p>
+                    <div class="magazine-highlights">
+                        <div class="magazine-highlight-item">
+                            <span class="highlight-num">14</span>
+                            <span>Organizations Featured</span>
+                        </div>
+                        <div class="magazine-highlight-item">
+                            <span class="highlight-num">51</span>
+                            <span>Pages of Impact</span>
+                        </div>
+                        <div class="magazine-highlight-item">
+                            <span class="highlight-num">7</span>
+                            <span>Founder Stories</span>
+                        </div>
+                    </div>
+                    <div class="magazine-sponsor">Sponsored by <strong>UNICEF Rwanda</strong></div>
+                </div>
+
+                <div class="magazine-orgs-grid">
+                    <div class="magazine-org-chip reveal">Care & Help Child Organization</div>
+                    <div class="magazine-org-chip reveal">WHAT IF-Rwanda</div>
+                    <div class="magazine-org-chip reveal">Aspire Debate Rwanda</div>
+                    <div class="magazine-org-chip reveal">Informed Future Generations</div>
+                    <div class="magazine-org-chip reveal">OAZIS Health</div>
+                    <div class="magazine-org-chip reveal">Helping Heart Family Rwanda</div>
+                    <div class="magazine-org-chip reveal">Rwanda We Want Organization</div>
+                    <div class="magazine-org-chip reveal">Heza Initiative</div>
+                    <div class="magazine-org-chip reveal">URPHSA</div>
+                    <div class="magazine-org-chip reveal">Rise and Live Organisation</div>
+                    <div class="magazine-org-chip reveal">MINDORA Health</div>
+                    <div class="magazine-org-chip reveal">Inshuti Health Organization</div>
+                    <div class="magazine-org-chip reveal">Hope for Tomorrow</div>
+                    <div class="magazine-org-chip reveal">Nursing Research Club</div>
+                </div>
             </div>
         </div>
     </section>
@@ -694,7 +943,32 @@
                     <p>Welcome back! Here's your progress summary</p>
                 </div>
 
-                <div class="metrics-grid">
+                <!-- Applicant Specific View -->
+                <div id="applicant-dashboard" style="display: none;">
+                    <div class="welcome-card"
+                        style="background: var(--gradient-primary); color: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+                        <h2>Join the YAN Network</h2>
+                        <p style="margin-top: 1rem; opacity: 0.9; font-size: 1.1rem;">Ready to take your organization to
+                            the next level? Apply for membership today to access exclusive opportunities, capacity
+                            building modules, and our regional network.</p>
+                        <a href="application-form.html" class="btn btn-primary"
+                            style="background: white; color: var(--primary); margin-top: 1.5rem; border: none;">Apply
+                            for Membership</a>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Application Status</h3>
+                        </div>
+                        <div style="padding: 1.5rem; text-align: center;">
+                            <div class="status-icon" style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
+                            <p id="applicantStatusText" style="color: var(--text-secondary);">You haven't submitted an
+                                application yet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-grid" id="member-metrics">
                     <div class="metric-card">
                         <div class="metric-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -760,7 +1034,18 @@
                     </div>
                 </div>
 
-                <div class="dashboard-content-grid">
+                <div class="dashboard-content-grid" id="member-content">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>My Courses</h3>
+                            <a href="#capacity" class="btn-text"
+                                style="color: var(--primary); font-size: 0.875rem;">Browse More</a>
+                        </div>
+                        <div class="course-progress-list" id="dashboardCourseList">
+                            <div class="loading-placeholder">Loading your courses...</div>
+                        </div>
+                    </div>
+
                     <div class="dashboard-card">
                         <div class="card-header">
                             <h3>Recent Activity</h3>
@@ -805,6 +1090,213 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section" id="admin" style="display: none;">
+        <div class="dashboard-container">
+            <aside class="dashboard-sidebar">
+                <div class="dashboard-profile">
+                    <div class="dashboard-avatar" style="background: var(--primary-color);">AD</div>
+                    <h3 class="admin-profile-name">Admin User</h3>
+                    <span class="role-badge role-admin" id="adminRoleBadge">Admin</span>
+                </div>
+
+                <nav class="dashboard-nav">
+                    <a href="#admin-overview" class="dashboard-nav-item active">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                            <rect x="3" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                            <rect x="13" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                            <rect x="13" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>System Overview</span>
+                    </a>
+                    <a href="#admin-users" class="dashboard-nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M19 21V19C19 17.9391 18.5786 16.9217 17.8284 16.1716C17.0783 15.4214 16.0609 15 15 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>User Management</span>
+                    </a>
+                    <a href="#admin-organizations" class="dashboard-nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Organizations</span>
+                    </a>
+                    <a href="#admin-lms" class="dashboard-nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2L2 7L10 12L18 7L10 2Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M2 13L10 18L18 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M2 10L10 15L18 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span>LMS Analytics</span>
+                    </a>
+                    <a href="#admin-applications" class="dashboard-nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span>Applications</span>
+                    </a>
+                    <a href="#" class="dashboard-nav-item" id="adminBackToSite">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Back to Site</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <main class="dashboard-main">
+                <div class="dashboard-header">
+                    <h1>Admin Control Panel</h1>
+                    <p>Manage the YAN Platform ecosystem and oversee network activity.</p>
+                </div>
+
+                <div class="metrics-grid" id="adminStatsGrid">
+                    <!-- Stats will be loaded here dynamically -->
+                    <div class="metric-card loading">Loading stats...</div>
+                </div>
+
+                <div class="dashboard-content-grid" style="grid-template-columns: 1fr;">
+
+                    <div id="admin-users-panel" class="dashboard-card admin-panel">
+                        <div class="card-header">
+                            <h3>User Management</h3>
+                            <button class="btn btn-primary" onclick="loadAdminUsers()">Refresh</button>
+                        </div>
+                        <div class="table-container" style="overflow-x: auto; margin-top: 1rem;">
+                            <table class="admin-table"
+                                style="width: 100%; border-collapse: collapse; text-align: left;">
+                                <thead>
+                                    <tr
+                                        style="border-bottom: 2px solid var(--border-color); color: var(--text-secondary);">
+                                        <th style="padding: 1rem;">Name</th>
+                                        <th style="padding: 1rem;">Email</th>
+                                        <th style="padding: 1rem;">Role</th>
+                                        <th style="padding: 1rem;">Joined</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminUsersTableBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align:center; padding: 2rem;">Loading users...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="admin-orgs-panel" class="dashboard-card admin-panel" style="display: none;">
+                        <div class="card-header">
+                            <h3>Organization Oversight</h3>
+                            <button class="btn btn-primary" onclick="loadAdminOrganizations()">Refresh</button>
+                        </div>
+                        <div class="table-container" style="overflow-x: auto; margin-top: 1rem;">
+                            <table class="admin-table"
+                                style="width: 100%; border-collapse: collapse; text-align: left;">
+                                <thead>
+                                    <tr
+                                        style="border-bottom: 2px solid var(--border-color); color: var(--text-secondary);">
+                                        <th style="padding: 1rem;">Organization Name</th>
+                                        <th style="padding: 1rem;">Status</th>
+                                        <th style="padding: 1rem;">Added Date</th>
+                                        <th style="padding: 1rem;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminOrgsTableBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align:center; padding: 2rem;">Loading
+                                            organizations...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="admin-lms-panel" class="dashboard-card admin-panel" style="display: none;">
+                        <div class="card-header">
+                            <h3>LMS Student Performance</h3>
+                            <button class="btn btn-primary" onclick="loadAdminLmsAnalytics()">Refresh</button>
+                        </div>
+
+                        <div class="metrics-grid" id="lmsStatsGrid"
+                            style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                            <!-- LMS Summary Stats -->
+                        </div>
+
+                        <div style="margin-top: 2rem;">
+                            <h4 style="margin-bottom: 1rem; color: var(--text-secondary);">Recent Course Completions
+                            </h4>
+                            <div class="table-container" style="overflow-x: auto;">
+                                <table class="admin-table"
+                                    style="width: 100%; border-collapse: collapse; text-align: left;">
+                                    <thead>
+                                        <tr
+                                            style="border-bottom: 2px solid var(--border-color); color: var(--text-secondary);">
+                                            <th style="padding: 1rem;">Student</th>
+                                            <th style="padding: 1rem;">Course</th>
+                                            <th style="padding: 1rem;">Status</th>
+                                            <th style="padding: 1rem;">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminLmsTableBody">
+                                        <tr>
+                                            <td colspan="4" style="text-align:center; padding: 2rem;">Loading
+                                                completions...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="admin-applications-panel" class="dashboard-card admin-panel" style="display: none;">
+                        <div class="card-header">
+                            <h3>Pending Member Applications</h3>
+                            <button class="btn btn-primary" onclick="loadAdminApplications()">Refresh</button>
+                        </div>
+                        <div class="table-container" style="overflow-x: auto; margin-top: 1rem;">
+                            <table class="admin-table"
+                                style="width: 100%; border-collapse: collapse; text-align: left;">
+                                <thead>
+                                    <tr
+                                        style="border-bottom: 2px solid var(--border-color); color: var(--text-secondary);">
+                                        <th style="padding: 1rem;">Applicant</th>
+                                        <th style="padding: 1rem;">Organization</th>
+                                        <th style="padding: 1rem;">Date</th>
+                                        <th style="padding: 1rem;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminApplicationsTableBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align:center; padding: 2rem;">Loading
+                                            applications...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </main>
         </div>
@@ -898,15 +1390,19 @@
         </div>
     </div>
 
-    <div class="modal" id="orgDetailsModal">
-        <div class="modal-content">
+    <div class="modal" id="applicationDetailsModal">
+        <div class="modal-content" style="max-width: 700px;">
             <div class="modal-header">
-                <h3 id="orgModalTitle">Organization</h3>
-                <button class="modal-close" data-modal="orgDetailsModal">&times;</button>
+                <h3>Application Details</h3>
+                <button class="modal-close" data-modal="applicationDetailsModal">&times;</button>
             </div>
-            <div class="modal-body">
-                <img src="" alt="" id="orgModalImage" class="org-modal-image">
-                <div id="orgModalBody" class="org-modal-body"></div>
+            <div class="modal-body" id="applicationModalBody">
+                <!-- Content populated by JS -->
+            </div>
+            <div class="modal-footer"
+                style="padding: 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 1rem;">
+                <button class="btn btn-secondary" onclick="closeModal('applicationDetailsModal')">Close</button>
+                <div id="applicationModalActions"></div>
             </div>
         </div>
     </div>
@@ -915,6 +1411,10 @@
         <button class="modal-close gallery-close">&times;</button>
         <div class="gallery-modal-content">
             <img src="" alt="" id="galleryModalImage">
+            <div class="gallery-caption-bar" id="galleryCaptionBar">
+                <h4 id="galleryCaptionTitle"></h4>
+                <p id="galleryCaptionDesc"></p>
+            </div>
             <button class="gallery-nav gallery-prev" id="galleryPrev">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -933,18 +1433,28 @@
     <!-- Login Modal -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
+            <button class="modal-close" data-modal="loginModal">&times;</button>
             <div class="modal-header">
-                <h3>Login to YAN Platform</h3>
-                <button class="modal-close" data-modal="loginModal">&times;</button>
+                <h3>Login</h3>
+                <p>Sign in to access your portal</p>
             </div>
             <form class="modal-form" id="loginForm">
                 <div class="form-group">
-                    <input type="email" id="loginEmail" required autocomplete="email">
-                    <label for="loginEmail">Email Address</label>
+                    <label for="loginEmail">Enter Your Email</label>
+                    <input type="email" id="loginEmail" placeholder="email@gmail.com" required autocomplete="email">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="loginPassword" required autocomplete="current-password">
                     <label for="loginPassword">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" placeholder="Enter Your Password" required
+                            autocomplete="current-password">
+                        <button type="button" class="password-toggle"
+                            onclick="togglePassword('loginPassword')">Show</button>
+                    </div>
+                </div>
+                <div class="form-extras">
+                    <label><input type="checkbox" id="rememberMe"> Remember me</label>
+                    <a href="#" id="openForgotLink">Forgot password?</a>
                 </div>
                 <div class="login-error" id="loginError" style="display: none;">
                     <p id="loginErrorText"></p>
@@ -953,13 +1463,106 @@
                     <span class="login-btn-text">Sign In</span>
                     <span class="login-btn-loading" style="display: none;">Signing in...</span>
                 </button>
+                <div class="modal-footer-link">
+                    Don't have an account? <a href="#" id="openSignupLink">Sign up</a>
+                </div>
             </form>
         </div>
     </div>
 
-    <script src="config.js"></script>
-    <script src="apiClient.js"></script>
-    <script src="apps.js"></script>
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <button class="modal-close" id="forgotModalClose">&times;</button>
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <p>Enter your email to receive a reset link</p>
+            </div>
+            <form class="modal-form" id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" placeholder="email@gmail.com" required autocomplete="email">
+                </div>
+                <div class="login-error" id="forgotError" style="display: none;">
+                    <p id="forgotErrorText"></p>
+                </div>
+                <div id="forgotSuccess" style="display: none; background: #dcfce7; color: #15803d; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <p id="forgotSuccessText">Reset link sent! Check your email.</p>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="forgotSubmitBtn">
+                    <span class="forgot-btn-text">Send Reset Link</span>
+                </button>
+                <div class="modal-footer-link" style="margin-top: 1rem;">
+                    Remember your password? <a href="#" id="backToLoginLink">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="signupModal">&times;</button>
+            <div class="modal-header">
+                <h3>Join YAN Platform</h3>
+                <p>Create your account in seconds</p>
+            </div>
+            <form class="modal-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="email@gmail.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="signupPassword" placeholder="Create a password" required
+                            autocomplete="new-password">
+                        <button type="button" class="password-toggle"
+                            onclick="togglePassword('signupPassword')">Show</button>
+                    </div>
+                </div>
+                <!-- Optional Organization Field if they are joining on behalf of an org -->
+                <div class="form-group">
+                    <label for="signupOrganization">Organization (Optional)</label>
+                    <input type="text" id="signupOrganization" placeholder="Organization name"
+                        autocomplete="organization">
+                </div>
+                <div class="login-error" id="signupError" style="display: none;">
+                    <p id="signupErrorText"></p>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="signupSubmitBtn">
+                    <span class="signup-btn-text">Create Account</span>
+                    <span class="signup-btn-loading" style="display: none;">Creating account...</span>
+                </button>
+                <div class="modal-footer-link">
+                    Already have an account? <a href="#" id="openLoginLink">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password toggle script -->
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const btn = input.nextElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = 'Hide';
+            } else {
+                input.type = 'password';
+                btn.textContent = 'Show';
+            }
+        }
+    </script>
+
+    <script src="config.js?v=3"></script>
+    <script src="apiClient.js?v=3"></script>
+    <script src="apps.js?v=3"></script>
 </body>
 
 </html>

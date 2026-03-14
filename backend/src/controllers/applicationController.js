@@ -1,4 +1,5 @@
 const Application = require('../models/Application');
+const sendEmail = require('../utils/sendEmail');
 
 // @desc    Submit new application
 // @route   POST /api/applications
@@ -128,6 +129,27 @@ exports.updateApplicationStatus = async (req, res) => {
             await User.findByIdAndUpdate(application.applicant, {
                 role: 'member'
             });
+        }
+
+        // SEND NOTIFICATION EMAIL
+        try {
+            const User = require('../models/User');
+            const applicantUser = await User.findById(application.applicant);
+            
+            if (applicantUser && applicantUser.email) {
+                const subject = status === 'approved' ? 'Welcome to Youth Action Network!' : 'Application Update - YAN Rwanda';
+                const message = status === 'approved' 
+                    ? `Hello ${applicantUser.name},\n\nCongratulations! Your application to join the Youth Action Network has been approved. You now have full access to the member dashboard and learning resources.\n\nBest regards,\nYAN Admin Team`
+                    : `Hello ${applicantUser.name},\n\nThank you for your interest in the Youth Action Network. After reviewing your application, we regret to inform you that we cannot accept it at this time.\n\nReason/Notes: ${reviewerNotes || 'N/A'}\n\nKind regards,\nYAN Admin Team`;
+
+                await sendEmail({
+                    email: applicantUser.email,
+                    subject: subject,
+                    message: message
+                });
+            }
+        } catch (emailErr) {
+            console.error('Email notification failed:', emailErr);
         }
 
         res.status(200).json({

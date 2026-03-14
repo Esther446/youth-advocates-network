@@ -192,6 +192,7 @@ const api = (() => {
         // Persist access token in sessionStorage for cross-page navigation
         _setAccessToken(data.token);
         localStorage.setItem('yan_auth_hint', 'true');
+        if (data.data?.role) localStorage.setItem('yan_role', data.data.role);
 
         return data.data; // { id, name, email, role }
     }
@@ -209,6 +210,7 @@ const api = (() => {
         // Persist access token in sessionStorage for cross-page navigation
         _setAccessToken(data.token);
         localStorage.setItem('yan_auth_hint', 'true');
+        if (data.data?.role) localStorage.setItem('yan_role', data.data.role);
 
         return data.data; // { id, name, email, role }
     }
@@ -218,6 +220,7 @@ const api = (() => {
             method: 'GET'
         });
 
+        if (data.data?.role) localStorage.setItem('yan_role', data.data.role);
         return data.data; // User object
     }
 
@@ -247,6 +250,7 @@ const api = (() => {
         // ALWAYS clear local state regardless of server response
         _setAccessToken(null);
         localStorage.removeItem('yan_auth_hint');
+        localStorage.removeItem('yan_role');
     }
 
     function isAuthenticated() {
@@ -358,6 +362,14 @@ const api = (() => {
         return response;
     }
 
+    async function updateApplicationStatus(id, status, reviewerNotes) {
+        const response = await request(`/applications/${id}/status`, {
+            method: 'PATCH',
+            body: { status, reviewerNotes }
+        });
+        return response;
+    }
+
     async function getAdminSystemStats() {
         const response = await request('/admin/system-stats', { method: 'GET' });
         return response.data || {};
@@ -408,6 +420,7 @@ const api = (() => {
         getAdminUsers,
         updateAdminUserRole,
         updateAdminOrganizationStatus,
+        updateApplicationStatus,
         getAdminSystemStats,
         getAdminLmsAnalytics,
         getAdminRecentApplications,

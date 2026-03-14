@@ -11,6 +11,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="config.js?v=5" defer></script>
   <script src="apiClient.js?v=5" defer></script>
+  <script>
+    (function() {
+      const role = localStorage.getItem('yan_role');
+      const hint = localStorage.getItem('yan_auth_hint');
+      if (!hint) { window.location.href = 'index.html'; return; }
+      if (role === 'admin') { window.location.href = 'admin.html'; return; }
+      if (role === 'member') { window.location.href = 'profile.html'; return; }
+    })();
+  </script>
   <script src="applicantDashboard.js?v=5" defer></script>
 </head>
 

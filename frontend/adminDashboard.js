@@ -86,8 +86,8 @@ const VIEW_META = {
   applications: {
     title: "Applications",
     subtitle: "Review, accept, or reject membership applications.",
-    primary: "+ New",
-    onPrimary: () => { seedDemoApplications(1); renderAll(); },
+    primary: "", // Removed as it was only for demo seeds
+    onPrimary: () => {},
   },
   courses: { title: "Courses", subtitle: "Manage training modules that members will see.", primary: "+ New Course",
     onPrimary: () => { resetCourseForm(); $("courseTitle").focus(); } },
@@ -195,7 +195,7 @@ function renderApplications() {
           <div class="muted">${escapeHTML(a.applicant?.email || a.submissionData?.email || a.submissionData?.repEmail || "")}</div>
         </td>
         <td>${badge(a.status)}</td>
-        <td>${escapeHTML(a.submissionData?.organization || a.submissionData?.orgLegalName || "-")}</td>
+        <td>${escapeHTML(a.submissionData?.organization?.name || a.submissionData?.organization || a.submissionData?.orgLegalName || "-")}</td>
         <td class="muted">${escapeHTML(formatDate(a.submittedAt || a.createdAt))}</td>
         <td>
           <div class="actions" style="margin:0;">
@@ -220,9 +220,9 @@ function renderApplications() {
 }
 
 async function acceptApplication(id) {
-  if (!confirm("Accept this application? This will create a member account.")) return;
+  if (!confirm("Accept this application? This will create a member account and notify the applicant.")) return;
   try {
-    await api.updateAdminOrganizationStatus(id, "accepted");
+    await api.updateApplicationStatus(id, "approved");
     renderAll();
   } catch (err) {
     console.error("Accept failed:", err);
@@ -374,7 +374,7 @@ function viewApplication(id) {
 
 async function rejectApplicationWithEmail(id, message) {
   try {
-    await api.updateAdminOrganizationStatus(id, "rejected");
+    await api.updateApplicationStatus(id, "rejected", message);
     // Note: We don't have a backend endpoint specifically for rejection messages yet,
     // so we'll just open the email for the admin as before.
     

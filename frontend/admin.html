@@ -9,6 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="config.js?v=3" defer></script>
   <script src="apiClient.js?v=3" defer></script>
+  <script>
+    // Flicker Prevention & Early Redirect
+    (function() {
+      const role = localStorage.getItem('yan_role');
+      const hint = localStorage.getItem('yan_auth_hint');
+      if (hint === 'true' && role && role !== 'admin') {
+        if (role === 'applicant') window.location.href = 'applicant.html';
+        else window.location.href = 'profile.html';
+      } else if (!hint) {
+        window.location.href = 'index.html';
+      }
+    })();
+  </script>
 </head>
 
 <body>

@@ -16,7 +16,10 @@ const memberDashboard = (function () {
 
       // Admin redirect: admins should go to admin.html, not member dashboard
       if (user.role === 'admin') {
-        window.location.href = 'admin.html';
+        const params = new URLSearchParams(window.location.search);
+        const view = params.get('view');
+        const target = view ? `admin.html?view=${view}` : 'admin.html';
+        window.location.href = target;
         return null;
       }
       return user;

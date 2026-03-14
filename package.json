@@ -4,7 +4,7 @@
   "description": "Root management for Youth Action Network Platform",
   "scripts": {
     "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "serve frontend -l 8001",
+    "dev:frontend": "npx serve frontend -l 8001",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --kill-others --prefix-colors \"bgBlue.bold,bgGreen.bold\""
   },
   "devDependencies": {

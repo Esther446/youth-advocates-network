@@ -602,9 +602,14 @@ async function handleLogin(email, password) {
         // Update UI
         showLoggedInState();
         hideLoginModal();
-        initializeDashboard();
 
-        showNotification('Welcome back, ' + user.name + '!');
+        if (currentRole === 'admin') {
+            showNotification('Welcome back, Admin! Redirecting to dashboard...');
+            setTimeout(() => window.location.href = 'admin.html', 1500);
+        } else {
+            initializeDashboard();
+            showNotification('Welcome back, ' + user.name + '!');
+        }
     } catch (error) {
         // Show backend error message
         errorText.textContent = error.message || 'Login failed. Please try again.';
@@ -845,7 +850,23 @@ function initializeHeroStats() {
 
 const organizationSectorOrder = ["HEALTH", "EDUCATION", "CHILD PROTECTION", "YOUTH EMPOWERMENT", "AGRICULTURE", "ARTS & MEDIA"];
 
-let impactRatingsData = [];
+let impactRatingsData = [
+    {
+        organization: "Youth Leadership Initiative",
+        rating: "PLATINUM",
+        evidence: "Successfully trained 500+ young leaders in advocacy and strategic planning across 5 regions."
+    },
+    {
+        organization: "Digital Rwanda",
+        rating: "GOLD",
+        evidence: "Equipped 200 students with digital literacy skills and provided 50 internships in tech startups."
+    },
+    {
+        organization: "Green Action Network",
+        rating: "GOLD",
+        evidence: "Planted 10,000 trees and reached 5,000 community members with environmental awareness campaigns."
+    }
+];
 
 async function initializeOrganizations() {
     const featuredContainer = document.getElementById('featuredOrgContainer');
@@ -861,15 +882,14 @@ async function initializeOrganizations() {
     featuredContainer.innerHTML = '';
 
     if (organizationsData && organizationsData.length > 0) {
-        // Feature the first organization (or we could select based on a 'featured' flag if it existed)
-        const featuredOrg = organizationsData[0];
-        const card = createFeaturedOrganizationCard(featuredOrg);
-        featuredContainer.appendChild(card);
-        
-        // Add reveal effect
-        globalRevealObserver.observe(card);
-        setTimeout(() => card.classList.add('visible'), 50);
-
+        organizationsData.forEach((org, index) => {
+            const card = createFeaturedOrganizationCard(org);
+            featuredContainer.appendChild(card);
+            
+            // Add reveal effect
+            globalRevealObserver.observe(card);
+            setTimeout(() => card.classList.add('visible'), 50 * index);
+        });
     } else {
         featuredContainer.innerHTML = `
             <div class="empty-state-card" style="text-align: center; padding: 3rem;">
@@ -1605,7 +1625,36 @@ async function initializeOpportunities() {
     }
 
     try {
-        opportunitiesData = await api.getOpportunities();
+        const fetched = await api.getOpportunities();
+        opportunitiesData = fetched && fetched.length > 0 ? fetched : [
+            {
+                id: 'demo-opp-1',
+                title: 'Youth Advocacy Fellowship 2026',
+                type: 'training',
+                provider: 'YAN Rwanda',
+                description: 'A 6-month intensive fellowship for emerging youth leaders focused on child rights advocacy.',
+                deadline: new Date(Date.now() + 30 * 86400000).toISOString(),
+                duration: '6 Months'
+            },
+            {
+                id: 'demo-opp-2',
+                title: 'Community Innovation Grant',
+                type: 'funding',
+                provider: 'UNICEF Rwanda',
+                description: 'Micro-grants for youth-led organizations implementing innovative solutions in education.',
+                deadline: new Date(Date.now() + 15 * 86400000).toISOString(),
+                amount: '$2,000 - $5,000'
+            },
+            {
+                id: 'demo-opp-3',
+                title: 'Digital Literacy Partnership',
+                type: 'partnership',
+                provider: 'RWANDA ICT',
+                description: 'Collaboration opportunity for tech-focused NGOs to scale digital skills programs.',
+                deadline: new Date(Date.now() + 45 * 86400000).toISOString(),
+                duration: 'Ongoing'
+            }
+        ];
     } catch (error) {
         if (grid) {
             grid.innerHTML = `<div class="error-banner" style = "color:red; text-align:center; padding: 2rem; width: 100%;" > Failed to load opportunities: ${error.message}</div> `;
@@ -1724,7 +1773,33 @@ async function initializeEvents() {
 
     // Restore API dependency to fetch from MongoDB
     try {
-        eventsData = await api.getEvents();
+        const fetched = await api.getEvents();
+        eventsData = fetched && fetched.length > 0 ? fetched : [
+            {
+                id: 'demo-event-1',
+                title: 'Kigali Youth Action Summit',
+                date: new Date(Date.now() + 7 * 86400000).toISOString(),
+                time: '09:00 AM - 04:00 PM',
+                location: 'Kigali Convention Center',
+                description: 'The largest gathering of youth advocates in Rwanda.'
+            },
+            {
+                id: 'demo-event-2',
+                title: 'Advocacy Guide Training',
+                date: new Date(Date.now() + 14 * 86400000).toISOString(),
+                time: '10:00 AM - 01:00 PM',
+                location: 'Online Webinar',
+                description: 'Learn the core principles of the Youth Advocacy Guide.'
+            },
+            {
+                id: 'demo-event-3',
+                title: 'Community Impact Workshop',
+                date: new Date(Date.now() + 21 * 86400000).toISOString(),
+                time: '02:00 PM - 05:00 PM',
+                location: 'Youth Center, Muhanga',
+                description: 'Measuring and reporting impact for grassroots organizations.'
+            }
+        ];
     } catch (error) {
         console.error('Events API fetch failed:', error);
         eventsData = [];

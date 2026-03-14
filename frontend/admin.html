@@ -34,6 +34,7 @@
         <button data-view="assignments">Assignments</button>
         <button data-view="opportunities">Opportunities</button>
         <button data-view="events">Events</button>
+        <button data-view="profile">Profile</button>
       </nav>
 
       <div class="admin-sidebar-footer">
@@ -368,6 +369,45 @@
               </div>
               <div class="muted" id="eventsEmpty" style="display:none;">
                 No events yet! Add one.
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!--Profile-->
+        <section class="panel" id="view-profile" style="display: none;">
+          <div class="panel-header">
+            <div>
+              <h3>My Profile</h3>
+              <div class="hint">Manage your account information</div>
+            </div>
+            <button class="btn-sm btn-primary-sm" id="adminEditProfileBtn">Edit Profile</button>
+          </div>
+          <div class="panel-body">
+            <div class="profile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+              <div class="profile-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                  <div id="adminProfileInitial" style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">A</div>
+                  <div>
+                    <h4 id="adminDispName" style="margin: 0; font-size: 1.2rem;">Admin User</h4>
+                    <p id="adminDispEmail" class="muted" style="margin: 0;">admin@example.com</p>
+                  </div>
+                </div>
+                <div class="info-list">
+                  <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span class="muted">Role</span>
+                    <span id="adminDispRole" style="font-weight: 600; color: var(--primary);">ADMIN</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <span class="muted">Member Since</span>
+                    <span id="adminDispJoined">March 2026</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bio-card" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                <h4 style="margin-top: 0;">Bio / Notes</h4>
+                <p id="adminDispBio" class="muted">No bio provided.</p>
               </div>
             </div>
           </div>

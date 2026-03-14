@@ -75,6 +75,28 @@ exports.getApplication = async (req, res) => {
     }
 };
 
+// @desc    Get logged in user's applications
+// @route   GET /api/applications/mine
+// @access  Private
+exports.getMyApplications = async (req, res) => {
+    try {
+        const applications = await Application.find({ applicant: req.user.id })
+            .populate('applicant', 'name email organization')
+            .sort('-submittedAt');
+
+        res.status(200).json({
+            success: true,
+            count: applications.length,
+            data: applications
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 // @desc    Update application status (Approve/Reject)
 // @route   PATCH /api/applications/:id/status
 // @access  Private/Admin

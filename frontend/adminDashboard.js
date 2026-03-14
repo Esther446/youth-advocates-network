@@ -41,10 +41,10 @@ function escapeHTML(str) {
 }
 
 function normalizeStatus(s) {
-  // support older "Submitted"
   if (!s) return "pending";
   const v = String(s).toLowerCase();
-  if (v === "submitted") return "pending";
+  if (v === "submitted" || v === "screening" || v === "under_review") return "pending";
+  if (v === "approved" || v === "accepted") return "accepted";
   return v;
 }
 
@@ -97,6 +97,8 @@ const VIEW_META = {
     onPrimary: () => { resetOppForm(); $("oppTitle").focus(); } },
   events: { title: "Events", subtitle: "Add upcoming events for members and partners.", primary: "+ New Event",
     onPrimary: () => { resetEventForm(); $("eventTitle").focus(); } },
+  profile: { title: "My Profile", subtitle: "Manage your administrator account.", primary: "Update Profile",
+    onPrimary: () => { openAdminProfileModal(); } },
 };
 
 function switchView(view) {
@@ -112,6 +114,7 @@ function switchView(view) {
     assignments: "view-assignments",
     opportunities: "view-opportunities",
     events: "view-events",
+    profile: "view-profile",
   };
 
   Object.values(map).forEach(id => $(id).style.display = "none");
@@ -131,7 +134,7 @@ function updateStats(apiStats) {
   if (apiStats) {
     // If stats are provided from the API (nested structure)
     if ($("statPending")) $("statPending").textContent = apiStats.pendingApplications ?? 0;
-    if ($("statAccepted")) $("statAccepted").textContent = apiStats.organizations?.total ?? 0;
+    if ($("statAccepted")) $("statAccepted").textContent = apiStats.organizations?.active ?? 0;
     if ($("statOpps")) $("statOpps").textContent = apiStats.opportunities?.total ?? 0;
     // Courses count comes from LMS analytics usually, updated in renderAll
     return;
@@ -150,7 +153,7 @@ function updateStats(apiStats) {
 
 /* ===== Applications ===== */
 function badge(status) {
-  if (status === "accepted") return `<span class="badge b-accepted">Accepted</span>`;
+  if (status === "accepted" || status === "approved") return `<span class="badge b-accepted">Accepted</span>`;
   if (status === "rejected") return `<span class="badge b-rejected">Rejected</span>`;
   return `<span class="badge b-pending">Pending</span>`;
 }
@@ -779,10 +782,49 @@ async function renderAll() {
     if (state.view === "assignments") renderAssignments();
     if (state.view === "opportunities") renderOpps();
     if (state.view === "events") renderEvents();
+    if (state.view === "profile") renderProfile();
     
   } catch (err) {
     console.error("Failed to fetch admin data:", err);
   }
+}
+
+async function renderProfile() {
+  try {
+    const user = await api.getMe();
+    if (!user) return;
+
+    if ($("adminDispName")) $("adminDispName").textContent = user.name || "Admin User";
+    if ($("adminDispEmail")) $("adminDispEmail").textContent = user.email || "";
+    if ($("adminDispRole")) $("adminDispRole").textContent = (user.role || "ADMIN").toUpperCase();
+    if ($("adminDispJoined")) $("adminDispJoined").textContent = formatDate(user.createdAt) || "March 2026";
+    if ($("adminDispBio")) $("adminDispBio").textContent = user.bio || "No bio provided.";
+    if ($("adminProfileInitial")) $("adminProfileInitial").textContent = (user.name || "A").charAt(0).toUpperCase();
+
+    // Setup edit button
+    if ($("adminEditProfileBtn")) {
+      $("adminEditProfileBtn").onclick = () => openAdminProfileModal();
+    }
+  } catch (err) {
+    console.error("Failed to render profile:", err);
+  }
+}
+
+function openAdminProfileModal() {
+  // We'll reuse the logic or create a simple prompt for now, 
+  // or I could add a modal to admin.html. 
+  // Given the complexity, let's add a simple modal to admin.html in the next step or use prompt.
+  const name = prompt("Enter your new name:", $("adminDispName").textContent);
+  if (name === null) return;
+  const bio = prompt("Enter your new bio:", $("adminDispBio").textContent);
+  if (bio === null) return;
+
+  api.updateDetails(name, undefined, undefined, bio)
+    .then(() => {
+      renderProfile();
+      alert("Profile updated successfully!");
+    })
+    .catch(err => alert("Update failed: " + err.message));
 }
 
 /* ===== Init ===== */

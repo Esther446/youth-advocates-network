@@ -1,0 +1,46 @@
+--- PUBLIC ROUTES ---
+
+Testing GET /organizations...
+Success!
+
+
+Testing GET /events...
+Success!
+success count data                                                                                                                     
+------- ----- ----                                                                                                                     
+   True     3 {@{_id=69b565fe8e46b2849803d060; name=Care & Help Child Organization; description=Dedicated to breaking barriers to ed...
+   True     4 {@{_id=69b56605b5eda2bc7f325347; title=Transgenerational Trauma Conference; description=Conferences raising awareness ...
+
+Testing GET /opportunities...
+Success!
+   True     7 {@{_id=69b5660a22ed28a15dbe73c8; title=Youth Leadership Bootcamp 2026; description=Foundational training in leadership...
+
+Testing GET /gallery...
+Success!
+   True       {@{src=https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600; title=YAN National Summit 2024; location=Ki...
+
+--- AUTH ROUTES ---
+
+Testing POST /auth/register...
+Success!
+Member Registered. Token obtained.
+
+Testing POST /auth/login...
+Failed: The remote server returned an error: (401) Unauthorized.
+Server Response: {"success":false,"message":"Invalid credentials"}
+
+--- MEMBER PROTECTED ROUTES ---
+
+Testing GET /auth/me...
+Success!
+   True       @{_id=69b568fa098fc5f4d0380416; name=Test Member; email=test_member_370184322@example.com; role=applicant; isEmailVeri...
+
+Testing GET /enrollments...
+Success!
+   True     0 {}                                                                                                                       
+
+Testing GET /applications/mine...
+Failed: The remote server returned an error: (500) Internal Server Error.
+Server Response: {"success":false,"message":"Cast to ObjectId failed for value \"mine\" (type string) at path \"_id\" for model \"Application\""}
+
+

@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const dbUri = process.env.MONGODB_URI;
+    const dbUri = process.env.MONGODB_URI || process.env.MONGO_URI;
     
     if (!dbUri) {
-      console.error('❌ CRITICAL ERROR: MONGODB_URI environment variable is not defined!');
-      console.log('Current process.env keys:', Object.keys(process.env).filter(k => k.includes('MONGO')));
+      console.error('❌ CRITICAL ERROR: Database connection string is not defined!');
+      console.log('Please set MONGODB_URI or MONGO_URI in your environment variables.');
       process.exit(1);
     }
 

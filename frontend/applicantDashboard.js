@@ -160,6 +160,13 @@ const applicantDashboard = (function () {
     if ($('#dispName')) $('#dispName').textContent = user.name;
     if ($('#dispEmail')) $('#dispEmail').textContent = user.email;
 
+    // Sidebar role population
+    const roleText = (user.role || 'applicant').toUpperCase();
+    if ($('#sidebarRole')) $('#sidebarRole').textContent = roleText;
+    if ($('#sidebarSubRole')) {
+        $('#sidebarSubRole').textContent = 'Youth Network Portal';
+    }
+
     loadEvents();
   }
 

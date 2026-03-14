@@ -323,6 +323,13 @@ const memberDashboard = (function () {
     // Load dashboard metrics
     loadMetrics(user);
 
+    // Sidebar role population
+    const roleText = (user.role || 'member').toUpperCase();
+    if ($('#sidebarRole')) $('#sidebarRole').textContent = roleText;
+    if ($('#sidebarSubRole')) {
+        $('#sidebarSubRole').textContent = user.role === 'applicant' ? 'Dashboard' : 'Learning Workspace';
+    }
+
     // Initial view routing
     checkInitialView();
   }

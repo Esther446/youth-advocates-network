@@ -8,8 +8,15 @@ const progressSchema = new mongoose.Schema({
     },
     resource: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Resource',
-        required: true
+        ref: 'Resource'
+    },
+    course: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    },
+    lesson: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Lesson'
     },
     completed: {
         type: Boolean,

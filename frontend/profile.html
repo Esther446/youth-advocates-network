@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAN - Member Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="adminDashboard.css">
+  <link rel="stylesheet" href="memberDashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="config.js?v=4" defer></script>
+  <script src="apiClient.js?v=4" defer></script>
+  <script src="memberDashboard.js?v=4" defer></script>
+  <script src="profile.js?v=4" defer></script>
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="admin-shell">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <div class="logo-circle"></div>
+        <div>
+          <div class="logo-text">MEMBER</div>
+          <div class="logo-sub">Learning Workspace</div>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="nav-label">Member</div>
+        <button class="active" data-view="dashboard" data-title="Member Dashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Dashboard</span>
+        </button>
+        <button data-view="applications" data-title="My Applications">
+          <span class="nav-icon">📝</span>
+          <span class="nav-text">My Applications</span>
+        </button>
+        <button data-view="submit" data-title="Submit Application">
+          <span class="nav-icon">📤</span>
+          <span class="nav-text">Submit Application</span>
+        </button>
+        <button data-view="profile" data-title="My Profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-text">Profile</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn-back" onclick="window.location.href='index.html'">Back to Site</button>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+        <div class="copy">&copy; 2026 YAN Rwanda</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+      <!-- TOPBAR -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="menu-btn" id="menuToggle" aria-label="Open menu">☰</button>
+          <h1 id="dashboardTitle">Member Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="search-box">
+            <input type="text" placeholder="Search dashboard...">
+          </div>
+          <button class="btn btn-outline" id="topbarAppsBtn">My Applications</button>
+          <button class="btn btn-primary" onclick="window.location.href='application-form.html'">Submit Application</button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <!-- DASHBOARD VIEW -->
+        <section id="dashboardSection" class="dashboard-section">
+          <p class="section-intro">Welcome back! Here's your progress summary</p>
+
+          <!-- METRIC CARDS -->
+          <div class="mdStats">
+            <div class="mdStatCard">
+              <div class="mdStatIcon cyan">📘</div>
+              <div class="mdStatContent">
+                <div class="mdStatLabel">Completed Modules</div>
+                <div class="mdStatValue" id="statModules">0</div>
+              </div>
+            </div>
+            <div class="mdStatCard">
+              <div class="mdStatIcon pink">📝</div>
+              <div class="mdStatContent">
+                <div class="mdStatLabel">Pending Assignments</div>
+                <div class="mdStatValue" id="statAssignments">0</div>
+              </div>
+            </div>
+            <div class="mdStatCard">
+              <div class="mdStatIcon blue">📅</div>
+              <div class="mdStatContent">
+                <div class="mdStatLabel">Upcoming Events</div>
+                <div class="mdStatValue" id="statEvents">0</div>
+              </div>
+            </div>
+            <div class="mdStatCard">
+              <div class="mdStatIcon orange">🏅</div>
+              <div class="mdStatContent">
+                <div class="mdStatLabel">Certificates Earned</div>
+                <div class="mdStatValue" id="statCertificates">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ENROLLED COURSES PREVIEW -->
+          <div class="mdPanel" style="margin-top:20px;">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">My Enrolled Courses</h3>
+            </div>
+            <div id="dashCoursePreview">Loading courses...</div>
+          </div>
+        </section>
+
+        <!-- APPLICATIONS VIEW -->
+        <section id="applicationsSection" class="dashboard-section" style="display:none;">
+          <div class="mdPanel">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">My Applications</h3>
+            </div>
+            <div id="applicationsList">Loading applications...</div>
+          </div>
+        </section>
+
+        <!-- SUBMIT VIEW (redirect) -->
+        <section id="submitSection" class="dashboard-section" style="display:none;">
+          <div class="mdPanel" style="text-align:center; padding:3rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">📤</div>
+            <h3 class="mdPanelTitle">Submit New Application</h3>
+            <p style="color:var(--text-secondary); margin:1rem 0 1.5rem;">You'll be taken to our application form.</p>
+            <a href="application-form.html" class="btn btn-primary">Go to Application Form</a>
+          </div>
+        </section>
+
+        <!-- PROFILE VIEW -->
+        <section id="profileSection" class="dashboard-section" style="display:none;">
+          <div class="mdPanel">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">My Profile</h3>
+              <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+            </div>
+            <div class="profile-info-grid">
+              <div class="mdProfileRow">
+                <span class="mdProfileLabel">Full Name</span>
+                <span id="dispName">Loading...</span>
+              </div>
+              <div class="mdProfileRow">
+                <span class="mdProfileLabel">Email Address</span>
+                <span id="dispEmail">Loading...</span>
+              </div>
+              <div class="mdProfileRow">
+                <span class="mdProfileLabel">Role</span>
+                <span id="dispRole">Loading...</span>
+              </div>
+              <div class="mdProfileRow" id="orgRow" style="display:none;">
+                <span class="mdProfileLabel">Organization</span>
+                <span id="dispOrg">N/A</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mdPanel" style="margin-top: 20px;">
+            <div class="mdPanelHeader">
+              <h3 class="mdPanelTitle">My Courses</h3>
+            </div>
+            <div id="courseList">Loading courses...</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- EDIT PROFILE MODAL -->
+  <div id="editProfileModal" class="mdModal">
+    <div class="mdModalOverlay" id="modalOverlay"></div>
+    <div class="mdModalCard" style="max-width:500px;">
+      <div class="mdModalHeader" style="display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="margin:0;">Edit Profile</h4>
+        <button id="closeProfileModal" style="background:none; border:none; font-size:1.4rem; cursor:pointer;">&times;</button>
+      </div>
+      <div style="padding:20px;">
+        <form id="editProfileForm">
+          <div style="margin-bottom:14px;">
+            <label for="editName" style="display:block; font-weight:600; margin-bottom:4px;">Full Name</label>
+            <input type="text" id="editName" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px;">
+          </div>
+          <div style="margin-bottom:14px;">
+            <label for="editBio" style="display:block; font-weight:600; margin-bottom:4px;">Bio</label>
+            <textarea id="editBio" rows="3" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
+          </div>
+          <div id="editProfileError" style="display:none; background:#fee2e2; color:#dc2626; padding:10px; border-radius:8px; margin-bottom:10px;">
+            <span id="editProfileErrorText"></span>
+          </div>
+          <div style="display:flex; gap:10px; justify-content:flex-end;">
+            <button type="button" id="cancelEdit" class="btn btn-outline">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

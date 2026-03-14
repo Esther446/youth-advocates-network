@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -29,9 +30,25 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    refreshTokenHash: {
+    bio: {
         type: String,
-        select: false // Never returned in queries by default
+        trim: true,
+        maxlength: [500, 'Bio cannot be longer than 500 characters']
+    },
+    refreshTokenHash: {
+        type: String
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+    isEmailVerified: {
+        type: Boolean,
+        default: false
+    },
+    emailVerificationToken: String,
+    emailVerificationExpire: Date,
+    profileImage: {
+        type: String,
+        default: null
     },
     createdAt: {
         type: Date,
@@ -49,6 +66,30 @@ userSchema.pre('save', async function () {
 // Method to check if password is correct
 userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+// Generate and hash password token
+userSchema.methods.createPasswordResetToken = function() {
+    // Generate token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+
+    // Hash token and set to resetPasswordToken field
+    this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+    // Set expire
+    this.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    return resetToken;
+};
+
+// Generate email verification token
+userSchema.methods.createEmailVerificationToken = function() {
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+
+    this.emailVerificationToken = crypto.createHash('sha256').update(verificationToken).digest('hex');
+    this.emailVerificationExpire = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+
+    return verificationToken;
 };
 
 module.exports = mongoose.model('User', userSchema);

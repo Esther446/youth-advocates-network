@@ -4,16 +4,15 @@ const sendEmail = async (options) => {
     // Create a transporter using your SMTP credentials
     // Note: In production, configure these in .env
     const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.mailtrap.io',
-        port: process.env.SMTP_PORT || 2525,
+        service: 'gmail',
         auth: {
-            user: process.env.SMTP_EMAIL || 'your_smtp_user',
-            pass: process.env.SMTP_PASSWORD || 'your_smtp_pass'
+            user: process.env.SMTP_EMAIL,
+            pass: process.env.SMTP_PASSWORD
         }
     });
 
     const message = {
-        from: `${process.env.FROM_NAME || 'Youth Action Network'} <${process.env.FROM_EMAIL || 'noreply@yanrwanda.org'}>`,
+        from: `${process.env.FROM_NAME || 'Youth Action Network'} <${process.env.FROM_EMAIL || process.env.SMTP_EMAIL}>`,
         to: options.email,
         subject: options.subject,
         text: options.message,

@@ -85,15 +85,12 @@ exports.register = async (req, res, next) => {
         const verifyUrl = `${clientUrl}/api/v1/auth/verifyemail/${verificationToken}`;
         const message = `Welcome to YAN Rwanda!\n\nPlease verify your email by clicking the link below:\n${verifyUrl}\n\nIf you did not request this, please ignore this email.`;
 
-        try {
-            await sendEmail({
-                email: user.email,
-                subject: 'Verify your YAN Rwanda Account',
-                message
-            });
-        } catch (err) {
-            console.error('Email verification sending failed:', err);
-        }
+        // Send email asynchronously (don't block the response)
+        sendEmail({
+            email: user.email,
+            subject: 'Verify your YAN Rwanda Account',
+            message
+        }).catch(err => console.error('Email verification sending failed:', err));
 
         const accessToken = signAccessToken(user._id);
 

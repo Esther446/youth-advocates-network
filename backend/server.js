@@ -37,6 +37,7 @@ app.use(cors({
             origin.startsWith('http://localhost:') ||
             origin.startsWith('http://127.0.0.1:') ||
             origin.startsWith('http://192.168.1.') ||
+            origin.endsWith('.vercel.app') ||
             origin.replace(/\/$/, "") === process.env.FRONTEND_URL?.replace(/\/$/, "")) {
             callback(null, true);
         } else {

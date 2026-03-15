@@ -86,8 +86,8 @@ const VIEW_META = {
   applications: {
     title: "Applications",
     subtitle: "Review, accept, or reject membership applications.",
-    primary: "", // Removed as it was only for demo seeds
-    onPrimary: () => {},
+    primary: "+ New",
+    onPrimary: () => { openDirectAddModal(); },
   },
   courses: { title: "Courses", subtitle: "Manage training modules that members will see.", primary: "+ New Course",
     onPrimary: () => { resetCourseForm(); $("courseTitle").focus(); } },
@@ -199,9 +199,9 @@ function renderApplications() {
         <td class="muted">${escapeHTML(formatDate(a.submittedAt || a.createdAt))}</td>
         <td>
           <div class="actions" style="margin:0;">
-            <button class="btn-sm btn-soft" data-act="view" data-id="${a.id}">View</button>
-            <button class="btn-sm btn-primary-sm" data-act="accept" data-id="${a.id}" ${canAct ? "" : "disabled"}>Accept</button>
-            <button class="btn-sm btn-danger-sm" data-act="reject" data-id="${a.id}" ${canAct ? "" : "disabled"}>Reject</button>
+            <button class="btn-sm btn-soft" data-act="view" data-id="${a._id || a.id}">View</button>
+            <button class="btn-sm btn-primary-sm" data-act="accept" data-id="${a._id || a.id}" ${canAct ? "" : "disabled"}>Accept</button>
+            <button class="btn-sm btn-danger-sm" data-act="reject" data-id="${a._id || a.id}" ${canAct ? "" : "disabled"}>Reject</button>
           </div>
         </td>
       </tr>
@@ -292,7 +292,7 @@ function renderParagraphs(text) {
 
 function viewApplication(id) {
   const apps = loadList(LS_KEYS.APPS);
-  const app = apps.find(a => a.id === id);
+  const app = apps.find(a => (a._id || a.id) === id);
   if (!app) return;
 
   state.activeAppId = id;
@@ -730,17 +730,21 @@ async function seedDemoCore() {
 
 function seedDemoApplications(n = 2) {
   const apps = loadList(LS_KEYS.APPS);
+  const names = ['Aline Mukamana', 'Jean Uwimana', 'Claudine Ishimwe', 'Patrick Niyonzima'];
+  const orgs  = ['Youth Voices Rwanda', 'Green Future Initiative', 'Digital Skills Hub', 'Rwandan Youth Forum'];
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < Math.min(n, names.length); i++) {
     apps.push({
       id: uid("app"),
-      fullName: i === 0 ? "Aline Mukamana" : "Jean Uwimana",
-      email: i === 0 ? "aline@example.com" : "jean@example.com",
-      organization: i === 0 ? "Youth Voices Rwanda" : "Green Future Initiative",
-      status: "pending",
+      submissionData: {
+        repFullName: names[i],
+        repEmail: `${names[i].split(' ')[0].toLowerCase()}@yanrwanda.org`,
+        orgLegalName: orgs[i],
+        organization: { name: orgs[i] },
+      },
+      applicant: { name: names[i], email: `${names[i].split(' ')[0].toLowerCase()}@yanrwanda.org` },
+      status: "submitted",
       createdAt: new Date(Date.now() - (i+1) * 86400000).toISOString(),
-      data: {},
-      files: {}
     });
   }
 
@@ -811,20 +815,69 @@ async function renderProfile() {
 }
 
 function openAdminProfileModal() {
-  // We'll reuse the logic or create a simple prompt for now, 
-  // or I could add a modal to admin.html. 
-  // Given the complexity, let's add a simple modal to admin.html in the next step or use prompt.
-  const name = prompt("Enter your new name:", $("adminDispName").textContent);
-  if (name === null) return;
-  const bio = prompt("Enter your new bio:", $("adminDispBio").textContent);
+  const currentName = $("adminDispName").textContent;
+  const currentBio  = $("adminDispBio")?.textContent || '';
+
+  const name = prompt("Enter your name:", currentName === 'Loading…' ? '' : currentName);
+  if (!name || !name.trim()) return;
+  const bio = prompt("Enter your bio (max 500 chars):", currentBio === 'No bio provided.' ? '' : currentBio);
   if (bio === null) return;
 
-  api.updateDetails(name, undefined, undefined, bio)
+  api.updateDetails(name.trim(), undefined, undefined, bio.trim())
     .then(() => {
       renderProfile();
-      alert("Profile updated successfully!");
+      alert("Profile updated!");
     })
     .catch(err => alert("Update failed: " + err.message));
+}
+
+/* ===== Direct Add Member ===== */
+function openDirectAddModal() {
+  $("directAddModal").classList.add("active");
+  $("directMemberName").value = "";
+  $("directMemberEmail").value = "";
+  $("directMemberOrg").value = "";
+}
+
+function closeDirectAddModal() {
+  $("directAddModal").classList.remove("active");
+}
+
+async function saveDirectMember() {
+  const name = $("directMemberName").value.trim();
+  const email = $("directMemberEmail").value.trim();
+  const org = $("directMemberOrg").value.trim();
+
+  if (!name || !email) return alert("Name and Email are required.");
+
+  try {
+    const btn = $("saveDirectMemberBtn");
+    btn.disabled = true;
+    btn.textContent = "Saving...";
+
+    const response = await api.submitApplication({
+      submissionData: {
+        organization: { name: org },
+        representative: { name: name, email: email },
+        notes: "Directly added by Admin"
+      }
+    });
+
+    const appId = response._id || response.id;
+    if (appId) {
+      await api.updateApplicationStatus(appId, "approved", "Directly added by administrator.");
+      alert("Member added successfully!");
+      closeDirectAddModal();
+      renderAll();
+    }
+  } catch (err) {
+    console.error("Direct add failed:", err);
+    alert(err.message);
+  } finally {
+    const btn = $("saveDirectMemberBtn");
+    btn.disabled = false;
+    btn.textContent = "Add Member";
+  }
 }
 
 /* ===== Init ===== */

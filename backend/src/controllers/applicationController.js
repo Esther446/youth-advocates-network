@@ -105,6 +105,22 @@ exports.updateApplicationStatus = async (req, res) => {
     try {
         const { status, reviewerNotes } = req.body;
 
+        if (!req.params.id || req.params.id === 'undefined') {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid application ID provided (undefined)'
+            });
+        }
+
+        // Validate ObjectId format
+        const mongoose = require('mongoose');
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid application ID format'
+            });
+        }
+
         const application = await Application.findByIdAndUpdate(
             req.params.id,
             {

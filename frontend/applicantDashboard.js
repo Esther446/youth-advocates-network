@@ -24,6 +24,20 @@ const applicantDashboard = (function () {
     }
   }
 
+  /* ---------- STATUS HELPERS ---------- */
+  const STATUS_CONFIG = {
+    submitted:    { label: 'Submitted',    color: '#3b82f6', icon: '📨', msg: 'Your application has been received and is in the queue for review. Our team typically begins reviewing within 2–3 business days.' },
+    screening:    { label: 'Screening',    color: '#8b5cf6', icon: '🔍', msg: 'Your application is currently being screened for eligibility. It will move to full review shortly.' },
+    under_review: { label: 'Under Review', color: '#f59e0b', icon: '⏳', msg: 'Your application is being reviewed in detail by our membership committee. This usually takes 5-7 business days.' },
+    approved:     { label: 'Approved',     color: '#10b981', icon: '✅', msg: 'Congratulations! Your application has been approved. Your account is now upgraded to Member — refresh the page to access the full member dashboard.' },
+    rejected:     { label: 'Not Approved', color: '#ef4444', icon: '❌', msg: 'Unfortunately, your application was not approved at this time. Please check your email for detailed feedback from our team.' },
+    appealed:     { label: 'Appealed',     color: '#0ea5e9', icon: '📤', msg: 'Your appeal has been received and is being reconsidered by the committee.' },
+  };
+
+  function getStatusConfig(status) {
+    return STATUS_CONFIG[status] || { label: status || 'Pending', color: '#94a3b8', icon: '📋', msg: 'Your application is being processed.' };
+  }
+
   /* ---------- LOAD APPLICATION STATUS ---------- */
   async function loadStatus() {
     const container = $('#applicationStatusContent');
@@ -35,45 +49,52 @@ const applicantDashboard = (function () {
 
       if (!Array.isArray(apps) || apps.length === 0) {
         container.innerHTML = `
-          <div style="text-align:center; padding:2rem;">
-            <p style="color:var(--text-secondary); margin-bottom:1rem;">You haven't submitted any applications yet.</p>
-            <a href="application-form.html" class="btn btn-primary">Start Application</a>
+          <div style="text-align:center; padding:2.5rem 1rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">📝</div>
+            <h4 style="margin:0 0 0.5rem; color:var(--secondary);">No Application Found</h4>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem; max-width:360px; margin-left:auto; margin-right:auto;">You haven't submitted a membership application yet. Join the Youth Advocates Network today!</p>
+            <a href="application-form.html" style="display:inline-block; background:var(--primary); color:#fff; padding:12px 28px; border-radius:8px; font-weight:700; text-decoration:none; transition:transform .15s;">Apply Now →</a>
           </div>`;
         return;
       }
 
-      const latest = apps[0]; // Assuming newest is first
-      const status = latest.status || 'pending';
-      const statusColor = status === 'approved' ? '#10b981' : status === 'rejected' ? '#ef4444' : '#f59e0b';
-      const date = latest.createdAt ? new Date(latest.createdAt).toLocaleDateString() : 'N/A';
+      const latest = apps[0];
+      const status = latest.status || 'submitted';
+      const cfg = getStatusConfig(status);
+      const date = latest.submittedAt || latest.createdAt;
+      const dateStr = date ? new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A';
+      const orgName = latest.submissionData?.organization?.name || latest.submissionData?.orgLegalName || 'Your Organization';
 
       container.innerHTML = `
-        <div style="background: ${statusColor}08; border-left: 4px solid ${statusColor}; padding: 1.5rem; border-radius: 8px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+        <div style="background: ${cfg.color}0a; border: 1px solid ${cfg.color}25; padding: 1.5rem; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
                 <div>
-                    <h4 style="margin:0; font-size: 1.1rem; color: var(--secondary);">Application for ${latest.submissionData?.organization?.name || 'Organization'}</h4>
-                    <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--text-secondary);">Submitted on ${date}</p>
+                    <h4 style="margin:0; font-size: 1.1rem; color: var(--secondary);">${cfg.icon} Application for ${orgName}</h4>
+                    <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: var(--text-secondary);">Submitted on ${dateStr}</p>
                 </div>
-                <span style="background: ${statusColor}15; color: ${statusColor}; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">
-                    ${status}
+                <span style="background: ${cfg.color}18; color: ${cfg.color}; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
+                    ${cfg.label}
                 </span>
             </div>
-            <p style="margin:0; font-size: 0.95rem; line-height: 1.5;">${getStatusMessage(status)}</p>
+            <p style="margin:0; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">${cfg.msg}</p>
+            ${latest.reviewerNotes ? `<div style="margin-top:1rem; padding:0.75rem 1rem; background:rgba(0,0,0,0.03); border-radius:8px; font-size:0.9rem;"><strong>Reviewer Notes:</strong> ${latest.reviewerNotes}</div>` : ''}
         </div>
       `;
     } catch (err) {
       console.error('Failed to load application status:', err);
-      container.innerHTML = '<p style="color: #ef4444; padding: 1rem;">Failed to load application status. Please try again later.</p>';
-    }
-  }
-
-  function getStatusMessage(status) {
-      switch(status) {
-          case 'pending': return 'Your application is currently being reviewed by our team. This usually takes 5-7 business days.';
-          case 'approved': return 'Congratulations! Your application has been approved. You should soon see your role upgraded to Member.';
-          case 'rejected': return 'Unfortunately, your application was not approved at this time. Please check your email for more details.';
-          default: return 'Positioned in the review queue.';
+      let errorMsg = 'Unable to load your application status.';
+      if (err.status === 401) {
+        errorMsg = 'Your session has expired. Please log in again.';
+      } else if (err.message && !err.message.includes('Request failed')) {
+        errorMsg = err.message;
       }
+      container.innerHTML = `
+        <div style="text-align:center; padding:2rem;">
+          <div style="font-size:2rem; margin-bottom:0.5rem;">⚠️</div>
+          <p style="color: #ef4444; margin:0;">${errorMsg}</p>
+          <button onclick="location.reload()" style="margin-top:1rem; padding:8px 20px; border:1px solid #ddd; border-radius:8px; cursor:pointer; background:transparent; color:var(--secondary);">Retry</button>
+        </div>`;
+    }
   }
 
   /* ---------- LOAD UPCOMING EVENTS ---------- */

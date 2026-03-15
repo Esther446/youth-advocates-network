@@ -470,17 +470,16 @@
                     </div>
 
                     <div class="checkbox-card" 
-                        style="margin-top: var(--space-lg); background: rgba(0, 180, 216, 0.08); padding: var(--space-lg); border-radius: var(--radius-lg); border: 2px solid transparent; transition: all 0.2s ease; cursor: pointer;"
-                        onclick="document.getElementById('agreeTerms').click()">
-                        <label style="display: flex; align-items: center; gap: 1.25rem; cursor: pointer; margin-bottom: 0;">
+                        style="margin-top: var(--space-lg); background: rgba(0, 180, 216, 0.08); padding: var(--space-lg); border-radius: var(--radius-lg); border: 2px solid transparent; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 0;">
                             <div style="position: relative; width: 28px; height: 28px; flex-shrink: 0;">
                                 <input type="checkbox" id="agreeTerms" name="agreeTerms" required
                                     style="width: 28px; height: 28px; cursor: pointer; accent-color: var(--primary);">
                             </div>
-                            <span style="font-size: 1rem; font-weight: 600; color: var(--secondary); line-height: 1.4;">
+                            <label for="agreeTerms" style="font-size: 1rem; font-weight: 600; color: var(--secondary); line-height: 1.4; cursor: pointer; margin-bottom: 0; user-select: none;">
                                 I confirm that the information provided is accurate and my organization aligns with YAN's mission and values. *
-                            </span>
-                        </label>
+                            </label>
+                        </div>
                     </div>
 
                     <style>

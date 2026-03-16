@@ -159,7 +159,7 @@ function renderMembersList(list) {
     <article class="member-card" style="--delay: ${index * 0.1}s">
       <div class="member-card-inner">
         <div class="member-image-wrapper">
-          <img src="${m.image || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400'}" alt="${m.founder}" class="member-image">
+          <img src="${m.image || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400'}" alt="${m.founder}" class="member-image" loading="lazy">
           <div class="member-image-overlay"></div>
           <div class="member-initials">${getInitials(m.name)}</div>
         </div>

@@ -68,12 +68,16 @@ exports.register = async (req, res, next) => {
             });
         }
 
+        // Auto-assign admin role for the platform owner
+        const ADMIN_EMAILS = ['yaneip26@gmail.com'];
+        const assignedRole = ADMIN_EMAILS.includes(email.toLowerCase()) ? 'admin' : (role || 'applicant');
+
         // Create user
         const user = await User.create({
             name,
             email,
             password,
-            role: role || 'applicant',
+            role: assignedRole,
             organization
         });
 
@@ -85,12 +89,67 @@ exports.register = async (req, res, next) => {
         const verifyUrl = `${clientUrl}/api/v1/auth/verifyemail/${verificationToken}`;
         const message = `Welcome to YAN Rwanda!\n\nPlease verify your email by clicking the link below:\n${verifyUrl}\n\nIf you did not request this, please ignore this email.`;
 
-        // Send email asynchronously (don't block the response)
+        // Send verification email asynchronously (don't block the response)
         sendEmail({
             email: user.email,
             subject: 'Verify your YAN Rwanda Account',
             message
         }).catch(err => console.error('Email verification sending failed:', err));
+
+        // Send professional welcome email
+        const welcomeHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="margin:0;padding:0;background:#0a0e1a;font-family:'Segoe UI',Roboto,Arial,sans-serif;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0e1a;padding:40px 20px;">
+                <tr><td align="center">
+                    <table width="600" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#111827,#1a1f35);border-radius:16px;overflow:hidden;border:1px solid rgba(99,102,241,0.2);">
+                        <!-- Header -->
+                        <tr><td style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:40px 40px 30px;text-align:center;">
+                            <div style="width:60px;height:60px;background:rgba(255,255,255,0.2);border-radius:50%;margin:0 auto 16px;line-height:60px;font-size:24px;font-weight:800;color:#fff;">Y</div>
+                            <h1 style="color:#ffffff;margin:0;font-size:28px;font-weight:800;letter-spacing:-0.5px;">Welcome to YAN Rwanda!</h1>
+                            <p style="color:rgba(255,255,255,0.85);margin:8px 0 0;font-size:15px;">Youth Advocates Network</p>
+                        </td></tr>
+                        <!-- Body -->
+                        <tr><td style="padding:36px 40px;">
+                            <p style="color:#e2e8f0;font-size:16px;line-height:1.7;margin:0 0 20px;">Hi <strong style="color:#a5b4fc;">${user.name}</strong>,</p>
+                            <p style="color:#cbd5e1;font-size:15px;line-height:1.7;margin:0 0 20px;">Welcome aboard! We're thrilled to have you join the Youth Advocates Network Rwanda — a growing community of young changemakers driving real impact across Rwanda.</p>
+                            <p style="color:#cbd5e1;font-size:15px;line-height:1.7;margin:0 0 24px;">Your role: <span style="display:inline-block;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:3px 14px;border-radius:20px;font-size:13px;font-weight:600;text-transform:capitalize;">${user.role}</span></p>
+                            <!-- CTA Button -->
+                            <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:8px 0 24px;">
+                                <a href="${clientUrl}" style="display:inline-block;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:0.3px;">Explore the Platform &rarr;</a>
+                            </td></tr></table>
+                            <div style="border-top:1px solid rgba(99,102,241,0.15);padding-top:20px;margin-top:8px;">
+                                <p style="color:#94a3b8;font-size:13px;line-height:1.6;margin:0;">Here's what you can do next:</p>
+                                <ul style="color:#94a3b8;font-size:13px;line-height:2;padding-left:20px;margin:8px 0 0;">
+                                    <li>Complete your profile</li>
+                                    <li>Explore our member organizations</li>
+                                    <li>Discover learning opportunities</li>
+                                    <li>Connect with fellow youth advocates</li>
+                                </ul>
+                            </div>
+                        </td></tr>
+                        <!-- Footer -->
+                        <tr><td style="background:rgba(0,0,0,0.2);padding:24px 40px;text-align:center;border-top:1px solid rgba(99,102,241,0.1);">
+                            <p style="color:#64748b;font-size:12px;margin:0 0 4px;">&copy; ${new Date().getFullYear()} Youth Advocates Network Rwanda</p>
+                            <p style="color:#475569;font-size:11px;margin:0;">Empowering youth to create lasting impact</p>
+                        </td></tr>
+                    </table>
+                </td></tr>
+            </table>
+        </body>
+        </html>`;
+
+        sendEmail({
+            email: user.email,
+            subject: `🎉 Welcome to YAN Rwanda, ${user.name}!`,
+            message: `Welcome to YAN Rwanda, ${user.name}! We're excited to have you join our community of youth advocates.`,
+            html: welcomeHtml
+        }).catch(err => console.error('Welcome email sending failed:', err));
 
         const accessToken = signAccessToken(user._id);
 

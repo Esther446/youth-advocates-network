@@ -51,7 +51,8 @@ const CourseSchema = new mongoose.Schema({
 });
 
 // Cascade delete lessons when a course is deleted
-CourseSchema.pre('remove', async function (next) {
+// Use 'deleteOne' with { document: true, query: false } for Mongoose 8/9 compatibility
+CourseSchema.pre('deleteOne', { document: true, query: false }, async function (next) {
     await this.model('Lesson').deleteMany({ course: this._id });
     next();
 });

@@ -32,7 +32,8 @@ router.get('/test-credentials', protect, async (req, res) => {
 });
 
 // Upload endpoint
-router.post('/', protect, upload.any(), async (req, res) => {
+// Note: multer 2.x removed upload.any(); using upload.array('file') instead
+router.post('/', protect, upload.array('file'), async (req, res) => {
     try {
         if (!req.files || req.files.length === 0) {
             return res.status(400).json({

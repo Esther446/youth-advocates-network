@@ -28,7 +28,7 @@ router.patch('/:id/status', [
     protect,
     authorize('admin'),
     check('status', 'Status is required').not().isEmpty(),
-    check('status', 'Invalid status').isIn(['approved', 'rejected', 'pending'])
+    check('status', 'Invalid status').isIn(['submitted', 'screening', 'under_review', 'approved', 'rejected', 'appealed'])
 ], validate, updateApplicationStatus);
 
 module.exports = router;

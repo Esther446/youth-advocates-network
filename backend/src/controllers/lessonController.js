@@ -96,7 +96,8 @@ exports.updateLesson = async (req, res, next) => {
 // @access  Private (Partner, Admin)
 exports.deleteLesson = async (req, res, next) => {
     try {
-        await req.lesson.remove();
+        // req.lesson is set by checkLessonOwnership middleware
+        await Lesson.findByIdAndDelete(req.lesson._id);
 
         res.status(200).json({
             success: true,

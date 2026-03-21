@@ -132,7 +132,9 @@ exports.updateCourse = async (req, res, next) => {
 // @access  Private (Partner, Admin)
 exports.deleteCourse = async (req, res, next) => {
     try {
-        await req.course.remove();
+        // req.course is set by checkCourseOwnership middleware
+        // Use deleteOne() on the document so the pre('deleteOne') hook fires for cascade delete
+        await req.course.deleteOne();
 
         res.status(200).json({
             success: true,
